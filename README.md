@@ -6,8 +6,8 @@ Sample workflow to follow for organisation purposes. Please collaborate on tasks
 - bugfix -> bugfix/{task}-{title}
   
 ### Example
-1. New task TASK-1 (Add login page front-end) requires new feature branch
-2. Branch of main -> feature/TASK-1-login-front-end
+1. New task TASK_1 (Add login page front-end) requires new feature branch
+2. Branch of main -> feature/TASK_1-login-front-end
 3. Complete task
 4. Create Pull request to main
 5. Review by other other contributers and pass tests
