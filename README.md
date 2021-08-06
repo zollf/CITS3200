@@ -1,11 +1,13 @@
 # CITS3200 Project
 
 ## Branches/Workflow
+
 Sample workflow to follow for organisation purposes. Please collaborate on tasks that might have conflicting commits either avoid or fix conflicts correctly.
 - feature -> feature/{task}-{title}
 - bugfix -> bugfix/{task}-{title}
   
 ### Example
+
 1. New task TASK_1 (Add login page front-end) requires new feature branch
 2. Branch of main -> feature/TASK_1-login-front-end
 3. Complete task
@@ -14,6 +16,7 @@ Sample workflow to follow for organisation purposes. Please collaborate on tasks
 6. Merge to main 🎉 🎉 🎉
 
 ## Contributors
+
 | Name             | Student Number |
 | ---------------- | -------------- |
 | Arun Muthu       | 22704805       |
