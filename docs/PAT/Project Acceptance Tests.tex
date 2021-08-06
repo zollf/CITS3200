@@ -1,5 +1,68 @@
-\documentclass{article}
+\documentclass[a4paper, draft]{article}
+
+\author{Joel Milligan}
+\title{Project Acceptance Test Manual}
+\date{}
 
 \begin{document}
-Hello World!
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Objectives}
+In this section, describe the purpose of this document.
+Forecast the testing strategy, the unit tests, integation test and system tests listed in this document.
+
+\section{Document References}
+In this section, reference the major documents produced during project development.
+
+Explains the relationships among the requirements documents, design documents, implementation documents and the test procedures.
+
+\section{Test Summary}
+In this section, describe the functions of the system tested in this document.
+
+Refer to Requirements Analysis Document and Problem Statement.
+
+\section{Testing Strategy}
+In this section, define the subsystem or subsystems to be tested, the system integration strategy and how, where, when, and by whom the tests will be conducted.
+
+You may want to include drawings depicting relationships among the major classes of the subsystem or the subsystem decomposition, if you feel this is appropriate.
+
+\section{Test Materials}
+Describes materials required for executing the tests described in this document.
+
+\newpage
+\section{Test Example}
+Introduction and overview for this test
+
+\subsection{Test Specification}
+The Test Specification lists the requirements whose satisfaction will be demonstrated by the test. It lists the methods tested, and describes the conditions of the test.
+
+\subsection{Test Description}
+The Test Description is used as a guide in performing the test. It lists the input data and input commands for each test, as well as expected out put and system messages.
+If you find that you are unable to describe expected output numerically, use a natural language description.
+
+\subsubsection{Test Description Contents}
+\begin{itemize}
+    \item Location of test (hyperlink to test)
+    \item Means of Control: Describes how data are entered (manually or automatically with a test driver)
+    \item Data
+          \begin{itemize}
+              \item Input Data
+              \item Input Commands
+              \item Output Data
+              \item System Messages
+          \end{itemize}
+    \item Procedures: The test procedure is often specificed in form of a test script.
+\end{itemize}
+
+\subsection{Test Analysis Report}
+The Test Analysis Report lists the functions and performance characteristics that were to be demonstrated, and describes the actual test results. The description of the results must include the following:
+\begin{itemize}
+    \item Function
+    \item Performance
+    \item Data measures, including whether target requirements have been met
+\end{itemize}
+If an error or deficiency has been discovered, the report discusses its impact.
+
 \end{document}
