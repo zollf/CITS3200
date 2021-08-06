@@ -8,8 +8,8 @@ Sample workflow to follow for organisation purposes. Please collaborate on tasks
   
 ### Example
 
-1. New task TASK_1 (Add login page front-end) requires new feature branch
-2. Branch of main -> feature/TASK_1-login-front-end
+1. New task TASK_1 (Add login page to front-end) requires new feature branch
+2. Create a new branch off of main (e.g. feature/TASK_1-login-front-end)
 3. Complete task
 4. Create pull request to main
 5. Review by other contributors and pass tests
