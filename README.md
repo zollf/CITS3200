@@ -9,7 +9,7 @@ Sample workflow to follow for organisation purposes. Please collaborate on tasks
 1. New task TASK_1 (Add login page front-end) requires new feature branch
 2. Branch of main -> feature/TASK_1-login-front-end
 3. Complete task
-4. Create Pull request to main
+4. Create pull request to main
 5. Review by other contributors and pass tests
 6. Merge to main 🎉 🎉 🎉
 
