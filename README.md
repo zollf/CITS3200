@@ -2,7 +2,7 @@
 
 ## Branches/Workflow
 
-Sample workflow to follow for organisation purposes. Please collaborate on tasks that might have conflicting commits either avoid or fix conflicts correctly.
+Sample workflow to follow for organisation purposes. Please collaborate on tasks that might have conflicting commits by either avoiding or fixing the conflicts.
 - feature -> feature/{task}-{title}
 - bugfix -> bugfix/{task}-{title}
   
