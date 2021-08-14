@@ -28,30 +28,36 @@ In this section, define the subsystem or subsystems to be tested, the system int
 
 You may want to include drawings depicting relationships among the major classes of the subsystem or the subsystem decomposition, if you feel this is appropriate.
 
-\section{Test Materials}
-Describes materials required for executing the tests described in this document.
-
 \newpage
-\section{Test Example}
-Introduction and overview for this test
+\section{Front End Unit Tests}
+All front end JavaScript unit tests, using the \texttt{jest} framework, should pass.
 
-\subsection{Test Specification}
-The Test Specification lists the requirements whose satisfaction will be demonstrated by the test. It lists the methods tested, and describes the conditions of the test.
+\subsection{Test Procedure}
+\begin{enumerate}
+    \item Open your CLI to the root of the repository.
+    \item Run the command \texttt{yarn test}.
+\end{enumerate}
 
-\subsection{Test Description}
-The Test Description is used as a guide in performing the test. It lists the input data and input commands for each test, as well as expected out put and system messages.
-If you find that you are unable to describe expected output numerically, use a natural language description.
-
-\subsubsection{Test Description Contents}
+\subsection{Expected Results}
 \begin{itemize}
-    \item Location of test (hyperlink to test)
-    \item Means of Control: Describes how data are entered (manually or automatically with a test driver)
-    \item Data
-          \begin{itemize}
-              \item Input Data
-              \item Input Commands
-              \item Output Data
-              \item System Messages
+    \item All unit tests pass.
+    \item At least 50\% test coverage.
+\end{itemize}
+The reason for the relatively low coverage is that most tests for the frontend will be integration tests.
+
+\section{Back End Unit Tests}
+All back end Python unit tests, using \texttt{pytest}, should pass.
+
+\subsection{Test Procedure}
+\begin{enumerate}
+    \item Open your CLI to the root of the repository.
+    \item Run the command \texttt{yarn test}.
+\end{enumerate}
+
+\subsection{Expected Results}
+\begin{itemize}
+    \item All unit tests pass.
+    \item At least 75\% test coverage.
           \end{itemize}
     \item Procedures: The test procedure is often specificed in form of a test script.
 \end{itemize}
