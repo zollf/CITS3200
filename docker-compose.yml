@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  mysql:
+    mem_limit: 1g
+    image: mysql:5.7.21
+    ports:
+      - 3306:3306
+    environment: &app_environment
+      MYSQL_HOSTNAME: mysql
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: db
+    healthcheck:
+      test: mysqladmin ping -h localhost -u mysql -pmysql
+      timeout: 20s
+      retries: 10
+  
+  django:
+    build: 
+      context: .
+      dockerfile: docker/django.dev.Dockerfile
+    environment:
+      <<: *app_environment
+    env_file: .env
+    volumes:
+      - ./:/app:cached
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql

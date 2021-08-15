@@ -1,0 +1,9 @@
+Django # Django itself
+django-dotenv # Use .env files
+gunicorn # Python Web Server Gateway Interface HTTP server
+whitenoise # Production static file servicing
+factory-boy # Model testing using factories
+djangorestframework # Rest Framework for Django
+mysqlclient # Django MySql Connection
+pylint # Used for checking lint
+autopep8 # Used for fixing lint
