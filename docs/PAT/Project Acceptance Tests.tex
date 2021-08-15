@@ -66,4 +66,72 @@ The booking part of the website should be accessible to anyone with a modern web
 
 \subsection{Expected Result}
 The initial page for booking will be shown.
+
+\section{Applying for a Booking}
+Once a user has access to the booking site, they can create a booking application.
+
+\subsection{Test Procedure}
+\begin{enumerate}
+    \item Choose a date.
+    \item Choose a carpark.
+    \item Choose a bay and time.
+    \item Review the booking details before submitting.
+    \item Submit application.
+\end{enumerate}
+
+\subsection{Expected Result}
+\begin{itemize}
+    \item Booking details before submitting should be correct.
+    \item The user should be sent an email confirming the application is submitted.
+    \item The admin team should get an email notifying them of a new application that needs to be actioned.
+\end{itemize}
+
+\newpage
+\section{Approving an Application}
+An admin user should be able to approve an existing application.
+
+\subsection{Test Procedure}
+\begin{enumerate}
+    \item As a normal user, create a booking application.
+    \item As an admin, navigate to the approvals page.
+    \item Click approve on the application.
+\end{enumerate}
+
+\subsection{Expected Result}
+\begin{itemize}
+    \item User should be automatically emailed to notify them that their application was approved.
+    \item The application in the admin panel should now show as approved.
+\end{itemize}
+
+\section{Declining an Application}
+An admin user should be able to decline an existing application.
+
+\subsection{Test Procedure}
+\begin{enumerate}
+    \item As a normal user, create a booking application.
+    \item As an admin, navigate to the approvals page.
+    \item Click decline on the application.
+\end{enumerate}
+
+\subsection{Expected Result}
+\begin{itemize}
+    \item User should be automatically emailed to notify them that their application was declined.
+    \item The application in the admin panel should now show as declined.
+\end{itemize}
+
+\newpage
+\section{PDF Generation} \label{pdf}
+A PDF containing details about the booking should be automatically generated when a booking is approved.
+
+\subsection{Test Procedure}
+\begin{enumerate}
+    \item Apply for a booking.
+    \item An admin approves the booking.
+\end{enumerate}
+
+\subsection{Expected Result}
+\begin{itemize}
+    \item A PDF should be available for download or viewing by the admin upon approval of the booking.
+    \item The client should be sent an email with the same PDF attached.
+\end{itemize}
 \end{document}
