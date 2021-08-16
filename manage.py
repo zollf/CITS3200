@@ -4,7 +4,6 @@ import sys
 import dotenv
 from pathlib import Path
 
-
 def main():
     dotenv.read_dotenv(Path(__file__).resolve().parent.joinpath('.env'))
     if (sys.argv[1] == 'test'):
@@ -23,7 +22,6 @@ def main():
         ) from exc
 
     execute_from_command_line(sys.argv)
-
 
 if __name__ == '__main__':
     main()

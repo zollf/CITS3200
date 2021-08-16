@@ -7,7 +7,7 @@
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
     "test": "jest --maxWorkers=4",
-    "lint": "semistandard"
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "author": "group28",
   "devDependencies": {
@@ -22,15 +22,21 @@
     "@types/node": "^16.6.1",
     "@types/react": "^17.0.17",
     "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.1.0",
     "css-loader": "^6.2.0",
+    "dylan-eslint-config": "https://github.com/zollf/dylan-eslint-config.git",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "identity-obj-proxy": "^3.0.0",
     "import-sort-style": "^6.0.0",
     "jest": "^27.0.6",
+    "prettier": "^2.3.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "semistandard": "^16.0.1",
     "style-loader": "^3.2.1",
     "ts-jest": "^27.0.4",
     "ts-loader": "^9.2.5",
@@ -41,6 +47,9 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "react-router-dom": "^5.2.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/dylan-eslint-config/index"
   },
   "importSort": {
     ".ts, .tsx": {

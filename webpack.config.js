@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const glob = require('glob');
 
@@ -7,13 +8,13 @@ glob.sync('./frontend/entrypoints/*.tsx').forEach((s) => {
 });
 
 module.exports = {
-  entry: { 
+  entry: {
     ...files,
     styles: glob.sync('./frontend/**/*.css'),
   },
   output: {
     path: path.resolve(__dirname, './app/resources/static/dist'),
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -24,25 +25,25 @@ module.exports = {
         test: /\.tsx?$/,
         use: {
           loader: 'ts-loader',
-        }
+        },
       },
       {
         test: /\.css$/i,
         use: [
-          "style-loader", 
+          'style-loader',
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               import: false,
-              modules: true
+              modules: true,
             },
-          }
+          },
         ],
-        include: /\.module\.css$/
+        include: /\.module\.css$/,
       },
-    ]
+    ],
   },
   optimization: {
-    minimize: true
-  }
+    minimize: true,
+  },
 };

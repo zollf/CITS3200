@@ -6,8 +6,15 @@
 | mysql | https://dev.mysql.com/downloads/installer/ | https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/ |
 | node | https://nodejs.org/en/download/ |  https://phoenixnap.com/kb/install-node-js-npm-on-windows
 | python | https://www.python.org/downloads/ | https://realpython.com/installing-python/
+| pip | https://pip.pypa.io/en/stable/installation/ | https://phoenixnap.com/kb/install-pip-windows |
 | yarn | after installing node run `npm install --global yarn` | https://classic.yarnpkg.com/en/docs/install/#windows-stable
 ---
+
+## Useful VSCode Plugins
+- Python
+- ESLint
+- Django 
+- Prettier
 
 ## Setup
 Copy `.env.example` to .env
@@ -15,9 +22,9 @@ Copy `.env.example` to .env
 cp .env.example .env
 ```
 
-Install Python requirements
+Install Python requirements (on Windows you might need to be administrator running this)
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 Install Node dependencies
@@ -68,7 +75,7 @@ yarn dev
 ## Lints
 ### Python Lint
 ```
-pylint
+pycodestyle app/
 ```
 ### Fix your Python Lint
 ```
@@ -111,7 +118,6 @@ python manage.py migrate
 ```
 
 ---
-
 ## File Structure
 ```
 CITS3200/
@@ -147,6 +153,7 @@ CITS3200/
 |
 ├── .env.example
 ├── .gitignore
+├── .prettierrc.json
 ├── docker-compose.yml
 ├── Dockerfile
 ├── jest.config.js
@@ -154,6 +161,8 @@ CITS3200/
 ├── package.json
 ├── README.md
 ├── requirements.txt
+├── setup.cfg
+├── tsconfig.json
 ├── webpack.config.js
 └── yarn.lock
 ```
