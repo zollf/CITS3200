@@ -5,57 +5,62 @@
 \date{}
 
 \begin{document}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+
 \maketitle
 \tableofcontents
 
 \newpage
-\section{Front End Unit Tests}
+\section{Unit Tests}
+\subsection{Front End Unit Tests}
 All front end JavaScript unit tests, using the \texttt{jest} framework, should pass.
 
-\subsection{Test Procedure}
+\subsubsection{Test Procedure}
 \begin{enumerate}
     \item Open your CLI to the root of the repository.
     \item Run the command \texttt{yarn test}.
 \end{enumerate}
 
-\subsection{Expected Results}
+\subsubsection{Expected Results}
 \begin{itemize}
     \item All unit tests pass.
     \item At least 50\% test coverage.
 \end{itemize}
 The reason for the relatively low coverage is that most tests for the front end will be integration tests.
 
-\section{Back End Unit Tests}
+\subsection{Back End Unit Tests}
 All back end Python unit tests, using \texttt{pytest}, should pass.
 
-\subsection{Test Procedure}
+\subsubsection{Test Procedure}
 \begin{enumerate}
     \item Open your CLI to the root of the repository.
     \item Run the command \texttt{yarn test}.
 \end{enumerate}
 
-\subsection{Expected Results}
+\subsubsection{Expected Results}
 \begin{itemize}
     \item All unit tests pass.
     \item At least 75\% test coverage.
 \end{itemize}
 
 \newpage
-\section{Accessible Website}
+\section{Creating Bookings}
+\subsection{Accessible Website}
 The booking part of the website should be accessible to anyone with a modern web browser.
 
-\subsection{Test Procedure}
+\subsubsection{Test Procedure}
 \begin{enumerate}
     \item Navigate to the main website URL in either Google Chrome or Mozilla Firefox.
 \end{enumerate}
 
-\subsection{Expected Result}
+\subsubsection{Expected Result}
 The initial page for booking will be shown.
 
-\section{Applying for a Booking}
+\subsection{Applying for a Booking}
 Once a user has access to the booking site, they can create a booking application.
 
-\subsection{Test Procedure}
+\subsubsection{Test Procedure}
 \begin{enumerate}
     \item Choose a date.
     \item Choose a carpark.
@@ -64,7 +69,7 @@ Once a user has access to the booking site, they can create a booking applicatio
     \item Submit application.
 \end{enumerate}
 
-\subsection{Expected Result}
+\subsubsection{Expected Result}
 \begin{itemize}
     \item Booking details before submitting should be correct.
     \item The user should be sent an email confirming the application is submitted.
@@ -72,43 +77,60 @@ Once a user has access to the booking site, they can create a booking applicatio
 \end{itemize}
 
 \newpage
-\section{Approving an Application}
+\subsection{PDF Generation} \label{pdf}
+A PDF containing details about the booking should be automatically generated when a booking is approved.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+    \item Apply for a booking.
+    \item An admin approves the booking.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+    \item A PDF should be available for download or viewing by the admin upon approval of the booking.
+    \item The client should be sent an email with the same PDF attached.
+\end{itemize}
+
+\newpage
+\section{Admin Functions}
+\subsection{Approving an Application}
 An admin user should be able to approve an existing application.
 
-\subsection{Test Procedure}
+\subsubsection{Test Procedure}
 \begin{enumerate}
     \item As a normal user, create a booking application.
     \item As an admin, navigate to the approvals page.
     \item Click approve on the application.
 \end{enumerate}
 
-\subsection{Expected Result}
+\subsubsection{Expected Result}
 \begin{itemize}
     \item User should be automatically emailed to notify them that their application was approved.
     \item The application in the admin panel should now show as approved.
 \end{itemize}
 
-\section{Declining an Application}
+\subsection{Declining an Application}
 An admin user should be able to decline an existing application.
 
-\subsection{Test Procedure}
+\subsubsection{Test Procedure}
 \begin{enumerate}
     \item As a normal user, create a booking application.
     \item As an admin, navigate to the approvals page.
     \item Click decline on the application.
 \end{enumerate}
 
-\subsection{Expected Result}
+\subsubsection{Expected Result}
 \begin{itemize}
     \item User should be automatically emailed to notify them that their application was declined.
     \item The application in the admin panel should now show as declined.
 \end{itemize}
 
 \newpage
-\section{Creating a Car Park and Bays}
+\subsection{Creating a Car Park and Bays}
 An admin use should be able to create a new carpark, which will then allow normal users to book for it.
 
-\subsection{Test Procedure}
+\subsubsection{Test Procedure}
 \begin{enumerate}
     \item Login as an admin
     \item Navigate to the car parks section of the interface and click add.
@@ -116,38 +138,23 @@ An admin use should be able to create a new carpark, which will then allow norma
     \item Add a parking bay to the car park.
 \end{enumerate}
 
-\subsection{Expected Result}
+\subsubsection{Expected Result}
 \begin{itemize}
     \item As a normal user creating a booking, the new carpark and bays should now be options.
     \item The details entered during the creation of the car park and bays should show to the user.
 \end{itemize}
 
-\section{Creating New Admins}
+\subsection{Creating New Admins}
 An existing admin user should be able to create a new admin account.
 
-\subsection{Test Procedure}
+\subsubsection{Test Procedure}
 \begin{enumerate}
     \item Login as an admin
     \item Navigate to the users section of the interface and click add.
     \item Enter the account details and confirm.
 \end{enumerate}
 
-\subsection{Expected Result}
+\subsubsection{Expected Result}
 It should now be possible to login with the new admin account.
 
-\newpage
-\section{PDF Generation} \label{pdf}
-A PDF containing details about the booking should be automatically generated when a booking is approved.
-
-\subsection{Test Procedure}
-\begin{enumerate}
-    \item Apply for a booking.
-    \item An admin approves the booking.
-\end{enumerate}
-
-\subsection{Expected Result}
-\begin{itemize}
-    \item A PDF should be available for download or viewing by the admin upon approval of the booking.
-    \item The client should be sent an email with the same PDF attached.
-\end{itemize}
 \end{document}
