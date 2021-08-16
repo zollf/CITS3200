@@ -21,9 +21,9 @@ jobs:
       - name: Run Test
         run: python manage.py test
         env:
-          ENV: "test"
-          DEBUG: "False"
-          SECRET_KEY: "test-secret-key"
+          ENV: test
+          DEBUG: False
+          SECRET_KEY: test-secret-key
       - name: Run Lint
         run: pycodestyle app/
 
@@ -76,6 +76,6 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "unipark-booking" 
+          heroku_app_name: unipark-booking
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           usedocker: true

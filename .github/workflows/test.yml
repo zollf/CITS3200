@@ -21,8 +21,9 @@ jobs:
       - name: Run Test
         run: python app/manage.py test app
         env:
-          DEBUG: "False"
-          SECRET_KEY: "test-secret-key"
+          ENV: test
+          DEBUG: False
+          SECRET_KEY: test-secret-key
       - name: Run Lint
         run: pycodestyle app/
           
