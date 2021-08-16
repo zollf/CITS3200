@@ -131,6 +131,10 @@ CITS3200/
 │   |   └── wsgi.py
 |   ├── resources/
 |   |   ├── static/
+|   |   |   ├── dist/
+|   |   |   ├── images/
+|   |   |   ├── scripts/
+|   |   |   └── styles/
 |   |   └── templates/
 |   ├── <internal_app>/
 |   |   ├── __init__.py
@@ -153,6 +157,7 @@ CITS3200/
 |
 ├── .env.example
 ├── .gitignore
+├── .prettierignore
 ├── .prettierrc.json
 ├── docker-compose.yml
 ├── Dockerfile

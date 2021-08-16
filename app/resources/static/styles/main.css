@@ -1,0 +1,125 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+:root {
+  /* Primary */
+  --uwa-blue: #27348B;
+  --uwa-gold: #E2B600;
+  --uwa-silver: #ECECEC;
+  --uwa-black: #231F20;
+
+  /* Secondary */
+  --uwa-secondary-blue: #1488CA;
+  --uwa-secondary-gold: #FDC300;
+  --uwa-secondary-green: #A2C03B;
+  --uwa-secondary-purple: #C46CA9;
+  --uwa-secondary-red: #E42313;
+
+  /* Others */
+  --dark-blue: #2D3C9F;
+  --light-blue: #F0F6FF;
+  --white: #FDFDFD;
+}
+
+h1, .h1 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+  color: var(--uwa-black);
+}
+
+h2, .h2 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  color: var(--uwa-black);
+}
+
+h3, .h3 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 33px;
+  color: var(--uwa-black);
+}
+
+.h3-thin {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 33px;
+  color: var(--uwa-black);
+}
+
+h4, .h4 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--uwa-black);
+}
+
+.h4-thin {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--uwa-black);
+}
+
+p, .p {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--uwa-black);
+}
+
+.p-bold {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--uwa-black);
+}
+
+.p-underline {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-decoration-line: underline;
+  color: var(--uwa-black);
+}
+
+.p-bold-underline {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  text-decoration-line: underline;
+  color: var(--uwa-black);
+}
+
+.p-small-bold {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--uwa-black);
+}
