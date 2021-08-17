@@ -27,12 +27,17 @@ Install Python requirements (on Windows you might need to be administrator runni
 pip install -r requirements.txt
 ```
 
+Run migration at least once on initial setup and every pull of a new change (db needs to be alive)
+```
+python manage.py migrate
+```
+
 Install Node dependencies
 ```
 yarn
 ```
 
-Bundle webpack files at least once on initial setup or every pull of a new change
+Bundle webpack files at least once on initial setup and every pull of a new change
 ```
 yarn build
 ```
