@@ -1,0 +1,245 @@
+\documentclass[a4paper, draft]{article}
+
+\author{Joel Milligan}
+\title{Project Acceptance Test Manual}
+
+\begin{document}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Unit Tests}
+\subsection{Front End Tests}
+All front end JavaScript tests, using \texttt{jest} framework and \\ \texttt{react testing library}, should pass. Combination of code unit tests and integration test will be used. This makes sure that all components themselves work and the booking system works correctly. Snapshot testing are used as well, to ensure that the DOM and HTML are correct, and any updates that can't be inspected in code shows in the snapshots correctly.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item Open your CLI to the root of the repository.
+  \item Run the command \texttt{yarn test}
+\end{enumerate}
+
+\subsubsection{Expected Results}
+\begin{itemize}
+  \item All unit tests pass.
+  \item At least 90\% test coverage.
+\end{itemize}
+
+\subsection{Back End Tests}
+All back end Python tests, using django's built in testing library, should pass. Combination of code unit tests and integration test will be used. This includes testing endpoints, models and serializers to make sure they work as expected. Backend will use \texttt{sqlite3} as a dummy database to test creating, reading, inserting and deleting data. This is to make it easier for code integration, rather than hosting a \texttt{mysql} database test server.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item Open your CLI to the root of the repository.
+  \item Run the command \texttt{python manage.py test}
+\end{enumerate}
+
+\subsubsection{Expected Results}
+\begin{itemize}
+  \item All unit tests pass.
+  \item At least 75\% test coverage.
+\end{itemize}
+
+\newpage
+\section{Code Linting}
+Code linting will be used in both frontend and backend to check for errors and ensure consistent formatting. For frontend we use a combination of \texttt{prettier} and \texttt{eslint}, and for backend \texttt{pycodestyle}. These are industry standards for linting.
+\subsubsection{Fontend Lint Test}
+\begin{enumerate}
+  \item Open your CLI to the root of the repository.
+  \item Run the command \texttt{yarn lint}
+\end{enumerate}
+
+\subsubsection{Backend Lint Test}
+\begin{enumerate}
+  \item Open your CLI to the root of the repository.
+  \item Run the command \texttt{pycodestyle app/}
+\end{enumerate}
+
+\subsubsection{Expected Results}
+\begin{itemize}
+  \item No linting errors.
+\end{itemize}
+
+\section{CI/CD}
+Continuous integration and deployment with GitHub action is an automatic way do testing and make sure the product can build correctly. Every change to the code base will need to be reviewed, and be put into a pipeline to check all code tests and linting. 
+
+\newpage
+\section{Creating Bookings}
+\subsection{Accessible Website}
+The booking part of the website should be accessible to anyone with a modern web browser and the two main operating systems (Mac and Windows).
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item Navigate to the main website URL using different modern browsers and operating systems.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+  \item The initial page for booking will be shown.
+\end{itemize}
+
+\subsection{Applying for a Booking}
+Once a user has access to the booking site, they can create a booking application.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item Choose a date.
+  \item Choose a carpark.
+  \item Choose a bay and time.
+  \item Add personal details
+  \item Review the booking details before submitting.
+  \item Submit application.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+  \item Booking details before submitting should be correct.
+  \item The user should be sent an email confirming the application is submitted.
+  \item The admin team should get an email notifying them of a new application that needs to be approved.
+\end{itemize}
+
+\newpage
+\subsection{PDF Generation} \label{pdf}
+A PDF containing details about the booking should be automatically generated when a booking is approved.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item Apply for a booking.
+  \item An admin approves the booking.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+  \item A PDF should be available for download or viewing by the admin upon approval of the booking.
+  \item The client should be sent an email with the same PDF attached.
+\end{itemize}
+
+\newpage
+\section{Admin Functions}
+\subsection{Approving an Application}
+An admin user should be able to approve an existing application.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item As a normal user, create a booking application.
+  \item As an admin, navigate to the approvals page.
+  \item Click approve on the application.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+  \item User should be automatically emailed to notify them that their application was approved.
+  \item The application in the admin panel should now show as approved.
+\end{itemize}
+
+\subsection{Declining an Application}
+An admin user should be able to decline an existing application.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item As a normal user, create a booking application.
+  \item As an admin, navigate to the approvals page.
+  \item Click decline on the application.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+  \item User should be automatically emailed to notify them that their application was declined.
+  \item The application in the admin panel should now show as declined.
+\end{itemize}
+
+\newpage
+\subsection{Creating a Car Park and Bays}
+An admin user should be able to create a new carpark, which will then allow normal users to book for it.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item Login as an admin
+  \item Navigate to the car parks section of the interface and click add.
+  \item Enter details about the car park and add parking bays.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+  \item As a normal user creating a booking, the new carpark and bays should now be options.
+  \item The details entered during the creation of the car park and bays should show to the user.
+\end{itemize}
+
+\subsection{Editing a Car Park}
+An admin use should be able to edit existing car parks.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item Login as an admin
+  \item Navigate to the car parks section of the interface.
+  \item Click edit on one of the existing car parks.
+  \item Make changes in the editing page that appears.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+  \item The changes made should be reflected to normal users who view the car park after the edit.
+\end{itemize}
+
+\subsection{Deleting a Car Park}
+An admin user should be able to delete existing car parks.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item Login as an admin.
+  \item Navigate to the car parks section of the interface.
+  \item Click delete on one of the existing car parks.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+  \item The car park should no longer show as an option to normal users.
+\end{itemize}
+
+\subsection{Creating New Admins}
+An existing admin user should be able to create a new admin account.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item Login as an admin
+  \item Navigate to the users section of the interface and click add.
+  \item Enter the account details and confirm.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+  \item It should now be possible to login with the new admin account.
+\end{itemize}
+
+\subsection{Editing Admins}
+An existing admin user should be able to edit other admin accounts.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item Login as an admin
+  \item Navigate to the users section of the interface and click edit on an account.
+  \item Alter the account details and confirm.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+  \item The account details should now be changed.
+\end{itemize}
+
+\subsection{Deleting Admins}
+An existing admin user should be able to delete other admin accounts.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+  \item Login as an admin
+  \item Navigate to the users section of the interface and click delete on an account.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+\begin{itemize}
+  \item The account should no longer be able to be logged into.
+\end{itemize}
+
+\end{document}
