@@ -134,8 +134,7 @@ An admin use should be able to create a new carpark, which will then allow norma
 \begin{enumerate}
     \item Login as an admin
     \item Navigate to the car parks section of the interface and click add.
-    \item Enter details about the car park.
-    \item Add a parking bay to the car park.
+    \item Enter details about the car park and add parking bays.
 \end{enumerate}
 
 \subsubsection{Expected Result}
@@ -143,6 +142,33 @@ An admin use should be able to create a new carpark, which will then allow norma
     \item As a normal user creating a booking, the new carpark and bays should now be options.
     \item The details entered during the creation of the car park and bays should show to the user.
 \end{itemize}
+
+\subsection{Editing a Car Park}
+An admin use should be able to edit existing car parks.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+    \item Login as an admin
+    \item Navigate to the car parks section of the interface.
+    \item Click edit on one of the existing car parks.
+    \item Make changes in the editing page that appears.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+The changes made should be reflected to normal users who view the car park after the edit.
+
+\subsection{Deleting a Car Park}
+An admin use should be able to delete existing car parks.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+    \item Login as an admin.
+    \item Navigate to the car parks section of the interface.
+    \item Click delete on one of the existing car parks.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+The car park should no longer show as an option to normal users.
 
 \subsection{Creating New Admins}
 An existing admin user should be able to create a new admin account.
@@ -156,5 +182,30 @@ An existing admin user should be able to create a new admin account.
 
 \subsubsection{Expected Result}
 It should now be possible to login with the new admin account.
+
+\subsection{Editing Admins}
+An existing admin user should be able to edit other admin accounts.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+    \item Login as an admin
+    \item Navigate to the users section of the interface and click edit on an account.
+    \item Alter the account details and confirm.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+The account details should now be changed.
+
+\subsection{Delete Admins}
+An existing admin user should be able to delete other admin accounts.
+
+\subsubsection{Test Procedure}
+\begin{enumerate}
+    \item Login as an admin
+    \item Navigate to the users section of the interface and click delete on an account.
+\end{enumerate}
+
+\subsubsection{Expected Result}
+The account should no longer be able to be logged into.
 
 \end{document}
