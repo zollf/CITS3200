@@ -2,7 +2,6 @@
 
 \author{Joel Milligan}
 \title{Project Acceptance Test Manual}
-\date{}
 
 \begin{document}
 \setcounter{tocdepth}{2}
@@ -13,36 +12,58 @@
 
 \newpage
 \section{Unit Tests}
-\subsection{Front End Unit Tests}
-All front end JavaScript unit tests, using the \texttt{jest} framework, should pass.
+\subsection{Front End Tests}
+All front end JavaScript unit tests, using the \texttt{jest} framework \texttt{react} \texttt{testing} \texttt{library}. Combination of code unit tests and integration test will be used. This makes sure that all components themselves work and the booking system works correctly. Snapshot testing are used as well, to ensure that the DOM and HTML are correct, and any updates that can't be inspected in code shows in the snapshots correctly.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item Open your CLI to the root of the repository.
-    \item Run the command \texttt{yarn test}.
+  \item Open your CLI to the root of the repository.
+  \item Run the command \texttt{yarn test}
 \end{enumerate}
 
 \subsubsection{Expected Results}
 \begin{itemize}
-    \item All unit tests pass.
-    \item At least 50\% test coverage.
+  \item All unit tests pass.
+  \item At least 90\% test coverage.
 \end{itemize}
-The reason for the relatively low coverage is that most tests for the front end will be integration tests.
 
-\subsection{Back End Unit Tests}
-All back end Python unit tests, using \texttt{pytest}, should pass.
+\subsection{Back End Tests}
+All back end Python unit tests, using django's built in testing library, should pass. Combination of code unit tests and integration test will be used. This includes testing endpoints, models and serializers to make sure they work as expected. Backend will use \texttt{sqlite3} as a dummy database to test on for creating, reading, inserting, and deleting data. This is to make it easier to code integration, rather than hosting a \texttt{mysql} database test server.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item Open your CLI to the root of the repository.
-    \item Run the command \texttt{yarn test}.
+  \item Open your CLI to the root of the repository.
+  \item Run the command \texttt{python manage.py test}
 \end{enumerate}
 
 \subsubsection{Expected Results}
 \begin{itemize}
-    \item All unit tests pass.
-    \item At least 75\% test coverage.
+  \item All unit tests pass.
+  \item At least 75\% test coverage.
 \end{itemize}
+
+\newpage
+\section{Code Linting}
+Code linting will be used in both frontend and backend to make sure code formatting is readable, up to a standard and the check on little human errors. For frontend we use a combination of \texttt{prettier} and \texttt{eslint}, and for backend \texttt{pycodestyle}. These are industry standards for linting.
+\subsubsection{Fontend Lint Test}
+\begin{enumerate}
+  \item Open your CLI to the root of the repository.
+  \item Run the command \texttt{yarn lint}
+\end{enumerate}
+
+\subsubsection{Backend Lint Test}
+\begin{enumerate}
+  \item Open your CLI to the root of the repository.
+  \item Run the command \texttt{pycodestyle app/}
+\end{enumerate}
+
+\subsubsection{Expected Results}
+\begin{itemize}
+  \item No linting errors.
+\end{itemize}
+
+\section{CI/CD}
+Continuous integration and deployment with GitHub action is an automatic way do testing and make sure the product can build correctly. Every change to the code base will need to be reviewed, and be put into a pipeline to check all code test and linting. 
 
 \newpage
 \section{Creating Bookings}
@@ -51,29 +72,32 @@ The booking part of the website should be accessible to anyone with a modern web
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item Navigate to the main website URL in either Google Chrome or Mozilla Firefox.
+  \item Navigate to the main website URL in either Google Chrome or Mozilla Firefox.
 \end{enumerate}
 
 \subsubsection{Expected Result}
-The initial page for booking will be shown.
+\begin{itemize}
+  \item The initial page for booking will be shown.
+\end{itemize}
 
 \subsection{Applying for a Booking}
 Once a user has access to the booking site, they can create a booking application.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item Choose a date.
-    \item Choose a carpark.
-    \item Choose a bay and time.
-    \item Review the booking details before submitting.
-    \item Submit application.
+  \item Choose a date.
+  \item Choose a carpark.
+  \item Choose a bay and time.
+  \item Add personal details
+  \item Review the booking details before submitting.
+  \item Submit application.
 \end{enumerate}
 
 \subsubsection{Expected Result}
 \begin{itemize}
-    \item Booking details before submitting should be correct.
-    \item The user should be sent an email confirming the application is submitted.
-    \item The admin team should get an email notifying them of a new application that needs to be actioned.
+  \item Booking details before submitting should be correct.
+  \item The user should be sent an email confirming the application is submitted.
+  \item The admin team should get an email notifying them of a new application that needs to be approved.
 \end{itemize}
 
 \newpage
@@ -82,14 +106,14 @@ A PDF containing details about the booking should be automatically generated whe
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item Apply for a booking.
-    \item An admin approves the booking.
+  \item Apply for a booking.
+  \item An admin approves the booking.
 \end{enumerate}
 
 \subsubsection{Expected Result}
 \begin{itemize}
-    \item A PDF should be available for download or viewing by the admin upon approval of the booking.
-    \item The client should be sent an email with the same PDF attached.
+  \item A PDF should be available for download or viewing by the admin upon approval of the booking.
+  \item The client should be sent an email with the same PDF attached.
 \end{itemize}
 
 \newpage
@@ -99,15 +123,15 @@ An admin user should be able to approve an existing application.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item As a normal user, create a booking application.
-    \item As an admin, navigate to the approvals page.
-    \item Click approve on the application.
+  \item As a normal user, create a booking application.
+  \item As an admin, navigate to the approvals page.
+  \item Click approve on the application.
 \end{enumerate}
 
 \subsubsection{Expected Result}
 \begin{itemize}
-    \item User should be automatically emailed to notify them that their application was approved.
-    \item The application in the admin panel should now show as approved.
+  \item User should be automatically emailed to notify them that their application was approved.
+  \item The application in the admin panel should now show as approved.
 \end{itemize}
 
 \subsection{Declining an Application}
@@ -115,32 +139,32 @@ An admin user should be able to decline an existing application.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item As a normal user, create a booking application.
-    \item As an admin, navigate to the approvals page.
-    \item Click decline on the application.
+  \item As a normal user, create a booking application.
+  \item As an admin, navigate to the approvals page.
+  \item Click decline on the application.
 \end{enumerate}
 
 \subsubsection{Expected Result}
 \begin{itemize}
-    \item User should be automatically emailed to notify them that their application was declined.
-    \item The application in the admin panel should now show as declined.
+  \item User should be automatically emailed to notify them that their application was declined.
+  \item The application in the admin panel should now show as declined.
 \end{itemize}
 
 \newpage
 \subsection{Creating a Car Park and Bays}
-An admin use should be able to create a new carpark, which will then allow normal users to book for it.
+An admin user should be able to create a new carpark, which will then allow normal users to book for it.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item Login as an admin
-    \item Navigate to the car parks section of the interface and click add.
-    \item Enter details about the car park and add parking bays.
+  \item Login as an admin
+  \item Navigate to the car parks section of the interface and click add.
+  \item Enter details about the car park and add parking bays.
 \end{enumerate}
 
 \subsubsection{Expected Result}
 \begin{itemize}
-    \item As a normal user creating a booking, the new carpark and bays should now be options.
-    \item The details entered during the creation of the car park and bays should show to the user.
+  \item As a normal user creating a booking, the new carpark and bays should now be options.
+  \item The details entered during the creation of the car park and bays should show to the user.
 \end{itemize}
 
 \subsection{Editing a Car Park}
@@ -148,64 +172,74 @@ An admin use should be able to edit existing car parks.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item Login as an admin
-    \item Navigate to the car parks section of the interface.
-    \item Click edit on one of the existing car parks.
-    \item Make changes in the editing page that appears.
+  \item Login as an admin
+  \item Navigate to the car parks section of the interface.
+  \item Click edit on one of the existing car parks.
+  \item Make changes in the editing page that appears.
 \end{enumerate}
 
 \subsubsection{Expected Result}
-The changes made should be reflected to normal users who view the car park after the edit.
+\begin{itemize}
+  \item The changes made should be reflected to normal users who view the car park after the edit.
+\end{itemize}
 
 \subsection{Deleting a Car Park}
 An admin use should be able to delete existing car parks.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item Login as an admin.
-    \item Navigate to the car parks section of the interface.
-    \item Click delete on one of the existing car parks.
+  \item Login as an admin.
+  \item Navigate to the car parks section of the interface.
+  \item Click delete on one of the existing car parks.
 \end{enumerate}
 
 \subsubsection{Expected Result}
-The car park should no longer show as an option to normal users.
+\begin{itemize}
+  \item The car park should no longer show as an option to normal users.
+\end{itemize}
 
 \subsection{Creating New Admins}
 An existing admin user should be able to create a new admin account.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item Login as an admin
-    \item Navigate to the users section of the interface and click add.
-    \item Enter the account details and confirm.
+  \item Login as an admin
+  \item Navigate to the users section of the interface and click add.
+  \item Enter the account details and confirm.
 \end{enumerate}
 
 \subsubsection{Expected Result}
-It should now be possible to login with the new admin account.
+\begin{itemize}
+  \item It should now be possible to login with the new admin account.
+\end{itemize}
 
 \subsection{Editing Admins}
 An existing admin user should be able to edit other admin accounts.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item Login as an admin
-    \item Navigate to the users section of the interface and click edit on an account.
-    \item Alter the account details and confirm.
+  \item Login as an admin
+  \item Navigate to the users section of the interface and click edit on an account.
+  \item Alter the account details and confirm.
 \end{enumerate}
 
 \subsubsection{Expected Result}
-The account details should now be changed.
+\begin{itemize}
+  \item The account details should now be changed.
+\end{itemize}
 
-\subsection{Delete Admins}
+\subsection{Deleting Admins}
 An existing admin user should be able to delete other admin accounts.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-    \item Login as an admin
-    \item Navigate to the users section of the interface and click delete on an account.
+  \item Login as an admin
+  \item Navigate to the users section of the interface and click delete on an account.
 \end{enumerate}
 
 \subsubsection{Expected Result}
-The account should no longer be able to be logged into.
+\begin{itemize}
+  \item The account should no longer be able to be logged into.
+\end{itemize}
 
 \end{document}
