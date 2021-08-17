@@ -1,0 +1,89 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage[a4paper, bottom=15mm]{geometry}
+
+\title{User Stories}
+\author{Joel Fitzpatrick, Arun Muthu}
+
+\begin{document}
+\setlength{\headsep}{0pt}
+
+\maketitle
+
+\noindent
+The following User Stories have been developed for Sprint 2, categorised into the themes: \\
+Booking, Authentication, Admin Panel, Miscellaneous.
+
+Our main focus for this sprint is implementing the basic functionality for feedback and review from the client. 
+The main tasks excluded from Sprint 2 involve PDF generation and emails.
+
+\vspace*{1em}
+\begin{tabular}[hbt!]{|>{\centering\arraybackslash}m{7em}|c|c|c|}
+    \hline
+    Theme & User Stories \\
+    \hline
+    \multirow{6}{*}{Booking} & 
+    \makecell{As a user, I want to view information about all car parks \\ 
+    such as location so I can determine which car park to select.} \\
+    \cline{2-2}
+    & \makecell{As a user, I want to see information about the bays within \\
+    my chosen carpark so I can determine which bay to select.} \\
+    \cline{2-2}
+    & \makecell{As a user, I want to view a car park’s schedule so I can \\ 
+    select a particular date and time for the booking.} \\
+    \cline{2-2}
+    & \makecell{As a user, I want to submit the personal details of my \\ 
+    guest with the booking so the car bay can be \\
+    reserved personally for them.} \\
+    \cline{2-2}
+    & \makecell{As a user, I want to book several bays in one booking \\
+    request so I can accommodate several guests.} \\
+    \cline{2-2}
+    & \makecell{As a user, I want to go to previous pages \\
+    if I change my mind on specific details of the \\\
+    booking such as carpark, bay, time, etc.} \\
+    \hline
+    \multirow{2}{*}{Authentication} & 
+    \makecell{As an admin, I want to login to an admin panel \\ 
+    so that I can manage the booking system.} \\
+    \cline{2-2}
+    & \makecell{As an admin, I want to be able to change my \\ 
+    username or password in case of an \\
+    account breach or other security reason.} \\
+    \cline{2-2}
+    \hline
+    \multirow{6}{*}{Admin Panel} & 
+    \makecell{As an admin, I want to view booking requests \\
+    so I can individually approve or decline them.} \\
+    \cline{2-2}
+    & \makecell{As an admin, I want to create new carparks or \\
+    delete existing carparks to reflect \\
+    changes to UWA’s carparks.} \\
+    \cline{2-2}
+    & \makecell{As an admin, I want to modify the details of carparks \\
+    such as name, description, or location to reflect \\
+    changes to the UWA carparks.} \\
+    \cline{2-2}
+    & \makecell{As an admin, I want to create or \\ 
+    delete admin accounts if new staff is hired.} \\
+    \cline{2-2}
+    & \makecell{As an admin, I want to modify the contact number \\
+    displayed on the home page if it is changed.} \\
+    \cline{2-2}
+    & \makecell{As an admin, I want to modify the earliest or \\ 
+    latest times a bay can be booked.} \\
+    \cline{2-2}
+    \hline
+    Miscellaneous & 
+    \makecell{As a user or admin, I want to be able to click a help button \\
+    on any page so I can receive guidance if I am confused.} \\
+    \cline{2-2}
+    \hline
+\end{tabular}
+
+\vspace{1em}
+* The term 'user' refers to staff members or VIP contacts making bookings.
+
+\end{document}
