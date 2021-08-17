@@ -13,7 +13,7 @@
 \newpage
 \section{Unit Tests}
 \subsection{Front End Tests}
-All front end JavaScript unit tests, using the \texttt{jest} framework \texttt{react} \texttt{testing} \texttt{library}. Combination of code unit tests and integration test will be used. This makes sure that all components themselves work and the booking system works correctly. Snapshot testing are used as well, to ensure that the DOM and HTML are correct, and any updates that can't be inspected in code shows in the snapshots correctly.
+All front end JavaScript tests, using \texttt{jest} framework and \\ \texttt{react testing library}, should pass. Combination of code unit tests and integration test will be used. This makes sure that all components themselves work and the booking system works correctly. Snapshot testing are used as well, to ensure that the DOM and HTML are correct, and any updates that can't be inspected in code shows in the snapshots correctly.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
@@ -28,7 +28,7 @@ All front end JavaScript unit tests, using the \texttt{jest} framework \texttt{r
 \end{itemize}
 
 \subsection{Back End Tests}
-All back end Python unit tests, using django's built in testing library, should pass. Combination of code unit tests and integration test will be used. This includes testing endpoints, models and serializers to make sure they work as expected. Backend will use \texttt{sqlite3} as a dummy database to test on for creating, reading, inserting, and deleting data. This is to make it easier to code integration, rather than hosting a \texttt{mysql} database test server.
+All back end Python tests, using django's built in testing library, should pass. Combination of code unit tests and integration test will be used. This includes testing endpoints, models and serializers to make sure they work as expected. Backend will use \texttt{sqlite3} as a dummy database to test creating, reading, inserting and deleting data. This is to make it easier for code integration, rather than hosting a \texttt{mysql} database test server.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
@@ -44,7 +44,7 @@ All back end Python unit tests, using django's built in testing library, should 
 
 \newpage
 \section{Code Linting}
-Code linting will be used in both frontend and backend to make sure code formatting is readable, up to a standard and the check on little human errors. For frontend we use a combination of \texttt{prettier} and \texttt{eslint}, and for backend \texttt{pycodestyle}. These are industry standards for linting.
+Code linting will be used in both frontend and backend to check for errors and ensure consistent formatting. For frontend we use a combination of \texttt{prettier} and \texttt{eslint}, and for backend \texttt{pycodestyle}. These are industry standards for linting.
 \subsubsection{Fontend Lint Test}
 \begin{enumerate}
   \item Open your CLI to the root of the repository.
@@ -68,11 +68,11 @@ Continuous integration and deployment with GitHub action is an automatic way do 
 \newpage
 \section{Creating Bookings}
 \subsection{Accessible Website}
-The booking part of the website should be accessible to anyone with a modern web browser.
+The booking part of the website should be accessible to anyone with a modern web browser and the two main operating system (Mac and Windows).
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
-  \item Navigate to the main website URL in either Google Chrome or Mozilla Firefox.
+  \item Navigate to the main website URL using different modern browsers and operating systems.
 \end{enumerate}
 
 \subsubsection{Expected Result}
@@ -184,7 +184,7 @@ An admin use should be able to edit existing car parks.
 \end{itemize}
 
 \subsection{Deleting a Car Park}
-An admin use should be able to delete existing car parks.
+An admin user should be able to delete existing car parks.
 
 \subsubsection{Test Procedure}
 \begin{enumerate}
