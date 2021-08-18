@@ -49,7 +49,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'builtins': [
-              'django_components.templatetags.component_tags'
+                'django_components.templatetags.component_tags',
             ]
         },
     },
