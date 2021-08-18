@@ -1,0 +1,74 @@
+\documentclass[a4paper, draft]{article}
+
+\author{Pin-Hsuan Tseng, Arun Muthu}
+\title{Scope of Work: Unipark Bay Booking System}
+
+\begin{document}
+\maketitle
+
+\subsection*{Preface}
+This document addresses the requirements of the Unipark bay booking system.
+The intended audience for this document are the designers and the clients of the project.
+
+\subsection*{Team Members}
+Arun Muthu, Dylan Kennedy, Jayden Teo, Joel Fitzpatrick, Joel Milligan, Pin-Hsuan Tseng
+
+\section{Introduction}
+The current system used by UWA departments to book parking bays for
+VIP guests requires booking requests via email and data storage in
+Excel spreadsheets. This project aims to address the inefficiencies
+of the process by creating an online calendar booking system where
+customers can see car parks and bays available, in a similar fashion
+to the UWA Library booking system. Unipark admin will then be able
+to view and approve requests on the website.
+
+\section{Deliverables}
+\begin{itemize}
+    \item [2.0.0] A desktop website deployed on a cloud service such as Heroku.
+          The website will be publicly accessible
+    \item [2.1.0] Skills/Resources Audit
+    \item [2.2.0] Project Acceptance Tests
+    \item [2.3.0] Risk Register
+    \item [2.4.0] User stories
+    \item [2.5.0] User documentation on how to navigate and use the site
+    \item [2.6.0] Minutes of the Client Project Retrospective
+\end{itemize}
+
+\section{Requirements}
+\begin{itemize}
+    \item [3.0.0] Desktop support only
+    \item [3.1.0] Users will be able to select a date (next day onward) and a carpark
+          (5 total as of now) before choosing a specific bay and timeslot.
+          \begin{itemize}
+              \item When a car bay timeslot is selected, the system will
+                    automatically book the 30-minute time slot before and after
+                    as a buffer system.
+              \item If the 30-minute timeslot is already booked, it will do nothing.
+                    This creates a 15-minute buffer between bay bookings.
+          \end{itemize}
+    \item [3.1.1] Users may book several bays (within the same day) in one booking.
+    \item [3.1.2] Users will need to enter specific details such as name, email address,
+          phone number and optionally their company and car registration number
+          to confirm the booking request.
+    \item [3.2.0] Admin staff will receive an email linking to the booking request page when
+          a new booking request is submitted.
+    \item [3.2.1] After an admin approves the booking request, an email will be automatically
+          sent to the user and all admin staff containing an A3 printable PDF summary
+          of the booking.
+    \item [3.2.2] Admin staff will have access to the following functionality in the admin panel:
+          \begin{itemize}
+              \item View, approve, or decline booking requests.
+              \item Create, edit or delete car parks.
+                    Each car park has a name with optional description and link to a location on Google Maps.
+              \item Create, edit or delete bays within car parks.
+                    Each bay has a number and optional description.
+              \item Add, edit or delete admin accounts.
+                    Each admin account has a username and password which can be modified.
+              \item Edit website settings including a contact number (displayed on the starting page)
+                    and the start and end time for booking parking bays.
+              \item Block or unblock requests from particular emails.
+          \end{itemize}
+    \item [3.3.0] A help button (e.g. question mark) will be available in the corner of each page to assist users.
+\end{itemize}
+
+\end{document}
