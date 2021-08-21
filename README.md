@@ -125,6 +125,12 @@ Then to migrate run:
 python manage.py migrate
 ```
 
+If using Docker, make migrations and migrate from within containers
+```
+docker-compose run django python manage.py makemigrations
+docker-compose run django python manage.py migrate
+```
+
 ---
 ## File Structure
 ```
