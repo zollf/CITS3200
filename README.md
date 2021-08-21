@@ -48,6 +48,7 @@ yarn build
 docker-compose build
 docker-compose up
 ```
+Open http://localhost:8000
 
 You'll still need to run Webpack separately. This is done for simplicity sakes rather making it into another container and then running a dev server to feed static files through a port. Instead we just bundle and import as CDN.
 
@@ -65,6 +66,7 @@ Install and run a mysql server through your preferred application. Make sure to 
 ```
 python manage.py runserver
 ```
+Open http://localhost:8000
 
 ### Running Webpack
 Single compilation
