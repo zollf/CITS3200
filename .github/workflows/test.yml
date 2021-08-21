@@ -5,8 +5,8 @@ on:
     branches: [main]
 
 jobs:
-  flask:
-    name: Flask Test
+  django:
+    name: Django Test
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
