@@ -1,0 +1,18 @@
+{% extends 'base.html' %} 
+
+{% block head_content %}
+{% endblock %}
+
+{% block content %}
+  <h1>Settings</h1>
+  <form action="/admin/settings/save" method="POST">
+    {% csrf_token %}
+    {% for setting in settings %}
+      <div class="admin-settings">
+        <span>{{ setting.key }}</span>
+        <input name="{{ setting.key }}" value="{{ setting.value }}" />
+      </div>
+    {% endfor %}
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}
