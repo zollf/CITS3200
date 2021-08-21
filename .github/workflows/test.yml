@@ -1,0 +1,48 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  django:
+    name: Django Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: Install
+        run: pip install -r requirements.txt
+      - name: Run Test
+        run: python manage.py test
+        env:
+          ENV: test
+          DEBUG: False
+          SECRET_KEY: test-secret-key
+      - name: Run Lint
+        run: pycodestyle app/
+          
+  react:
+    name: React Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Yarn Install
+        run: yarn
+      - name: Yarn Build
+        run: yarn build
+      - name: Yarn Test
+        run: yarn test
+      - name: Yarn Lint
+        run: yarn lint
+        

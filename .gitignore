@@ -1,0 +1,15 @@
+.env
+.DS_Store
+
+# Django/Python
+__pycache__
+db.sqlite3
+venv
+
+# Node/React
+yarn-error.log
+node_modules/
+!app/resources/static/dist/.gitkeep
+app/resources/static/dist/*.js
+app/resources/static/dist/*.txt
+coverage/
