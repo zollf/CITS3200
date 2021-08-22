@@ -18,14 +18,15 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@': __dirname,
+    },
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: {
-          loader: 'ts-loader',
-        },
+        loader: 'ts-loader',
       },
       {
         test: /\.css$/i,
@@ -40,6 +41,20 @@ module.exports = {
           },
         ],
         include: /\.module\.css$/,
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'react-svg-loader',
+            options: {
+              jsx: true,
+            },
+          },
+        ],
       },
     ],
   },
