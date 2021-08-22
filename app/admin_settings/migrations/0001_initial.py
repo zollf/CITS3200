@@ -12,8 +12,13 @@ class Migration(migrations.Migration):
 
     def insertData(apps, schema_editor):
         Settings = apps.get_model('admin_settings', 'Settings')
-        phone = Settings(key="phone", value="04 1234 5678")
+        phone = Settings(key="phone", label="Phone", value="04 1234 5678", type="text")
+        start_date = Settings(key="start_date", label="Global Start Date", value="00:00", type="time")
+        end_date = Settings(key="end_date", label="Global End Date", value="00:00", type="time")
+
         phone.save()
+        start_date.save()
+        end_date.save()
 
     operations = [
         migrations.CreateModel(
@@ -21,7 +26,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('key', models.CharField(max_length=255)),
+                ('label', models.CharField(max_length=255)),
                 ('value', models.CharField(max_length=255)),
+                ('type', models.CharField(max_length=255)),
             ],
             options={
                 'db_table': 'admin_settings',

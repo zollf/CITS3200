@@ -9,8 +9,8 @@
     {% csrf_token %}
     {% for setting in settings %}
       <div class="admin-settings">
-        <span>{{ setting.key }}</span>
-        <input name="{{ setting.key }}" value="{{ setting.value }}" />
+        <label for="{{ setting.key }}">{{ setting.label }}</label>
+        <input type="{{ setting.type }}" name="{{ setting.key }}" value="{{ setting.value }}" />
       </div>
     {% endfor %}
     <button type="submit">Submit</button>
