@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     ]
 
     def insertData(apps, schema_editor):
-        Settings = apps.get_model('settings_app', 'Settings')
+        Settings = apps.get_model('app_settings', 'Settings')
         phone = Settings(key="phone", value="04 1234 5678")
         phone.save()
 
