@@ -10,7 +10,7 @@
     {% for setting in settings %}
       <div class="admin-settings">
         <label for="{{ setting.key }}">{{ setting.label }}</label>
-        <input type="{{ setting.type }}" name="{{ setting.key }}" value="{{ setting.value }}" />
+        <input type="{{ setting.type }}" name="{{ setting.key }}" value="{{ setting.value }}" required/>
       </div>
     {% endfor %}
     <button type="submit">Submit</button>
