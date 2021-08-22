@@ -18,7 +18,7 @@ https://unipark.herokuapp.com/
 - Prettier
 
 ## Setup
-Copy `.env.example` to .env
+Copy `.env.example` to .env. Set MYSQL_HOST="mysql" if planning to use Docker.
 ```
 cp .env.example .env
 ```
