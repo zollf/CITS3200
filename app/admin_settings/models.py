@@ -14,4 +14,4 @@ class Settings(models.Model):
         return dictionary
 
     class Meta:
-        db_table = "app_settings"
+        db_table = "admin_settings"

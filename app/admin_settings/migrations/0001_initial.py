@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     ]
 
     def insertData(apps, schema_editor):
-        Settings = apps.get_model('app_settings', 'Settings')
+        Settings = apps.get_model('admin_settings', 'Settings')
         phone = Settings(key="phone", value="04 1234 5678")
         phone.save()
 
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('value', models.CharField(max_length=255)),
             ],
             options={
-                'db_table': 'app_settings',
+                'db_table': 'admin_settings',
             },
         ),
         migrations.RunPython(insertData)
