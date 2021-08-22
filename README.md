@@ -32,6 +32,10 @@ Run migration at least once on initial setup and every pull of a new change (db 
 ```
 python manage.py migrate
 ```
+For Docker
+```
+docker-compose run django python manage.py migrate
+```
 
 Install Node dependencies
 ```
@@ -47,8 +51,18 @@ yarn build
 ## Starting Up Docker
 ```bash
 docker-compose build
+```
+
+If this is first time running, run the mysql container first so it can setup on its own. Once its setup, run both containers.
+```bash
+docker-compose up mysql
+```
+
+To start
+```
 docker-compose up
 ```
+
 Open http://localhost:8000
 
 You'll still need to run Webpack separately. This is done for simplicity sakes rather making it into another container and then running a dev server to feed static files through a port. Instead we just bundle and import as CDN.
