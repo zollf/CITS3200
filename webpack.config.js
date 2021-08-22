@@ -7,6 +7,41 @@ glob.sync('./frontend/entrypoints/*.tsx').forEach((s) => {
   files[s.split('/').slice(-1)[0].replace('.tsx', '')] = s;
 });
 
+const ts = {
+  test: /\.tsx?$/,
+  loader: 'ts-loader',
+};
+
+const css = {
+  test: /\.css$/i,
+  use: [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        import: false,
+        modules: true,
+      },
+    },
+  ],
+  include: /\.module\.css$/,
+};
+
+const svg = {
+  test: /\.svg$/,
+  use: [
+    {
+      loader: 'babel-loader',
+    },
+    {
+      loader: 'react-svg-loader',
+      options: {
+        jsx: true,
+      },
+    },
+  ],
+};
+
 module.exports = {
   entry: {
     ...files,
@@ -23,40 +58,7 @@ module.exports = {
     },
   },
   module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
-      },
-      {
-        test: /\.css$/i,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              import: false,
-              modules: true,
-            },
-          },
-        ],
-        include: /\.module\.css$/,
-      },
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-          {
-            loader: 'react-svg-loader',
-            options: {
-              jsx: true,
-            },
-          },
-        ],
-      },
-    ],
+    rules: [ts, css, svg],
   },
   optimization: {
     minimize: true,

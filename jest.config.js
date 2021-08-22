@@ -3,17 +3,14 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ['frontend/components/**/*.tsx', '!frontend/entrypoints/*.tsx'],
   setupFilesAfterEnv: ['<rootDir>/frontend/tests/setupTests.ts'],
-  testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['/node_modules/'],
+  testEnvironment: 'jest-environment-jsdom',
+  testPathIgnorePatterns: ['node_modules'],
+  moduleDirectories: ['node_modules'],
   moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/$1',
     '\\.(css)': 'identity-obj-proxy',
   },
-  preset: 'ts-jest',
-  globals: {
-    'ts-jest': {
-      tsconfig: {
-        jsx: 'react',
-      },
-    },
+  transform: {
+    '^.+\\.tsx?$': 'babel-jest',
   },
 };
