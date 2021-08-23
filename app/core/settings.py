@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django_components',
     'rest_framework',
     'app.index',
+    'app.admin_settings'
 ]
 
 MIDDLEWARE = [
