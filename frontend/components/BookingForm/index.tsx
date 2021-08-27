@@ -21,8 +21,9 @@ const BookingForm = () => {
   const back = () => setStep(Math.max(step - 1, 0));
 
   const finalSubmit = (value: BookingFormValues) => {
-    console.log(value);
     // todo
+    const formData = new FormData();
+    Object.keys(value).forEach((key) => formData.append(key, value[key]));
     return undefined;
   };
 
