@@ -25,7 +25,7 @@ body{
 }
 
 #dashboard {
-    background: linear-gradient(to right, #FDFDFD 2.5%, #2D3C9F 2.5%, #2D3C9F) ;
+    background: linear-gradient(to right, #FDFDFD 2.5%, #2D3C9F 2.5%, #2D3C9F);
 }
 
 .sidebar a:hover{
