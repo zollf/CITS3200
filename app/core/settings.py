@@ -21,7 +21,8 @@ INSTALLED_APPS = [
     'django_components',
     'rest_framework',
     'app.index',
-    'app.admin_settings'
+    'app.admin_settings',
+    'app.parking.apps.ParkingConfig'
 ]
 
 MIDDLEWARE = [
