@@ -9,7 +9,7 @@ glob.sync('./frontend/entrypoints/*.tsx').forEach((s) => {
 
 const ts = {
   test: /\.tsx?$/,
-  loader: 'ts-loader',
+  loader: 'babel-loader',
 };
 
 const css = {
