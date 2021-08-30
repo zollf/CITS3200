@@ -1,12 +1,16 @@
 import React from 'react';
 import Tick from '@/app/resources/static/images/done.svg';
-import styles from './styles.module.css';
+// import styles from './styles.module.css';
+
+import CarparkCard from './CarparkCard';
 
 const Home = () => {
   return (
-    <div className={styles.home}>
-      Hello from React! 2.0
-      <Tick />
+    <div>
+      Hello from React! jayden here test this 
+
+      <CarparkCard />
+
     </div>
   );
 };
