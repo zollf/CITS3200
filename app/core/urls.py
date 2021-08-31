@@ -14,5 +14,5 @@ urlpatterns = [
     path('admin/settings/', include(settings_url)),
     path('django-admin/', admin.site.urls),
     path('', IndexView, name='index'),
-    path('auth/', include('django.contrib.auth.urls')),
+    path('auth/', include(authentication_urls)),
 ]
