@@ -4,6 +4,8 @@ import UserEvent from '@testing-library/user-event';
 import BookingForm from './';
 import faker from 'faker';
 
+faker.seed(1);
+
 const renderToStep2 = async () => {
   const component = render(<BookingForm />);
   UserEvent.click(component.getByText('Next'));
