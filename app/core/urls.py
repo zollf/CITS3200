@@ -7,11 +7,12 @@ from django.urls import path
 from django.conf.urls import include
 from app.index.views import IndexView
 from app.admin_settings.urls import settings_url
-from app.parking.views import carparks_list
+from app.parking.views import carparks_list, carpark_detail
 
 urlpatterns = [
     path('admin/settings/', include(settings_url)),
     path('api/carparks/', carparks_list),
+    path('api/carparks/<int:pk>', carpark_detail),
     path('django-admin/', admin.site.urls),
     path('', IndexView, name='index'),
 ]
