@@ -95,8 +95,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'authentication.User'
-
-LOGIN_REDIRECT_URL = 'admin/'
+LOGIN_URL = "/auth/"
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
