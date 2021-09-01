@@ -9,8 +9,8 @@ faker = Factory.create()
 
 class SettingViewTest(TestCase):
     def setUp(self):
-        my_admin = User.objects.create_superuser('test@gmail.com', 
-        'testpassword', '0123456789', username="testadmin")
+        my_admin = User.objects.create_superuser('test@gmail.com',
+                                                 'testpassword', '0123456789', username="testadmin")
         self.client = Client()
         self.client.login(username="testadmin", password="testpassword")
 
