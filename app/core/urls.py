@@ -12,5 +12,5 @@ urlpatterns = [
     path('admin/settings/', include(settings_url)),
     path('django-admin/', admin.site.urls),
     path('', IndexView, name='index'),
-    path('admin',  AdminPanel, name='admin'),
+    path('admin', AdminPanel, name='admin'),
 ]
