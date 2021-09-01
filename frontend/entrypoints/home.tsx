@@ -1,5 +1,5 @@
-import Home from '../components/Home';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import BookingForm from '@/frontend/components/BookingForm';
 
-ReactDOM.render(<Home />, document.getElementById('react-app'));
+ReactDOM.render(<BookingForm />, document.getElementById('react-app'));
