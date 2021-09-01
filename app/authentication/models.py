@@ -10,7 +10,7 @@ class CustomUserManager(UserManager):
             raise ValueError('Phone number must be set')
         
         email = self.normalize_email(email)
-        user = self.model(email=email, phone=phone **extra_fields)
+        user = self.model(email=email, phone=phone, **extra_fields)
         user.set_password(password)
         user.save()
         return user
@@ -19,19 +19,15 @@ class CustomUserManager(UserManager):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuser must have is_staff=True.')
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_superuser=True.')
         return self.create_user(email, password, phone, **extra_fields)
 
 class User(AbstractUser):
     email = models.EmailField(blank=False)
-    hub_id = models.IntegerField()
+    #hub_id = models.IntegerField()
     phone = models.CharField(max_length=10)
-    locked = models.BooleanField()
-    login_count = models.IntegerField()
-    last_login = models.DateTimeField()
+    locked = models.BooleanField(default=False)
+    login_count = models.IntegerField(default=0)
+    last_login = models.DateTimeField(null=True)
 
     objects = CustomUserManager()
 
