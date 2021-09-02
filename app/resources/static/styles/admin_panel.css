@@ -1,0 +1,33 @@
+body{
+    background-color: #FDFDFD;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar{
+    background: #27348B;
+    margin-top: 50px;
+    padding-top: 25px;
+    position: fixed;
+    left: 0;
+    width: 160px;
+    height: 100%;
+}
+
+.sidebar a{
+    color: #ECECEC;
+    display: block;
+    width: 100%;
+    line-height: 30px;
+    text-decoration: none;
+    padding-left: 30px;
+    box-sizing: border-box;
+}
+
+#dashboard {
+    background: linear-gradient(to right, #FDFDFD 2.5%, #2D3C9F 2.5%, #2D3C9F);
+}
+
+.sidebar a:hover{
+    background: #2D3C9F;
+}
