@@ -15,11 +15,11 @@ def AdminView(request):
 @csrf_protect
 @api_view(['GET', 'POST'])
 def SettingsView(request):
-  if (request.method == 'POST'):
-    for key in Settings.getKeys():
-        setting = Settings.objects.get(key=key)
-        setting.value = request.data[key]
-        setting.save()
-    return redirect('/admin/settings')
-  elif (request.method == 'GET'):
-    return render(request, 'settings.html', {'settings': Settings.objects.all()})
+    if (request.method == 'POST'):
+        for key in Settings.getKeys():
+            setting = Settings.objects.get(key=key)
+            setting.value = request.data[key]
+            setting.save()
+        return redirect('/admin/settings')
+    elif (request.method == 'GET'):
+        return render(request, 'settings.html', {'settings': Settings.objects.all()})
