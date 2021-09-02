@@ -60,7 +60,7 @@ jobs:
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_ENV: prod
-          envkey_DEBUG: false
+          envkey_DEBUG: False
           envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
           envkey_MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           envkey_MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
