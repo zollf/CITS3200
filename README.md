@@ -145,6 +145,40 @@ docker-compose run django python manage.py makemigrations
 docker-compose run django python manage.py migrate
 ```
 
+### **Adding Superuser**
+```
+docker-compose run django python manage.py createsuperuser --username admin --email test@test.com --phone 1234
+```
+
+Then create a password, usually just `password`
+Then login when redirected with `admin` and `password`
+
+### **Delete DB and Reapply Migrations With Docker**
+Sometimes migrations might screw up, so you have to dump your db and start again.
+```
+docker-compose rm -v mysql
+```
+
+Initialize mysql again
+```
+docker-compose up mysql
+```
+
+Apply migrations
+```
+docker-compose run django python manage.py migrate
+```
+
+You'll have to recreate super user again.
+
+### **Delete DB and Reapply Migrations**
+Find a way to delete all tables in mysql db, then run
+```
+python manage.py migrate
+```
+
+You'll have to recreate super user again.
+
 ---
 ## File Structure
 ```

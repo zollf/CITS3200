@@ -29,7 +29,7 @@ class SettingViewTest(TestCase):
         settings = Settings.getDict()
         settings[fake_key] = new_value
 
-        self.client.post(reverse('settings_save'), settings)
+        self.client.post(reverse('settings'), settings)
 
         self.assertNotEqual(Settings.objects.get(key=fake_key).value, old_value)
         self.assertEqual(Settings.objects.get(key=fake_key).value, new_value)

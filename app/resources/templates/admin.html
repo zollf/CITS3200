@@ -2,23 +2,37 @@
 
 {% block head_content %}
   {% load static %}
-  <head>
-    <link rel="stylesheet" type="text/css" href="{% static '/styles/admin_panel.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/styles/home.css' %}">
-  </head>
+  <link rel="stylesheet" type="text/css" href="{% static '/styles/admin_panel.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/styles/home.css' %}">
+  {% block admin_head %}{% endblock %}
 {% endblock %}
 
 {% block content %}
-    <body>
-        <!--sidebar menu start-->
-        <div class="sidebar">
-            <a href="#" id="dashboard">Dashboard</a>
-            <a href="/admin/car-parks">Car parks</a>
-            <a href="/admin/bookings">Approval</a>
-            <a href="/admin/users">Users</a>
-            <a href="/admin/settings">Settings</a>
-            <a href="#">Logout</a>
-        </div>
-        <!--sidebar menu end-->
-    </body>
+    <!--sidebar menu start-->
+    <div class="admin">
+      <div class="sidebar">
+          <a href="/admin" id="dashboard">
+            <h4 data-thin="true">Dashboard</h4>
+          </a>
+          <a href="/admin/car-parks">
+            <h4 data-thin="true">Car parks</h4>
+          </a>
+          <a href="/admin/bookings">
+            <h4 data-thin="true">Bookings</h4>
+          </a>
+          <a href="/admin/users">
+            <h4 data-thin="true">Users</h4>
+          </a>
+          <a href="/admin/settings">
+            <h4 data-thin="true">Settings</h4>
+          </a>
+          <a href="/logout">
+            <h4 data-thin="true">Logout</h4>
+          </a>
+      </div>
+      <div class="content">
+          {% block admin_content %}{% endblock %}
+      </div>
+    </div>
+    <!--sidebar menu end-->
 {% endblock %}
