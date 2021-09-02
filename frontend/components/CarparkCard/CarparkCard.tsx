@@ -11,11 +11,10 @@ const CarparkCard = (props: any) => {
             </div>
             <div className={styles.bottomHalf}>
                 <div className={styles.description}>
-                    {props.carpark.description}
+                    <p>{props.carpark.description}</p>
                 </div>
                 <div className={styles.directions}> 
                     <MapIcon />
-
                     <a href={props.carpark.mapURL} target="_blank">
                         &nbsp; Get directions
                         <NewWindowIcon />
