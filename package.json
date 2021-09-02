@@ -14,6 +14,7 @@
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
     "@oscarbarrett/babel-plugin-inline-react-svg": "1.2.0-alpha.5",
     "@testing-library/dom": "^8.1.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -26,14 +27,17 @@
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
     "babel-loader": "^8.2.2",
+    "classcat": "^5.0.3",
     "css-loader": "^6.2.0",
     "dotenv": "^10.0.0",
     "dylan-eslint-config": "https://github.com/zollf/dylan-eslint-config.git",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "formik": "^2.2.9",
     "identity-obj-proxy": "^3.0.0",
-    "import-sort-style": "^6.0.0",
+    "import-sort-parser-typescript": "^6.0.0",
+    "import-sort-style-react": "https://github.com/zollf/import-sort-style-react",
     "jest": "^27.0.6",
     "jest-environment-jsdom": "^27.0.6",
     "prettier": "^2.3.2",
@@ -41,10 +45,10 @@
     "react-dom": "^17.0.1",
     "react-svg-loader": "^3.0.3",
     "style-loader": "^3.2.1",
-    "ts-loader": "^9.2.5",
     "typescript": "^4.3.5",
     "webpack": "^5.4.0",
-    "webpack-cli": "^4.2.0"
+    "webpack-cli": "^4.2.0",
+    "yup": "^0.32.9"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.12.1",
@@ -55,8 +59,9 @@
   },
   "importSort": {
     ".ts, .tsx": {
-      "parser": "babylon",
-      "style": "eslint"
+      "parser": "typescript",
+      "style": "react",
+      "options": {}
     }
   }
 }
