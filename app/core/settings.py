@@ -21,7 +21,8 @@ INSTALLED_APPS = [
     'django_components',
     'rest_framework',
     'app.index',
-    'app.admin_settings'
+    'app.admin_settings',
+    'app.authentication'
 ]
 
 MIDDLEWARE = [
@@ -92,6 +93,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'authentication.User'
+LOGIN_URL = "/auth/"
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
