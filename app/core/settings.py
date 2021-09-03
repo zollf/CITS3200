@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     'django_components',
     'rest_framework',
     'app.index',
-    'app.parking.apps.ParkingConfig'
+    'app.parking',
     'app.authentication',
     'app.admin',
 ]
