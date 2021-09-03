@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p> Hello .</p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        <br> <br>
+        {{ form.password.label_tag }}
+        {{ form.password }}
+
+        <br> <br>
+        <input type="submit" value="login">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+
+{% endblock %}

@@ -6,9 +6,11 @@ class Settings(models.Model):
     value = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
 
+    @staticmethod
     def getKeys():
         return [setting['key'] for setting in Settings.objects.values()]
 
+    @staticmethod
     def getDict():
         dictionary = {}
         for setting in Settings.objects.values():

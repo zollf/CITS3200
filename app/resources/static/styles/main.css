@@ -1,6 +1,22 @@
 * {
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
+  font-family: Roboto;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 :root {
@@ -29,6 +45,7 @@ h1, .h1 {
   font-weight: bold;
   font-size: 48px;
   line-height: 56px;
+  margin: 0;
   color: var(--uwa-black);
 }
 
@@ -38,6 +55,7 @@ h2, .h2 {
   font-weight: bold;
   font-size: 36px;
   line-height: 42px;
+  margin: 0;
   color: var(--uwa-black);
 }
 
@@ -47,15 +65,17 @@ h3, .h3 {
   font-weight: bold;
   font-size: 28px;
   line-height: 33px;
+  margin: 0;
   color: var(--uwa-black);
 }
 
-.h3-thin {
+.h3-thin, h3[data-thin="true"] {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 28px;
   line-height: 33px;
+  margin: 0;
   color: var(--uwa-black);
 }
 
@@ -65,15 +85,17 @@ h4, .h4 {
   font-weight: bold;
   font-size: 24px;
   line-height: 28px;
+  margin: 0;
   color: var(--uwa-black);
 }
 
-.h4-thin {
+.h4-thin, h4[data-thin="true"] {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
   line-height: 28px;
+  margin: 0;
   color: var(--uwa-black);
 }
 
@@ -83,43 +105,48 @@ p, .p {
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
+  margin: 0;
   color: var(--uwa-black);
 }
 
-.p-bold {
+.p-bold, p[data-bold="true"] {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 19px;
+  margin: 0;
   color: var(--uwa-black);
 }
 
-.p-underline {
+.p-underline, p[data-underline="true"] {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
   text-decoration-line: underline;
+  margin: 0;
   color: var(--uwa-black);
 }
 
-.p-bold-underline {
+.p-bold-underline, p[data-bold-underline="true"] {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 19px;
   text-decoration-line: underline;
+  margin: 0;
   color: var(--uwa-black);
 }
 
-.p-small-bold {
+.p-small-bold, p[data-small-bold="true"] {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
   line-height: 14px;
+  margin: 0;
   color: var(--uwa-black);
 }

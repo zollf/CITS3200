@@ -3,12 +3,16 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from ..models import Settings
 from .tests_models import SettingsFactory
+from app.authentication.models import User
 
 faker = Factory.create()
 
 class SettingViewTest(TestCase):
     def setUp(self):
+        my_admin = User.objects.create_superuser('test@gmail.com',
+                                                 'testpassword', '0123456789', username="testadmin")
         self.client = Client()
+        self.client.login(username="testadmin", password="testpassword")
 
     def test_page(self):
         response = self.client.get(reverse('settings'))
@@ -25,7 +29,7 @@ class SettingViewTest(TestCase):
         settings = Settings.getDict()
         settings[fake_key] = new_value
 
-        self.client.post(reverse('settings_save'), settings)
+        self.client.post(reverse('settings'), settings)
 
         self.assertNotEqual(Settings.objects.get(key=fake_key).value, old_value)
         self.assertEqual(Settings.objects.get(key=fake_key).value, new_value)

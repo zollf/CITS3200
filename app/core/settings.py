@@ -7,7 +7,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-DEBUG = os.getenv("DEBUG")
+DEBUG = os.getenv("ENV") != "prod"
 
 ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1', 'localhost']
 
@@ -23,6 +23,8 @@ INSTALLED_APPS = [
     'app.index',
     'app.admin_settings',
     'app.parking.apps.ParkingConfig'
+    'app.authentication',
+    'app.admin',
 ]
 
 MIDDLEWARE = [
@@ -80,19 +82,14 @@ DATABASES = {
 
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
+
+AUTH_USER_MODEL = 'authentication.User'
+LOGIN_URL = "login/"
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -105,7 +102,6 @@ STATIC_URL = '/static/'
 if os.getenv("ENV") == 'prod':
     # We only use this is prod as it will be using gunicorn
     STATIC_ROOT = os.path.join(BASE_DIR, "resources/static/")
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 else:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, "resources/static/")]
 
