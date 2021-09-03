@@ -1,0 +1,37 @@
+{% load utilities %}
+
+<div class="table-wrapper">
+  <div class="top">
+    <h3>{{title|title}}</h3>
+    <a class="admin-btn green p-bold" href="add">Add</a>
+  </div>
+  <div class="table">
+    <div class="table-headers">
+      {% for header in headers %}
+        <p data-small-bold="true">{{header}}</p>
+      {% endfor %}
+    </div>
+
+    <div class="table-rows">
+      {% for row in data %}
+        <div class="table-row-actions" data-light="{% if forloop.counter|divisibleby:2 == 0 %}true{% else %}false{% endif %}">
+          
+          <div class="table-row">
+            {% for header in headers %}
+              <h4 data-thin="true">{{row|hash:header}}</h4>
+            {% endfor %}
+          </div>
+
+          <div class="table-actions">
+            <a class="admin-btn blue p-bold" href="/admin/{{title}}/view/{{row.id}}">View</a>
+            <form action="/api/{{title}}/delete/{{row.id}}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="admin-btn red p-bold">Delete</button>
+              <input name="redirect" value="/admin/{{title}}" hidden/>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    </div> 
+  </div>
+</div>

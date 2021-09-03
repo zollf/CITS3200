@@ -4,11 +4,9 @@
 }
 
 .sidebar {
-  padding-top: 31px;
   background: var(--uwa-blue);
   height: 100%;
   width: 220px;
-  
 }
 
 .sidebar a {
@@ -25,9 +23,14 @@ h4 {
 }
 
 #dashboard {
+  margin-top: 31px;
   background: linear-gradient(to right, #FDFDFD 2.5%, #2D3C9F 2.5%, #2D3C9F);
 }
 
 .sidebar a:hover{
   background: #2D3C9F;
+}
+
+.content {
+  flex: 1;
 }
