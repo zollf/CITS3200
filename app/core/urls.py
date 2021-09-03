@@ -14,7 +14,6 @@ urlpatterns = [
     path('admin/', include(admin_urls)),
     path('api/carparks/', carparks_list),
     path('api/carparks/<int:pk>', carpark_detail),
-    path('django-admin/', admin.site.urls),
     path('', IndexView, name='index'),
     path('', include(authentication_urls)),
 ]
