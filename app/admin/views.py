@@ -49,7 +49,8 @@ def CarparkAdd(request):
 @api_view(['GET'])
 def CarparkEdit(request, pk):
     if (request.method == 'GET'):
-        return render(request, 'carpark.html', {'carpark': CarPark.objects.values('id', 'name', 'description', 'google_maps_link').get(pk=pk)})
+        return render(request, 'carpark.html', {'carpark': CarPark.objects.values(
+            'id', 'name', 'description', 'google_maps_link').get(pk=pk)})
 
 @staff_member_required
 @login_required(login_url="/login")
