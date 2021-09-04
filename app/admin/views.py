@@ -67,7 +67,6 @@ def UsersAdd(request):
     if (request.method == 'GET'):
         return render(request, 'user.html', {'user': User()})
 
-
 @staff_member_required
 @login_required(login_url="/login")
 @csrf_protect
