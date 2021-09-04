@@ -1,0 +1,38 @@
+{% load utilities %}
+
+<div class="admin-form">
+  <form action="/api/{{title}}/" method="POST">
+    {% csrf_token %}
+    <input hidden name="redirect" value="/admin/{{title}}"/>
+
+    {% if data.name %}
+      <h3>{{title|title}} - {{data.name}}</h3>
+    {% else %}
+      <h3>Add {{title|title}}</h3>
+    {% endif %}
+    <a type="submit" class="admin-btn blue p-bold" href="/admin/{{title}}">Back</a>
+    <button type="submit" class="admin-btn green p-bold">Save</button>
+    {% if data.name %}
+      <button type="button" class="admin-btn red p-bold" onclick="deleteEntry('/api/{{title}}/{{data.id}}')">Delete</button>
+    {% endif %}
+
+    {% for field in fields %}
+      {% if field.type == 'text' %}
+        <div>
+          <label for="{{field.name}}">{{field.name|title}}</label>
+          <input type="text" id="{{field.name}}" name="{{field.name}}" value="{{data|hash:field.name}}" required/>
+        </div>
+      {% elif field.type == 'textarea' %}
+        <div>
+          <label for="{{field.name}}">{{field.name|title}}</label>
+          <textarea id="{{field.name}}" name="{{field.name}}" required>{{data|hash:field.name}}</textarea>
+        </div>
+      {% elif field.type == 'password' %}
+        <div>
+          <label for="{{field.name}}">{{field.name|title}}</label>
+          <input type="password" id="{{field.name}}" name="{{field.name}}" required/>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </form>
+</div>

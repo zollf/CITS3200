@@ -41,7 +41,7 @@ def CarparksView(request):
 @api_view(['GET'])
 def CarparkAdd(request):
     if (request.method == 'GET'):
-        return render(request, 'carpark.html', {'carpark': CarPark()})
+        return render(request, 'carpark.html', {'carpark': CarPark() })
 
 @staff_member_required
 @login_required(login_url="/login")
@@ -49,7 +49,7 @@ def CarparkAdd(request):
 @api_view(['GET'])
 def CarparkEdit(request, pk):
     if (request.method == 'GET'):
-        return render(request, 'carpark.html', {'carpark': CarPark.objects.get(pk=pk)})
+        return render(request, 'carpark.html', {'carpark': CarPark.objects.values('id', 'name', 'description', 'google_maps_link').get(pk=pk)})
 
 @staff_member_required
 @login_required(login_url="/login")
@@ -58,3 +58,20 @@ def CarparkEdit(request, pk):
 def UsersView(request):
     if (request.method == 'GET'):
         return render(request, 'users.html', {'users': User.objects.values('id', 'username')})
+
+@staff_member_required
+@login_required(login_url="/login")
+@csrf_protect
+@api_view(['GET'])
+def UsersAdd(request):
+    if (request.method == 'GET'):
+        return render(request, 'user.html', {'user': User() })
+
+
+@staff_member_required
+@login_required(login_url="/login")
+@csrf_protect
+@api_view(['GET'])
+def UsersEdit(request, pk):
+    if (request.method == 'GET'):
+        return render(request, 'user.html', {'user': User.objects.values('id', 'username').get(pk=pk)})

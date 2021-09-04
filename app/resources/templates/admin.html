@@ -11,24 +11,12 @@
     <!--sidebar menu start-->
     <div class="admin">
       <div class="sidebar">
-          <a href="/admin" id="dashboard">
-            <h4 data-thin="true">Dashboard</h4>
-          </a>
-          <a href="/admin/carparks">
-            <h4 data-thin="true">Car parks</h4>
-          </a>
-          <a href="/admin/bookings">
-            <h4 data-thin="true">Bookings</h4>
-          </a>
-          <a href="/admin/users">
-            <h4 data-thin="true">Users</h4>
-          </a>
-          <a href="/admin/settings">
-            <h4 data-thin="true">Settings</h4>
-          </a>
-          <a href="/logout">
-            <h4 data-thin="true">Logout</h4>
-          </a>
+          <a href="/admin" class="h4-thin white {% if request.path == "/admin/" %}active{% endif %}">Dashboard</a>
+          <a href="/admin/carparks" class="h4-thin white {% if "carparks" in request.path %}active{% endif %}">Car parks</a>
+          <a href="/admin/bookings" class="h4-thin white">Bookings</a>
+          <a href="/admin/users" class="h4-thin white {% if "users" in request.path %}active{% endif %}">Users</a>
+          <a href="/admin/settings" class="h4-thin white">Settings</a>
+          <a href="/logout" class="h4-thin white">Logout</a>
       </div>
       <div class="content">
           {% block admin_content %}{% endblock %}

@@ -150,3 +150,7 @@ p, .p {
   margin: 0;
   color: var(--uwa-black);
 }
+
+.white {
+  color: var(--white) !important;
+}

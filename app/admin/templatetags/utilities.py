@@ -4,4 +4,10 @@ register = template.Library()
 
 @register.filter
 def hash(h, key):
-    return h[key] if key in h else None
+    try:
+      iter(h)
+    except TypeError:
+      return ''
+    else:
+      return h[key] if key in h else ''
+    

@@ -1,6 +1,9 @@
 {% load utilities %}
 
 <div class="table-wrapper">
+  {% csrf_token %}
+  <input name="redirect" value="/admin/{{title}}" hidden/>
+
   <div class="top">
     <h3>{{title|title}}</h3>
     <a class="admin-btn green p-bold" href="add">Add</a>
@@ -8,7 +11,7 @@
   <div class="table">
     <div class="table-headers">
       {% for header in headers %}
-        <p data-small-bold="true">{{header}}</p>
+        <p data-small-bold="true">{{header|title}}</p>
       {% endfor %}
     </div>
 
@@ -24,11 +27,7 @@
 
           <div class="table-actions">
             <a class="admin-btn blue p-bold" href="/admin/{{title}}/view/{{row.id}}">View</a>
-            <form action="/api/{{title}}/delete/{{row.id}}" method="POST">
-              {% csrf_token %}
-              <button type="submit" class="admin-btn red p-bold">Delete</button>
-              <input name="redirect" value="/admin/{{title}}" hidden/>
-            </form>
+            <button onclick="deleteEntry('/api/{{title}}/{{row.id}}')" type="button" class="admin-btn red p-bold">Delete</button>
           </div>
         </div>
       {% endfor %}

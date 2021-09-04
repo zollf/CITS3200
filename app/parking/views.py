@@ -32,6 +32,7 @@ def carparks_list(request):
             return redirect('/admin/carparks')
         return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
 
+@csrf_protect
 @api_view(['GET', 'PUT', 'DELETE'])
 def carpark_detail(request, pk):
     try:
@@ -53,18 +54,4 @@ def carpark_detail(request, pk):
 
     elif request.method == 'DELETE':
         carpark.delete()
-        return HttpResponse(status=status.HTTP_204_NO_CONTENT)
-
-@csrf_protect
-@api_view(['POST'])
-def carpark_delete(request, pk):
-    try:
-        carpark = CarPark.objects.get(pk=pk)
-    except CarPark.DoesNotExist:
-        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'POST':
-        carpark.delete()
-        if 'redirect' in request.data:
-            return redirect(request.data['redirect'])
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)

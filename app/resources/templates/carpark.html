@@ -1,40 +1,12 @@
 {% extends 'admin.html' %} 
-{% load table %}
+{% load admin %}
 
 {% block admin_head %}
  {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
+  <script src="{% static '/scripts/delete.js' %}"></script>
 {% endblock %}
 
 {% block admin_content %}
-  <form class="delete" action="/api/carparks/delete/{{carpark.id}}" method="POST">
-    {% csrf_token %}
-    <button type="submit" class="admin-btn red p-bold">Delete</button>
-    <input name="redirect" value="/admin/carparks" hidden/>
-  </form>
-
-  <a type="submit" class="admin-btn blue p-bold" href="/admin/carparks">Back</a>
-
-  <form action="/api/carparks/" method="POST">
-    {% csrf_token %}
-    <input hidden name="redirect" value="/admin/carparks"/>
-
-    <h3>Add Carpark</h3>
-    <button type="submit" class="admin-btn green p-bold">Save</button>
-
-    <div>
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" value="{{carpark.name}}" required/>
-    </div>
-
-    <div>
-      <label for="description">Description</label>
-      <input type="text" id="description" name="description" value="{{carpark.description}}" required/>
-    </div>
-
-    <div>
-      <label for="google_maps_link">Google Maps Link (Link to carpark on google maps)</label>
-      <input type="text" id="google_maps_link" name="google_maps_link" value="{{carpark.google_maps_link}}" required/>
-    </div>
-  </form>
+  {% create_form 'carparks' carpark 'name:text|description:textarea|google_maps_link:text' %}
 {% endblock %}
