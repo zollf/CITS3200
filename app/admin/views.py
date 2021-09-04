@@ -41,7 +41,7 @@ def CarparksView(request):
 @api_view(['GET'])
 def CarparkAdd(request):
     if (request.method == 'GET'):
-        return render(request, 'carpark.html', {'carpark': CarPark() })
+        return render(request, 'carpark.html', {'carpark': CarPark()})
 
 @staff_member_required
 @login_required(login_url="/login")
@@ -65,7 +65,7 @@ def UsersView(request):
 @api_view(['GET'])
 def UsersAdd(request):
     if (request.method == 'GET'):
-        return render(request, 'user.html', {'user': User() })
+        return render(request, 'user.html', {'user': User()})
 
 
 @staff_member_required

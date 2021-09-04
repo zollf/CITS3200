@@ -20,12 +20,12 @@
       {% if field.type == 'text' %}
         <div>
           <label for="{{field.name}}">{{field.name|title}}</label>
-          <input type="text" id="{{field.name}}" name="{{field.name}}" value="{{data|hash:field.name}}" required/>
+          <input type="text" id="{{field.name}}" name="{{field.name}}" value="{{data|key:field.name}}" required/>
         </div>
       {% elif field.type == 'textarea' %}
         <div>
           <label for="{{field.name}}">{{field.name|title}}</label>
-          <textarea id="{{field.name}}" name="{{field.name}}" required>{{data|hash:field.name}}</textarea>
+          <textarea id="{{field.name}}" name="{{field.name}}" required>{{data|key:field.name}}</textarea>
         </div>
       {% elif field.type == 'password' %}
         <div>

@@ -21,7 +21,7 @@
           
           <div class="table-row">
             {% for header in headers %}
-              <h4 data-thin="true">{{row|hash:header}}</h4>
+              <h4 data-thin="true">{{row|key:header}}</h4>
             {% endfor %}
           </div>
 
