@@ -24,12 +24,12 @@ def carparks_list(request):
 
         if not serializer.is_valid():
             if 'redirect' in request.data:
-                return redirect('/admin/carparks')
+                return redirect(request.data['redirect'])
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         serializer.save()
         if 'redirect' in request.data:
-            return redirect('/admin/carparks')
+            return redirect(request.data['redirect'])
         return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
 
 @csrf_protect
