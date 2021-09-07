@@ -71,7 +71,7 @@ a:active {
   color: var(--uwa-secondary-gold);
 }
 
-.newWindowIcon {
+a > svg {
   width: 12px;
   height: 12px;
   vertical-align: center;

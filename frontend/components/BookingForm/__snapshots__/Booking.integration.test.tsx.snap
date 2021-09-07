@@ -83,7 +83,6 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
             >
                 Get directions
               <svg
-                class="newWindowIcon"
                 fill="none"
                 height="24"
                 id="open-in-new"
