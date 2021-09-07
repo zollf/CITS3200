@@ -7,7 +7,7 @@ const CarparkCard = (props: any) => {
     return (
         <div className={styles.card}>
             <div className={styles.topHalf}>
-                {props.carpark.name}
+                <h3>{props.carpark.name}</h3>
             </div>
             <div className={styles.bottomHalf}>
                 <div className={styles.description}>
@@ -15,9 +15,9 @@ const CarparkCard = (props: any) => {
                 </div>
                 <div className={styles.directions}> 
                     <MapIcon />
-                    <a href={props.carpark.mapURL} target="_blank">
+                    <a href={props.carpark.mapURL} className={"p-small-bold"} target="_blank">
                         &nbsp; Get directions
-                        <NewWindowIcon />
+                        <NewWindowIcon className={styles.newWindowIcon}/>
                     </a>
                 </div>
             </div>

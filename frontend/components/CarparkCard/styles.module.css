@@ -20,13 +20,9 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   text-align: center;
   display: table-cell;
   vertical-align: middle;
+}
 
-  /* Title Font */
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 33px;
+h3 {
   color: white;
 }
 
@@ -44,19 +40,9 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   box-sizing: border-box;
   width: 300px;
   height: 79px;
-  background-color:green;
+  /* background-color:green; */
 
-  /* Description Font */
-  /* font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 19px;
-  padding: 10px 20px; */
-}
-
-p {
-  margin: 10px !important;
+  padding: 10px 20px; 
 }
 
 .directions {
@@ -65,14 +51,8 @@ p {
   width: 300px;
   height:39px;
   border-radius: 0px 0px 7px 7px;
-  background: red;
+  /* background: red; */
   
-  /* Directions Font */
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  /* line-height: 39px; */
   padding: 0px 20px;
   display: flex;
   align-items: center;
@@ -93,11 +73,12 @@ a:active {
   color: var(--uwa-secondary-gold);
 }
 
-i.newWindowIcon {
-  height: 10px;
-  color: #323232;
+.newWindowIcon {
+  width: 12px;
+  height: 12px;
+  vertical-align: center;
 }
-i.newWindowIcon:hover {
+/* This doesn't work */
+.newWindowIcon:hover { 
   color: #1488ca;
 } 
-/* Ask about this */
