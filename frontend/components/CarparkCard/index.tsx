@@ -23,7 +23,7 @@ const CarparkCard = ({ name, description, mapURL }: Props) => {
           <MapIcon />
           <a href={mapURL} className={'p-small-bold'} target="_blank" rel="noopener noreferrer">
             &nbsp; Get directions
-            <NewWindowIcon/>
+            <NewWindowIcon />
           </a>
         </div>
       </div>
