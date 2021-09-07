@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 import styles from './styles.module.css';
-import MapIcon from '@/app/resources/static/images/map-pin.svg'
-import NewWindowIcon from '@/app/resources/static/images/open-in-new.svg'
+import MapIcon from '@/app/resources/static/images/map-pin.svg';
+import NewWindowIcon from '@/app/resources/static/images/open-in-new.svg';
 
 const CarparkCard = (props: any) => {
     return (
