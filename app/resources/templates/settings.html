@@ -1,11 +1,11 @@
-{% extends 'base.html' %} 
+{% extends 'admin.html' %} 
 
-{% block head_content %}
+{% block admin_head %}
 {% endblock %}
 
-{% block content %}
+{% block admin_content %}
   <h1>Settings</h1>
-  <form action="/admin/settings/save" method="POST">
+  <form action="/admin/settings/" method="POST">
     {% csrf_token %}
     {% for setting in settings %}
       <div class="admin-settings">

@@ -6,13 +6,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from app.index.views import IndexView
-from app.admin_settings.urls import settings_url
+from app.admin.urls import admin_urls
 from app.authentication.urls import authentication_urls
-from django.contrib.auth import urls
+from app.parking.views import carparks_list, carpark_detail
 
 urlpatterns = [
-    path('admin/settings/', include(settings_url)),
-    path('django-admin/', admin.site.urls),
+    path('admin/', include(admin_urls)),
+    path('api/carparks/', carparks_list),
+    path('api/carparks/<int:pk>', carpark_detail),
     path('', IndexView, name='index'),
-    path('auth/', include(authentication_urls)),
+    path('', include(authentication_urls)),
 ]

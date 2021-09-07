@@ -1,0 +1,33 @@
+.admin {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+  padding-top: 31px;
+  background: var(--uwa-blue);
+  height: 100%;
+  width: 220px;
+  
+}
+
+.sidebar a {
+  width: 100%;
+  text-decoration: none;
+  height: 47px;
+  display: flex;
+  align-items: center;
+}
+
+h4 {
+  color: var(--white) !important;
+  margin-left: 30px !important;
+}
+
+#dashboard {
+  background: linear-gradient(to right, #FDFDFD 2.5%, #2D3C9F 2.5%, #2D3C9F);
+}
+
+.sidebar a:hover{
+  background: #2D3C9F;
+}

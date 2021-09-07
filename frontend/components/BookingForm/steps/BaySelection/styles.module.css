@@ -1,0 +1,73 @@
+.table {
+  display: grid;
+  grid-auto-columns: auto;
+  max-width: 956px;
+  overflow-x: scroll;
+  border: 3px solid var(--uwa-blue);
+  border-radius: 7px;
+}
+
+.bay, .top {
+  display: flex;
+  flex-direction: row;
+}
+
+.top, .topLeft {
+  background: var(--light-blue);
+  height: 28px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.bay[data-light="true"] {
+  background: var(--light-blue);
+}
+
+.left, .topLeft {
+  width: 60px;
+  display: flex;
+}
+
+.left {
+  justify-content: center;
+  align-items: center;
+}
+
+.times, .bayTimes {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 40px;
+  grid-auto-flow: column;
+}
+
+.times > p {
+  text-align: center;
+  width: 40px;
+}
+
+.bayTime {
+  width: 38px;
+  height: 38px;
+  margin: 1px;
+  border-radius: 0;
+  appearance: none;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.bayTime[data-unavailable="true"] {
+  background: var(--uwa-secondary-red) !important;
+}
+
+.bayTime[data-selected="false"] {
+  background: var(--uwa-secondary-gold);
+}
+
+.bayTime[data-selected="true"] {
+  background: var(--uwa-secondary-green);
+}
+
+.bayTime[data-selected="false"]:hover {
+  background: var(--uwa-secondary-green);
+}
