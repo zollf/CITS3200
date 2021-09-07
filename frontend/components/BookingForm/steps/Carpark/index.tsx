@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Yup from 'yup';
-import CarparkCard from '../../../CarparkCard/CarparkCard';
+import CarparkCard from '../../../CarparkCard';
 
 const Carpark: StepComponent = () => {
   return (
@@ -11,11 +11,9 @@ const Carpark: StepComponent = () => {
       <button type="submit">Next</button>
 
       <CarparkCard
-        carpark = {{
-          name:"Admin Carpark North",
-          description:"Carpark located somewhere." ,
-          mapURL:"https://goo.gl/maps/RytgNDB4MW8McDBY6" ,
-        }}  
+        name="Admin Carpark South"
+        description="Carpark located somewhere."
+        mapURL="https://goo.gl/maps/RytgNDB4MW8McDBY6"
       />
     </div>
   );

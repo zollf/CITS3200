@@ -46,7 +46,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
           class="topHalf"
         >
           <h3>
-            Admin Carpark North
+            Admin Carpark South
           </h3>
         </div>
         <div
@@ -78,6 +78,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
             <a
               class="p-small-bold"
               href="https://goo.gl/maps/RytgNDB4MW8McDBY6"
+              rel="noopener noreferrer"
               target="_blank"
             >
                 Get directions

@@ -40,7 +40,6 @@ h3 {
   box-sizing: border-box;
   width: 300px;
   height: 79px;
-  /* background-color:green; */
 
   padding: 10px 20px; 
 }
@@ -51,7 +50,6 @@ h3 {
   width: 300px;
   height:39px;
   border-radius: 0px 0px 7px 7px;
-  /* background: red; */
   
   padding: 0px 20px;
   display: flex;
@@ -78,7 +76,3 @@ a:active {
   height: 12px;
   vertical-align: center;
 }
-/* This doesn't work */
-.newWindowIcon:hover { 
-  color: #1488ca;
-} 
