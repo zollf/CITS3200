@@ -29,6 +29,7 @@ const getInitialState = (): BaysInitialProps => {
       status: AVAILABLE,
       bayNum: i + 1,
       time: times[j],
+      index: j,
     })),
   }));
 

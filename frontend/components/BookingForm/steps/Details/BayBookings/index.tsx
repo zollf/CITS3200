@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css"
+import available_times from "../../../../../lib/Times"
 
 interface Props {
     bayTimes: Map<string, Time>
@@ -15,15 +16,39 @@ const BayBookings = ({bayTimes}: Props) => {
         }
     )
 
-    const listItems = timeSlugs.map((slug) =>
-        <tr>
-             <td> {bayTimes.get(slug)?.bayNum} </td> <td> {bayTimes.get(slug)?.time} </td> 
-        </tr>
-    );
+    const cleanedTimes: (Time | undefined )[] = [bayTimes.get(timeSlugs[0])];
+
+    for (let i = 0; i < timeSlugs.length - 2; i++) {
+        const previousBayNum = bayTimes.get(timeSlugs[i])?.bayNum;
+        const previousTimePeriod = bayTimes.get(timeSlugs[i])?.index;
+        //const timePeriod = bayTimes.get(timeSlugs[i+1])?.index;
+        const nextBayNum = bayTimes.get(timeSlugs[i+2])?.bayNum;
+        const nextTimePeriod = bayTimes.get(timeSlugs[i+2])?.index;
+
+        if (previousTimePeriod && nextTimePeriod && previousBayNum == nextBayNum 
+            && previousTimePeriod + 2 == nextTimePeriod) {
+                continue;
+        }
+        else cleanedTimes.push(bayTimes.get(timeSlugs[i+1]));
+    }
+
+    cleanedTimes.push(bayTimes.get(timeSlugs[timeSlugs.length - 1]));
+
+    console.log(cleanedTimes);
+    const listItems = cleanedTimes.map((bookedTime) => {        
+        return (
+            <tr><td> {bookedTime?.bayNum} </td> <td> {bookedTime?.time} </td></tr>
+        )
+    });
+
     return (
         <table className={styles.bayTimes}>
-            <tr> <th> Bay </th> <th> Time </th> </tr>
-            {listItems}
+            <thead>
+                <tr> <th> Bay </th> <th> Time </th> </tr>
+            </thead>
+            <tbody>
+                {listItems}
+            </tbody>
         </table>
     )
 }

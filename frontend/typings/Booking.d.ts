@@ -22,6 +22,7 @@ interface Time {
   slug: string;
   status: Booking.Unavailable | Booking.Selected | Booking.Available;
   bayNum: number;
+  index: number;
 }
 
 interface BaysInitialProps {
