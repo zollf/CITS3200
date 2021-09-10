@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./styles.module.css"
-import available_times from "../../../../../lib/Times"
 
 interface Props {
     bayTimes: Map<string, Time>
@@ -16,28 +15,40 @@ const BayBookings = ({bayTimes}: Props) => {
         }
     )
 
-    const cleanedTimes: (Time | undefined )[] = [bayTimes.get(timeSlugs[0])];
+    const cleanedTimes: (Time | undefined )[][] = [];
+    let i = 0
 
-    for (let i = 0; i < timeSlugs.length - 2; i++) {
-        const previousBayNum = bayTimes.get(timeSlugs[i])?.bayNum;
-        const previousTimePeriod = bayTimes.get(timeSlugs[i])?.index;
-        //const timePeriod = bayTimes.get(timeSlugs[i+1])?.index;
-        const nextBayNum = bayTimes.get(timeSlugs[i+2])?.bayNum;
-        const nextTimePeriod = bayTimes.get(timeSlugs[i+2])?.index;
+    while (i < timeSlugs.length - 1) {
+        let consecutivePeriod :( Time | undefined)[] = [];
+        consecutivePeriod.push(bayTimes.get(timeSlugs[i]));
+        let j = i;
 
-        if (previousTimePeriod && nextTimePeriod && previousBayNum == nextBayNum 
-            && previousTimePeriod + 2 == nextTimePeriod) {
-                continue;
+        while (j < timeSlugs.length - 1) {
+            const current = bayTimes.get(timeSlugs[j]);
+            const next = bayTimes.get(timeSlugs[j+1]);
+            const timePeriod = current!.index;
+            const bayNum = current!.bayNum;
+            const nextBayNum = next!.bayNum;
+            const nextTimePeriod = next!.index;
+            console.log(`time period: ${timePeriod}, bayNum: ${bayNum}, nextBayNum: ${nextBayNum}, 
+            nextTimePeriod: ${nextTimePeriod}`);
+
+            if (bayNum == nextBayNum && timePeriod + 1 == nextTimePeriod) j++;
+            else break;
         }
-        else cleanedTimes.push(bayTimes.get(timeSlugs[i+1]));
+
+        if (j != i) consecutivePeriod.push(bayTimes.get(timeSlugs[j]))
+        i = j+1;
+        cleanedTimes.push(consecutivePeriod);
     }
 
-    cleanedTimes.push(bayTimes.get(timeSlugs[timeSlugs.length - 1]));
+    //cleanedTimes.push(bayTimes.get(timeSlugs[timeSlugs.length - 1]));
+    // conditional rendering - what if bookedTime only has 1 entry
 
     console.log(cleanedTimes);
     const listItems = cleanedTimes.map((bookedTime) => {        
         return (
-            <tr><td> {bookedTime?.bayNum} </td> <td> {bookedTime?.time} </td></tr>
+            <tr><td> {bookedTime[0]?.bayNum} </td> <td> {bookedTime[0]?.time} - {bookedTime[1]?.time} </td></tr>
         )
     });
 
