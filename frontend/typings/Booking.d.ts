@@ -37,7 +37,7 @@ interface BayAction {
 
 interface BookingFormValues {
   carpark: any;
-  booking: Map<string, bool>;
+  booking: Map<string, Time>;
   firstName: string;
   lastName: string;
   email: string;

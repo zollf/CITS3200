@@ -9,16 +9,18 @@ const Details: StepComponent = () => {
   
   return (
     <div>
-      <h2>Booking Details</h2>
-      <h3 data-thin>Please fill in details for the person that will be parking</h3>
-      <Field label="First Name" name="firstName" required />
-      <Field label="Last Name" name="lastName" required />
-      <Field label="Email" name="email" type="email" required />
-      <Field label="Phone" name="phone" required />
-      <Field label="Rego" name="rego" />
-      <Field label="Company" name="company" />
-      <button type="submit">Submit</button>
-
+      <div>
+        <h2>Booking Details</h2>
+        <h3 data-thin>Please fill in details for the person that will be parking</h3>
+        <Field label="First Name" name="firstName" required />
+        <Field label="Last Name" name="lastName" required />
+        <Field label="Email" name="email" type="email" required />
+        <Field label="Phone" name="phone" required />
+        <Field label="Rego" name="rego" />
+        <Field label="Company" name="company" />
+        <button type="submit">Submit</button>
+      </div>
+      
       <BayBookings bayTimes={values.booking} />
     </div>
   );

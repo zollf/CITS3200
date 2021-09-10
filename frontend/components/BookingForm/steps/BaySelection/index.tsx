@@ -13,7 +13,7 @@ const BaySelection: StepComponent = () => {
   const handleClick = (time: Time) => {
     if (time.status !== selection.UNAVAILABLE) {
       const booking = values.booking;
-      booking.has(time.slug) ? booking.delete(time.slug) : booking.set(time.slug, true);
+      booking.has(time.slug) ? booking.delete(time.slug) : booking.set(time.slug, time);
       setFieldValue('booking', booking);
     }
   };
@@ -26,7 +26,7 @@ const BaySelection: StepComponent = () => {
   const handleHover = (time: Time) => {
     if (mouseDown) {
       const booking = values.booking;
-      booking.set(time.slug, true);
+      booking.set(time.slug, time);
       setFieldValue('booking', booking);
     }
   };
