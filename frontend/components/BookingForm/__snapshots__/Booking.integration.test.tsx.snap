@@ -39,8 +39,6 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
       >
         Next
       </button>
-<<<<<<< HEAD
-=======
       <div
         class="card"
       >
@@ -101,7 +99,6 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
           </div>
         </div>
       </div>
->>>>>>> origin/main
     </div>
   </form>
 </DocumentFragment>

@@ -1,0 +1,17 @@
+.bayTimes {
+    border: solid 3px var(--uwa-blue);
+    border-radius: 10px;
+    width: 300px;
+}
+
+tr, td {
+    border: none;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(212, 206, 206);
+}
+
+tr:nth-child(odd) {
+    background-color: white;
+}
