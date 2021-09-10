@@ -2,16 +2,30 @@
     border: solid 3px var(--uwa-blue);
     border-radius: 10px;
     width: 300px;
+    font-size: 16pt;
+}
+
+thead > tr > th {
+    text-align: left
 }
 
 tr, td {
     border: none;
 }
 
-tr:nth-child(even) {
-    background-color: rgb(212, 206, 206);
+tbody > tr:nth-child(even) {
+    background-color: var(--light-blue);
 }
 
-tr:nth-child(odd) {
+tbody > tr:nth-child(odd) {
     background-color: white;
+}
+
+thead {
+    background-color: var(--light-blue);
+    font-size: 12pt;
+}
+
+td:first-child, th:first-child {
+    padding-left: 5px;
 }

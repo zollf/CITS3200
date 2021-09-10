@@ -45,13 +45,11 @@ const BayBookings = ({bayTimes}: Props) => {
         cleanedTimes.push(consecutivePeriod);
     }
 
-    console.log(cleanedTimes);
-    console.log(timePeriods);
     const listItems = cleanedTimes.map((bookedTime) => {        
                         return (
                             bookedTime.length == 1 ?
-                            <tr><td> {bookedTime[0]!.bayNum} </td> <td> {bookedTime[0]!.time} - {timePeriods[bookedTime[0]!.index + 1]} </td></tr>
-                            : <tr><td> {bookedTime[0]!.bayNum} </td> <td> {bookedTime[0]!.time} - {timePeriods[bookedTime[1]!.index + 1]} </td></tr>   
+                            <tr><td> {bookedTime[0]!.bayNum} </td> <td> {bookedTime[0]!.time}-{timePeriods[bookedTime[0]!.index + 1]} </td></tr>
+                            : <tr><td> {bookedTime[0]!.bayNum} </td> <td> {bookedTime[0]!.time}-{timePeriods[bookedTime[1]!.index + 1]} </td></tr>   
                         )         
                     });
 
