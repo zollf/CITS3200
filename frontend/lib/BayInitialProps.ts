@@ -14,8 +14,10 @@ const getInitialState = (): BaysInitialProps => {
   const times: string[] = [];
 
   let foundStart = false;
+  let translation = 0;
   for (let i = 0; i < Times.length; i++) {
     if (Times[i] == GlobalStartTime) {
+      translation = i;
       foundStart = true;
     }
     if (foundStart) times.push(Times[i]);
@@ -29,7 +31,7 @@ const getInitialState = (): BaysInitialProps => {
       status: AVAILABLE,
       bayNum: i + 1,
       time: times[j],
-      index: j,
+      index: j + translation,
     })),
   }));
 

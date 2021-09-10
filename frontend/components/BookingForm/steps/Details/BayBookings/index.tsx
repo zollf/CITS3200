@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css"
+import timePeriods from "../../../../../lib/Times"
 
 interface Props {
     bayTimes: Map<string, Time>
@@ -8,17 +9,21 @@ interface Props {
 const BayBookings = ({bayTimes}: Props) => {
     const timeSlugs = [...bayTimes.keys()];
     timeSlugs.sort((time1, time2) => {
-            const bayNum1 = bayTimes.get(time1)?.bayNum; 
-            const bayNum2 = bayTimes.get(time2)?.bayNum; 
-            if (bayNum1 && bayNum2) return bayNum1 - bayNum2 
-            else return 0;
+            const booking1 = bayTimes.get(time1);
+            const booking2 = bayTimes.get(time2); 
+            const difference = booking1!.bayNum - booking2!.bayNum;
+
+            if (difference == 0) {
+                return booking1!.index - booking2!.index;
+            }
+            else return difference;
         }
     )
 
     const cleanedTimes: (Time | undefined )[][] = [];
-    let i = 0
+    let i = 0;
 
-    while (i < timeSlugs.length - 1) {
+    while (i < timeSlugs.length) {
         let consecutivePeriod :( Time | undefined)[] = [];
         consecutivePeriod.push(bayTimes.get(timeSlugs[i]));
         let j = i;
@@ -30,8 +35,6 @@ const BayBookings = ({bayTimes}: Props) => {
             const bayNum = current!.bayNum;
             const nextBayNum = next!.bayNum;
             const nextTimePeriod = next!.index;
-            console.log(`time period: ${timePeriod}, bayNum: ${bayNum}, nextBayNum: ${nextBayNum}, 
-            nextTimePeriod: ${nextTimePeriod}`);
 
             if (bayNum == nextBayNum && timePeriod + 1 == nextTimePeriod) j++;
             else break;
@@ -42,15 +45,15 @@ const BayBookings = ({bayTimes}: Props) => {
         cleanedTimes.push(consecutivePeriod);
     }
 
-    //cleanedTimes.push(bayTimes.get(timeSlugs[timeSlugs.length - 1]));
-    // conditional rendering - what if bookedTime only has 1 entry
-
     console.log(cleanedTimes);
+    console.log(timePeriods);
     const listItems = cleanedTimes.map((bookedTime) => {        
-        return (
-            <tr><td> {bookedTime[0]?.bayNum} </td> <td> {bookedTime[0]?.time} - {bookedTime[1]?.time} </td></tr>
-        )
-    });
+                        return (
+                            bookedTime.length == 1 ?
+                            <tr><td> {bookedTime[0]!.bayNum} </td> <td> {bookedTime[0]!.time} - {timePeriods[bookedTime[0]!.index + 1]} </td></tr>
+                            : <tr><td> {bookedTime[0]!.bayNum} </td> <td> {bookedTime[0]!.time} - {timePeriods[bookedTime[1]!.index + 1]} </td></tr>   
+                        )         
+                    });
 
     return (
         <table className={styles.bayTimes}>
