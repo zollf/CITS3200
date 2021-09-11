@@ -6,7 +6,7 @@ import { useFormikContext } from 'formik';
 
 const Details: StepComponent = () => {
   const { values } = useFormikContext<BookingFormValues>();
-  
+
   return (
     <div>
       <div>
@@ -20,7 +20,7 @@ const Details: StepComponent = () => {
         <Field label="Company" name="company" />
         <button type="submit">Submit</button>
       </div>
-      
+
       <BayBookings bayTimes={values.booking} />
     </div>
   );
