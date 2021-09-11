@@ -48,15 +48,18 @@ const BayBookings = ({bayTimes}: Props) => {
     const listItems = cleanedTimes.map((bookedTime) => {        
                         return (
                             bookedTime.length == 1 ?
-                            <tr><td> {bookedTime[0]!.bayNum} </td> <td> {bookedTime[0]!.time}-{timePeriods[bookedTime[0]!.index + 1]} </td></tr>
-                            : <tr><td> {bookedTime[0]!.bayNum} </td> <td> {bookedTime[0]!.time}-{timePeriods[bookedTime[1]!.index + 1]} </td></tr>   
+                            <tr key={bookedTime[0]?.slug}><td>{bookedTime[0]!.bayNum}</td>
+                            <td>{bookedTime[0]!.time}-{timePeriods[bookedTime[0]!.index + 1]}</td></tr>
+                            : 
+                            <tr key={bookedTime[0]?.slug}><td>{bookedTime[0]!.bayNum} </td>
+                            <td>{bookedTime[0]!.time}-{timePeriods[bookedTime[1]!.index + 1]}</td></tr>   
                         )         
                     });
 
     return (
         <table className={styles.bayTimes}>
             <thead>
-                <tr> <th> Bay </th> <th> Time </th> </tr>
+                <tr><th>Bay</th><th>Time</th></tr>
             </thead>
             <tbody>
                 {listItems}

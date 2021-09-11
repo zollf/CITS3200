@@ -14,6 +14,21 @@ exports[`Booking Form Confirmation matches its snapshot 1`] = `
       >
         Keaton Keeling will receive an email confirmation of the booking
       </h3>
+      <table
+        class="bayTimes"
+      >
+        <thead>
+          <tr>
+            <th>
+              Bay
+            </th>
+            <th>
+              Time
+            </th>
+          </tr>
+        </thead>
+        <tbody />
+      </table>
     </div>
   </form>
 </DocumentFragment>
@@ -3599,113 +3614,130 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
     class="bookingForm"
   >
     <div>
-      <h2>
-        Booking Details
-      </h2>
-      <h3
-        data-thin="true"
-      >
-        Please fill in details for the person that will be parking
-      </h3>
-      <div
-        class="field"
-      >
-        <label
-          for="firstName"
+      <div>
+        <h2>
+          Booking Details
+        </h2>
+        <h3
+          data-thin="true"
         >
-          First Name
-        </label>
-        <input
-          data-testid="firstName"
-          name="firstName"
-          required=""
-          type="text"
-          value=""
-        />
-      </div>
-      <div
-        class="field"
-      >
-        <label
-          for="lastName"
+          Please fill in details for the person that will be parking
+        </h3>
+        <div
+          class="field"
         >
-          Last Name
-        </label>
-        <input
-          data-testid="lastName"
-          name="lastName"
-          required=""
-          type="text"
-          value=""
-        />
-      </div>
-      <div
-        class="field"
-      >
-        <label
-          for="email"
+          <label
+            for="firstName"
+          >
+            First Name
+          </label>
+          <input
+            data-testid="firstName"
+            name="firstName"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="field"
         >
-          Email
-        </label>
-        <input
-          data-testid="email"
-          name="email"
-          required=""
-          type="email"
-          value=""
-        />
-      </div>
-      <div
-        class="field"
-      >
-        <label
-          for="phone"
+          <label
+            for="lastName"
+          >
+            Last Name
+          </label>
+          <input
+            data-testid="lastName"
+            name="lastName"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="field"
         >
-          Phone
-        </label>
-        <input
-          data-testid="phone"
-          name="phone"
-          required=""
-          type="text"
-          value=""
-        />
-      </div>
-      <div
-        class="field"
-      >
-        <label
-          for="rego"
+          <label
+            for="email"
+          >
+            Email
+          </label>
+          <input
+            data-testid="email"
+            name="email"
+            required=""
+            type="email"
+            value=""
+          />
+        </div>
+        <div
+          class="field"
         >
-          Rego
-        </label>
-        <input
-          data-testid="rego"
-          name="rego"
-          type="text"
-          value=""
-        />
-      </div>
-      <div
-        class="field"
-      >
-        <label
-          for="company"
+          <label
+            for="phone"
+          >
+            Phone
+          </label>
+          <input
+            data-testid="phone"
+            name="phone"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="field"
         >
-          Company
-        </label>
-        <input
-          data-testid="company"
-          name="company"
-          type="text"
-          value=""
-        />
+          <label
+            for="rego"
+          >
+            Rego
+          </label>
+          <input
+            data-testid="rego"
+            name="rego"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            for="company"
+          >
+            Company
+          </label>
+          <input
+            data-testid="company"
+            name="company"
+            type="text"
+            value=""
+          />
+        </div>
+        <button
+          type="submit"
+        >
+          Submit
+        </button>
       </div>
-      <button
-        type="submit"
+      <table
+        class="bayTimes"
       >
-        Submit
-      </button>
+        <thead>
+          <tr>
+            <th>
+              Bay
+            </th>
+            <th>
+              Time
+            </th>
+          </tr>
+        </thead>
+        <tbody />
+      </table>
     </div>
   </form>
 </DocumentFragment>
