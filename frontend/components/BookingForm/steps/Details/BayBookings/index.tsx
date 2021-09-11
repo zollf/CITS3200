@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import styles from './styles.module.css';
-import timePeriods from '../../../../../lib/Times';
+import timePeriods from '@/frontend/lib/Times';
 
 interface Props {
   bayTimes: Map<string, Time>;
