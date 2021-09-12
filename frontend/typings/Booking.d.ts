@@ -22,6 +22,7 @@ interface Time {
   slug: string;
   status: Booking.Unavailable | Booking.Selected | Booking.Available;
   bayNum: number;
+  index: number;
 }
 
 interface BaysInitialProps {
@@ -37,7 +38,7 @@ interface BayAction {
 
 interface BookingFormValues {
   carpark: any;
-  booking: Map<string, bool>;
+  booking: Map<string, Time>;
   firstName: string;
   lastName: string;
   email: string;
