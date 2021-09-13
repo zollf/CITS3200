@@ -1,6 +1,6 @@
 const InitialValues: BookingFormValues = {
   carpark: '',
-  booking: '',
+  booking: new Map(),
   firstName: '',
   lastName: '',
   email: '',

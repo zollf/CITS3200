@@ -18,7 +18,14 @@ const Field = ({ name, label, required = false, type = 'text' }: Props) => {
   return (
     <div className={cc({ [styles.field]: true, [styles.invalid]: invalid })}>
       <label htmlFor={name}>{label}</label>
-      <FormikField name={name} value={values[name]} type={type} invalid={invalid} required={required} />
+      <FormikField
+        name={name}
+        value={values[name]}
+        type={type}
+        invalid={invalid?.toString()}
+        required={required}
+        data-testid={name}
+      />
     </div>
   );
 };
