@@ -10,7 +10,7 @@ const Carpark: StepComponent = () => {
       <h2>UniPark VIP Booking</h2>
       <h3>Please pick a car park</h3>
       <p>Any additional enquiries, call 04 1234 5678</p>
-      <CustomButton iconLeft={true} Icon={<Arrow />} onClick={() => null}>
+      <CustomButton iconLeft={false} Icon={<Arrow />} onClick={() => null}>
         Continue
       </CustomButton>
 

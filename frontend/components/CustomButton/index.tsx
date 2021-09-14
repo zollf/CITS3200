@@ -11,7 +11,7 @@ interface Props {
 const CustomButton = ({ iconLeft, Icon, onClick, children }: Props) => {
   return (
     <button className={styles.custombutton} onClick={onClick}>
-      {iconLeft ? children : ''} {Icon} {iconLeft ? '' : children}
+      {iconLeft ? '' : children} {Icon} {iconLeft ? children : ''}
     </button>
   );
 };
