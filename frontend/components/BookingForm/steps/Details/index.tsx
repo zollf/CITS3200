@@ -4,7 +4,7 @@ import Field from '@/frontend/components/Field';
 import BayBookings from './BayBookings';
 import { useFormikContext } from 'formik';
 import Done from '@/app/resources/static/images/done.svg';
-import CustomButton from '@/frontend/components/CustomButton';
+import { CustomButton, ButtonType } from '@/frontend/components/CustomButton';
 
 const Details: StepComponent = () => {
   const { values } = useFormikContext<BookingFormValues>();
@@ -20,7 +20,7 @@ const Details: StepComponent = () => {
         <Field label="Phone" name="phone" required />
         <Field label="Rego" name="rego" />
         <Field label="Company" name="company" />
-        <CustomButton iconLeft={false} Icon={<Done />} onClick={() => null}>
+        <CustomButton type={ButtonType.submit} iconLeft={false} Icon={<Done />} onClick={() => null}>
           Submit
         </CustomButton>
       </div>

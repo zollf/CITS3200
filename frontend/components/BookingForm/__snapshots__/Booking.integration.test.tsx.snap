@@ -51,6 +51,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
       </p>
       <button
         class="custombutton"
+        type="submit"
       >
         Continue 
         <svg
@@ -143,6 +144,7 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
       </h2>
       <button
         class="custombutton"
+        type="submit"
       >
         Continue 
         <svg
@@ -3745,6 +3747,7 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
         </div>
         <button
           class="custombutton"
+          type="submit"
         >
           Submit 
           <svg

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Yup from 'yup';
 import CarparkCard from '../../../CarparkCard';
-import CustomButton from '../../../CustomButton';
+import { CustomButton, ButtonType } from '../../../CustomButton';
 import Arrow from '@/app/resources/static/images/arrow.svg';
 
 const Carpark: StepComponent = () => {
@@ -10,7 +10,7 @@ const Carpark: StepComponent = () => {
       <h2>UniPark VIP Booking</h2>
       <h3>Please pick a car park</h3>
       <p>Any additional enquiries, call 04 1234 5678</p>
-      <CustomButton iconLeft={false} Icon={<Arrow />} onClick={() => null}>
+      <CustomButton type={ButtonType.submit} iconLeft={false} Icon={<Arrow />} onClick={() => null}>
         Continue
       </CustomButton>
 
