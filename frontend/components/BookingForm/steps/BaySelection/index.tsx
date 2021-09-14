@@ -36,7 +36,7 @@ const BaySelection: StepComponent = () => {
   return (
     <div>
       <h2>Select bay for Admin Carpark North on 01/01/2000</h2>
-      <CustomButton type={ButtonType.submit} iconLeft={false} Icon={<Arrow />} onClick={() => null}>
+      <CustomButton type={ButtonType.submit} iconLeft={false} icon={<Arrow />} onClick={() => null}>
         Continue
       </CustomButton>
       <div className={styles.table} onMouseLeave={() => setMouseDown(false)}>

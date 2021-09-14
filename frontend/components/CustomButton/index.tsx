@@ -10,15 +10,15 @@ enum ButtonType {
 interface Props {
   type: ButtonType;
   iconLeft: boolean;
-  Icon: React.ReactNode;
+  icon: React.ReactNode;
   onClick: () => void;
-  children: ReactChild;
+  children: React.ReactChild;
 }
 
-const CustomButton = ({ type, iconLeft, Icon, onClick, children }: Props) => {
+const CustomButton = ({ type, iconLeft, icon, onClick, children }: Props) => {
   return (
     <button type={type} className={styles.custombutton} onClick={onClick}>
-      {iconLeft ? '' : children} {Icon} {iconLeft ? children : ''}
+      {iconLeft ? '' : children} {icon} {iconLeft ? children : ''}
     </button>
   );
 };

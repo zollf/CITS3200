@@ -20,7 +20,7 @@ const Details: StepComponent = () => {
         <Field label="Phone" name="phone" required />
         <Field label="Rego" name="rego" />
         <Field label="Company" name="company" />
-        <CustomButton type={ButtonType.submit} iconLeft={false} Icon={<Done />} onClick={() => null}>
+        <CustomButton type={ButtonType.submit} iconLeft={false} icon={<Done />} onClick={() => null}>
           Submit
         </CustomButton>
       </div>

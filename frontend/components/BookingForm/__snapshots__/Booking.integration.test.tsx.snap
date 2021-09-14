@@ -63,7 +63,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
         >
           <path
             d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z"
-            fill="#fff"
+            fill="#231F20"
           />
         </svg>
          
@@ -156,7 +156,7 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
         >
           <path
             d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z"
-            fill="#fff"
+            fill="#231F20"
           />
         </svg>
          
@@ -3760,7 +3760,7 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
           >
             <path
               d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"
-              fill="#fff"
+              fill="#231F20"
             />
           </svg>
            
