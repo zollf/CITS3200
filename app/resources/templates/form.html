@@ -3,6 +3,7 @@
 <div class="admin-form">
   <form action="/api/{{title}}/" method="POST">
     {% csrf_token %}
+    <input hidden name="pk" value="{{data.id}}"/>
     <input hidden name="redirect" value="/admin/{{title}}"/>
 
     {% if data.name %}

@@ -2,6 +2,7 @@ from django.shortcuts import redirect
 from django.http.response import JsonResponse
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -11,6 +12,7 @@ from rest_framework.parsers import JSONParser
 from .models import CarPark
 from .serializers import *
 
+@login_required(login_url="/login")
 @csrf_protect
 @api_view(['GET', 'POST'])
 def carparks_list(request):
@@ -20,7 +22,11 @@ def carparks_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = CarParkSerializer(data=request.data)
+        if 'pk' in request.data:
+            carpark = CarPark.objects.get(pk=request.data['pk'])
+            serializer = CarParkSerializer(carpark, data=request.data)
+        else:
+            serializer = CarParkSerializer(data=request.data)
 
         if not serializer.is_valid():
             if 'redirect' in request.data:
@@ -32,6 +38,7 @@ def carparks_list(request):
             return redirect(request.data['redirect'])
         return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
 
+@login_required(login_url="/login")
 @csrf_protect
 @api_view(['GET', 'PUT', 'DELETE'])
 def carpark_detail(request, pk):

@@ -6,7 +6,7 @@ register = template.Library()
 def create_table(title: str, data: dict, headers: str):
     """
     Creates table given object and headers
-    Usage: `{% create_form 'carparks' carpark 'name|description' %}`
+    Usage: `{% create_table  'carparks' carpark 'name|description' %}`
     """
     return {'title': title, 'headers': headers.split("|"), 'data': data}
 
