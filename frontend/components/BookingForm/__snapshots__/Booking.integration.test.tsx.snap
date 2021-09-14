@@ -50,9 +50,22 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
         Any additional enquiries, call 04 1234 5678
       </p>
       <button
-        type="submit"
+        class="custombutton"
       >
-        Next
+        Continue 
+        <svg
+          height="24"
+          id="arrow"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z"
+            fill="#fff"
+          />
+        </svg>
+         
       </button>
       <div
         class="card"
@@ -129,9 +142,22 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
         Select bay for Admin Carpark North on 01/01/2000
       </h2>
       <button
-        type="submit"
+        class="custombutton"
       >
-        Next
+        Continue 
+        <svg
+          height="24"
+          id="arrow"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z"
+            fill="#fff"
+          />
+        </svg>
+         
       </button>
       <div
         class="table"
@@ -3718,9 +3744,23 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
           />
         </div>
         <button
-          type="submit"
+          class="custombutton"
         >
-          Submit
+          Submit 
+          <svg
+            fill="none"
+            height="24"
+            id="done"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"
+              fill="#fff"
+            />
+          </svg>
+           
         </button>
       </div>
       <table

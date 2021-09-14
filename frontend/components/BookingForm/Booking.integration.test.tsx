@@ -8,14 +8,14 @@ faker.seed(1);
 
 const renderToStep2 = async () => {
   const component = render(<BookingForm />);
-  UserEvent.click(component.getByText('Next'));
+  UserEvent.click(component.getByText('Continue'));
   await waitFor(() => expect(component.getByText(/Select bay for/)).toBeInTheDocument());
   return component;
 };
 
 const renderToStep3 = async () => {
   const component = await renderToStep2();
-  UserEvent.click(component.getByText('Next'));
+  UserEvent.click(component.getByText('Continue'));
   await waitFor(() => expect(component.getByText('Booking Details')).toBeInTheDocument());
   return component;
 };
@@ -39,7 +39,7 @@ describe('Booking Form Step 1', () => {
   it('completes step 1 correctly', async () => {
     const { getByText } = render(<BookingForm />);
     expect(getByText('UniPark VIP Booking')).toBeInTheDocument();
-    UserEvent.click(getByText('Next'));
+    UserEvent.click(getByText('Continue'));
     await waitFor(() => expect(getByText(/Select bay for/)).toBeInTheDocument());
   });
 });
@@ -52,7 +52,7 @@ describe('Booking Form Step 2', () => {
   it('completes step 2 correctly', async () => {
     const { getByText } = await renderToStep2();
     expect(getByText(/Select bay for/)).toBeInTheDocument();
-    UserEvent.click(getByText('Next'));
+    UserEvent.click(getByText('Continue'));
     await waitFor(() => expect(getByText('Booking Details')).toBeInTheDocument());
   });
 });
