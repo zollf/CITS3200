@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { ReactChild } from 'react';
 import styles from './styles.module.css';
 
 interface Props {
-  label: string;
   iconLeft: boolean;
-  icon: React.ReactNode;
+  Icon: React.ReactNode;
   onClick: () => void;
+  children: ReactChild;
 }
 
-const CustomButton = ({ label, iconLeft, icon, onClick }: Props) => {
+const CustomButton = ({ iconLeft, Icon, onClick, children }: Props) => {
   return (
     <button className={styles.custombutton} onClick={onClick}>
-      {' '}
-      {label}{' '}
+      {iconLeft ? children : ''} {Icon} {iconLeft ? '' : children}
     </button>
   );
 };

@@ -4,6 +4,8 @@ import { useFormikContext } from 'formik';
 import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
 
 import styles from './styles.module.css';
+import CustomButton from '@/frontend/components/CustomButton';
+import Arrow from '@/app/resources/static/images/arrow.svg';
 
 const BaySelection: StepComponent = () => {
   const [state] = useState<BaysInitialProps>(getInitialState());
@@ -34,7 +36,9 @@ const BaySelection: StepComponent = () => {
   return (
     <div>
       <h2>Select bay for Admin Carpark North on 01/01/2000</h2>
-      <button type="submit">Next</button>
+      <CustomButton iconLeft={true} Icon={<Arrow />} onClick={() => null}>
+        Continue
+      </CustomButton>
       <div className={styles.table} onMouseLeave={() => setMouseDown(false)}>
         <div className={styles.top}>
           <div className={styles.topLeft}>

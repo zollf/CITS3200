@@ -1,3 +1,10 @@
 .custombutton {
-    background-color: var(--uwa-blue);
+    background-color: rgb(16, 33, 187);
+    color: white;
+    font-weight: bold;
+    align-items: center;
+    display: inline-flex;
+    padding: 9px 20px 9px 20px;
+    border-radius: 6px;
 }
+
