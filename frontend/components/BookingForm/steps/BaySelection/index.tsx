@@ -4,6 +4,8 @@ import { useFormikContext } from 'formik';
 import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
 
 import styles from './styles.module.css';
+import { CustomButton, ButtonType } from '@/frontend/components/CustomButton';
+import Arrow from '@/app/resources/static/images/arrow.svg';
 
 const BaySelection: StepComponent = () => {
   const [state] = useState<BaysInitialProps>(getInitialState());
@@ -13,7 +15,7 @@ const BaySelection: StepComponent = () => {
   const handleClick = (time: Time) => {
     if (time.status !== selection.UNAVAILABLE) {
       const booking = values.booking;
-      booking.has(time.slug) ? booking.delete(time.slug) : booking.set(time.slug, true);
+      booking.has(time.slug) ? booking.delete(time.slug) : booking.set(time.slug, time);
       setFieldValue('booking', booking);
     }
   };
@@ -26,7 +28,7 @@ const BaySelection: StepComponent = () => {
   const handleHover = (time: Time) => {
     if (mouseDown) {
       const booking = values.booking;
-      booking.set(time.slug, true);
+      booking.set(time.slug, time);
       setFieldValue('booking', booking);
     }
   };
@@ -34,7 +36,9 @@ const BaySelection: StepComponent = () => {
   return (
     <div>
       <h2>Select bay for Admin Carpark North on 01/01/2000</h2>
-      <button type="submit">Next</button>
+      <CustomButton type={ButtonType.submit} iconLeft={false} icon={<Arrow />} onClick={() => null}>
+        Continue
+      </CustomButton>
       <div className={styles.table} onMouseLeave={() => setMouseDown(false)}>
         <div className={styles.top}>
           <div className={styles.topLeft}>

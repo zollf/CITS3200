@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormikContext } from 'formik';
+import BayBookings from '../Details/BayBookings';
 
 const Confirmation = () => {
   const { values } = useFormikContext<BookingFormValues>();
@@ -9,6 +10,8 @@ const Confirmation = () => {
       <h3 data-thin>
         {values.firstName} {values.lastName} will receive an email confirmation of the booking
       </h3>
+
+      <BayBookings bayTimes={values.booking} />
     </div>
   );
 };
