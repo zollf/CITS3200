@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.parsers import JSONParser
 
-from .models import CarPark
+from .models import CarPark, CarBay
 from .serializers import *
 
 @api_view(['GET', 'POST'])
@@ -47,4 +47,53 @@ def carpark_detail(request, pk):
 
     elif request.method == 'DELETE':
         carpark.delete()
+        return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST'])
+def carbays_list(request, carpark_id):
+    try:
+        carpark: CarPark = CarPark.objects.get(pk=carpark_id)
+    except CarPark.DoesNotExist:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        data = CarBay.objects.filter(carpark_id=carpark.pk)
+
+        if len(data) < 1:
+            return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = CarBaySerializer(data, context={'request': request}, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    
+    elif request.method == 'POST':
+        carbay_data = JSONParser().parse(request)
+        serializer = CarBaySerializer(data=carbay_data)
+
+        if not serializer.is_valid():
+            return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer.save()
+        return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def carbay_detail(request, pk):
+    try:
+        carbay: CarBay = CarBay.objects.get(pk=pk)
+    except CarBay.DoesNotExist:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = CarBaySerializer(carbay)
+        return JsonResponse(serializer.data)
+
+    elif request.method == 'PUT':
+        carbay_data = JSONParser().parse(request)
+        serializer = CarBaySerializer(carbay, data=carbay_data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        carbay.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
