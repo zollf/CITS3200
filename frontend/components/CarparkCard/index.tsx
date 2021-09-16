@@ -7,11 +7,12 @@ interface Props {
   name: string;
   description: string;
   mapURL: string;
+  onClick: () => void;
 }
 
-const CarparkCard = ({ name, description, mapURL }: Props) => {
+const CarparkCard = ({ name, description, mapURL, onClick }: Props) => {
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={onClick}>
       <div className={styles.topHalf}>
         <h3>{name}</h3>
       </div>
@@ -21,8 +22,8 @@ const CarparkCard = ({ name, description, mapURL }: Props) => {
         </div>
         <div className={styles.directions}>
           <MapIcon />
-          <a href={mapURL} className={'p-small-bold'} target="_blank" rel="noopener noreferrer">
-            &nbsp; Get directions
+          <a href={mapURL} className="p-small-bold" target="_blank" rel="noopener noreferrer">
+            Get directions
             <NewWindowIcon />
           </a>
         </div>

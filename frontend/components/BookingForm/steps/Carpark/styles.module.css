@@ -1,0 +1,15 @@
+.carpark > p {
+  text-align: center;
+}
+
+.carpark > .cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1000px;
+}
+
+.carpark > .cards > div {
+  margin: 12px;
+}

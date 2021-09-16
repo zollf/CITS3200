@@ -8,7 +8,7 @@ import { CustomButton, ButtonType } from '@/frontend/components/CustomButton';
 import Arrow from '@/app/resources/static/images/arrow.svg';
 
 const BaySelection: StepComponent = () => {
-  const [state] = useState<BaysInitialProps>(getInitialState());
+  const [{ bays, times }] = useState<BaysInitialProps>(getInitialState());
   const [mouseDown, setMouseDown] = useState(false);
   const { values, setFieldValue } = useFormikContext<BookingFormValues>();
 
@@ -45,7 +45,7 @@ const BaySelection: StepComponent = () => {
             <p data-small-bold>BAY</p>
           </div>
           <div className={styles.times}>
-            {state.times.map((t) => (
+            {times.map((t) => (
               <p key={`times-${t}`} data-small-bold>
                 {t}
               </p>
@@ -53,7 +53,7 @@ const BaySelection: StepComponent = () => {
           </div>
         </div>
         <div className={styles.bays}>
-          {state.bays.map((bay: Bay, i) => (
+          {bays.map((bay: Bay, i) => (
             <div key={`bays-${bay.bayNum}`} className={styles.bay} data-light={i % 2 !== 0}>
               <div className={styles.left}>
                 <p>{bay.bayNum}</p>

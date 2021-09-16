@@ -1,15 +1,16 @@
 .custombutton {
-    background-color: rgb(16, 33, 187);
-    color: white;
-    font-weight: bold;
-    align-items: center;
-    display: inline-flex;
-    padding: 9px 20px 9px 20px;
-    border-radius: 6px;
-    border: none;
+  background-color: var(--uwa-blue);
+  color: white;
+  font-weight: bold;
+  align-items: center;
+  display: inline-flex;
+  padding: 9px 20px 9px 20px;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
 }
 
-svg > path {
-    fill: var(--white);
+.custombutton > svg > path {
+  fill: var(--white);
 }
 

@@ -1,3 +1,13 @@
 .header {
-  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  height: 52px;
+  max-height: 52px;
+  box-shadow: 4px 4px 4px 0px #0000001A;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 48px);
+  background: var(--white);
 }
