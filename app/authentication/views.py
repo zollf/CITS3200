@@ -81,6 +81,6 @@ def user_detail(request, pk):
 
     # Delete specific user from database
     elif request.method == 'DELETE':
-        User.delete()
+        user.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
     
