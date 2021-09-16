@@ -20,7 +20,7 @@ def LogoutView(request):
 @csrf_protect
 @api_view(["GET", "POST"])
 def users_list(request):
-    # list all users in database
+    # list all users in database. Note that table.html does not use this.
     if request.method == 'GET':
         data = User.objects.all()
         serializer = UserSerializer(data, context={'request': request}, many=True)
