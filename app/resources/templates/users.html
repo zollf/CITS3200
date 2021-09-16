@@ -1,0 +1,12 @@
+{% extends 'admin.html' %} 
+{% load admin %}
+
+{% block admin_head %}
+ {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_table.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
+{% endblock %}
+
+{% block admin_content %}
+  {% create_table "users" users "username" %}
+{% endblock %}

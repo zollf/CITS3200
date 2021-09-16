@@ -1,0 +1,12 @@
+{% extends 'admin.html' %} 
+{% load admin %}
+
+{% block admin_head %}
+ {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
+  <script src="{% static '/scripts/delete.js' %}"></script>
+{% endblock %}
+
+{% block admin_content %}
+  {% create_form 'carparks' carpark 'name:text|description:textarea|google_maps_link:text' %}
+{% endblock %}
