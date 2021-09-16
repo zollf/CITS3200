@@ -41,7 +41,7 @@ def users_list(request):
         # create new user
         else:
             serializer = UserSerializer(data=request._data)
-        
+
         if not serializer.is_valid():
             # redirect to given page if exists or return JSON
             if 'redirect' in request._data:
@@ -83,4 +83,3 @@ def user_detail(request, pk):
     elif request.method == 'DELETE':
         user.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
-    
