@@ -3,6 +3,7 @@ from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.hashers import make_password
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -27,23 +28,29 @@ def users_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
+        # allows request._data to be modified for password hashing
+        request._data = request.data.copy()
+
         # update existing user
+        hashed_password = make_password(request._data['password'])
+        request._data['password'] = hashed_password
+
         if 'pk' in request.data:
-            user = User.objects.get(pk=request.data['pk'])
-            serializer = UserSerializer(user, data=request.data)
+            user = User.objects.get(pk=request._data['pk'])
+            serializer = UserSerializer(user, data=request._data)
         # create new user
         else:
-            serializer = UserSerializer(data=request.data)
+            serializer = UserSerializer(data=request._data)
         
         if not serializer.is_valid():
             # redirect to given page if exists or return JSON
-            if 'redirect' in request.data:
-                return redirect(request.data['redirect'])
+            if 'redirect' in request._data:
+                return redirect(request._data['redirect'])
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         serializer.save()
-        if 'redirect' in request.data:
-            return redirect(request.data['redirect'])
+        if 'redirect' in request._data:
+            return redirect(request._data['redirect'])
         return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
 
 @login_required(login_url="/login")
@@ -62,8 +69,11 @@ def user_detail(request, pk):
 
     # Update data/fields of specific user
     elif request.method == 'PUT':
-        User_data = JSONParser().parse(request)
-        serializer = UserSerializer(User, data=User_data)
+        user_data = JSONParser().parse(request)
+        hashed_password = make_password(user_data['password'])
+        user_data['password'] = hashed_password
+
+        serializer = UserSerializer(User, data=user_data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data)
