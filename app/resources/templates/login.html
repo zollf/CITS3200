@@ -8,11 +8,7 @@
 
 {% block content %}
     {% if next %}
-        {% if user.is_authenticated %}
-            <p> Hello .</p>
-        {% else %}
-            <p>Please login to see this page.</p>
-        {% endif %}
+        <p>Please login to see this page.</p>
     {% endif %}
 
     <form method="POST">

@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
-@staff_member_required
+@staff_member_required(login_url="/login")
 @login_required(login_url="/login")
 def AdminView(request):
     return render(request, "admin.html")
