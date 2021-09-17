@@ -1,11 +1,12 @@
 .admin {
+  margin-top: 100px;
   display: flex;
-  height: 100%;
+  height: calc(100% - 100px);
 }
+
 
 .sidebar {
   background: var(--uwa-blue);
-  height: 100%;
   width: 220px;
 }
 

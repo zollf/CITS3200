@@ -4,6 +4,8 @@
   max-height: 100%;
   background-color: var(--uwa-blue);
   padding: 0 24px;
+  padding-top: 100px;
+
 }
 
 .home {
