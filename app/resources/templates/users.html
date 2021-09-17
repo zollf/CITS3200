@@ -9,5 +9,5 @@
 {% endblock %}
 
 {% block admin_content %}
-  {% create_table "users" users "username" %}
+  {% create_table "users" users "username" current_user_id=current_user_id %}
 {% endblock %}
