@@ -76,4 +76,4 @@ def UsersAdd(request):
 def UsersEdit(request, pk):
     if (request.method == 'GET'):
         return render(request, 'user.html', {'user': User.objects.values('id', 'username', 'email', 'phone', 'is_staff')
-        .get(pk=pk)})
+                                             .get(pk=pk)})
