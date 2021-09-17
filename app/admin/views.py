@@ -59,8 +59,8 @@ def CarparkEdit(request, pk):
 @api_view(['GET'])
 def UsersView(request):
     if (request.method == 'GET'):
-        return render(request, 'users.html', {'users': User.objects.values('id', 'username'), 
-        'current_user_id': request.user.id})
+        return render(request, 'users.html', {'users': User.objects.values('id', 'username'),
+                                              'current_user_id': request.user.id})
 
 @staff_member_required
 @login_required(login_url="/login")

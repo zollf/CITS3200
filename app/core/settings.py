@@ -89,7 +89,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'authentication.User'
 LOGIN_URL = "login/"
-LOGIN_REDIRECT_URL = "/" # in case next parameter is not specified in GET request
+LOGIN_REDIRECT_URL = "/"  # in case next parameter is not specified in GET request
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'

@@ -13,6 +13,9 @@
     {% endif %}
     <a type="submit" class="admin-btn blue p-bold" href="/admin/{{title}}">Back</a>
     <button type="submit" class="admin-btn green p-bold">Save</button>
+    {% if title == "users" %}
+      <button> Change Password </button>
+    {% endif %}
     {% if data.name %}
       <button type="button" class="admin-btn red p-bold" onclick="deleteEntry('/api/{{title}}/{{data.id}}')">Delete</button>
     {% endif %}
@@ -33,15 +36,16 @@
           <label for="{{field.name}}">{{field.name|title}}</label>
           <input type="password" id="{{field.name}}" name="{{field.name}}" required/>
         </div>
-      {% elif field.type == 'email' %}
+      {% elif field.type == 'checkbox' %}
         <div>
           <label for="{{field.name}}">{{field.name|title}}</label>
-          <input type="email" id="{{field.name}}" name="{{field.name}}" required/>
+          <input type="hidden" id="{{field.name}}" name="{{field.name}}" value="off"/>
+          <input type="checkbox" id="{{field.name}}" name="{{field.name}}" {% if data|key:field.name %} checked {% endif %}/>
         </div>
       {% else %}
          <div>
           <label for="{{field.name}}">{{field.name|title}}</label>
-          <input type="{{field.type}}" id="{{field.name}}" name="{{field.name}}"/>
+          <input type="{{field.type}}" id="{{field.name}}" name="{{field.name}}" value="{{data|key:field.name}}" required/>
         </div>
       {% endif %}
     {% endfor %}

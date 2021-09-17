@@ -31,16 +31,19 @@ def users_list(request):
         # allows request._data to be modified for password hashing
         request._data = request.data.copy()
 
-        hashed_password = make_password(request._data['password'])
-        request._data['password'] = hashed_password
+        partial = True
+        if "password" in request._data:
+            hashed_password = make_password(request._data['password'])
+            request._data['password'] = hashed_password
+            partial = False
 
         # update existing user
         if 'pk' in request.data:
             user = User.objects.get(pk=request._data['pk'])
-            serializer = UserSerializer(user, data=request._data)
+            serializer = UserSerializer(user, data=request._data, partial=partial)
         # create new user
         else:
-            serializer = UserSerializer(data=request._data)
+            serializer = UserSerializer(data=request._data, partial=partial)
 
         if not serializer.is_valid():
             # redirect to given page if exists or return JSON
@@ -70,10 +73,13 @@ def user_detail(request, pk):
     # Update data/fields of specific user
     elif request.method == 'PUT':
         user_data = JSONParser().parse(request)
-        hashed_password = make_password(user_data['password'])
-        user_data['password'] = hashed_password
+        partial = True
+        if 'password' in user_data:
+            hashed_password = make_password(user_data['password'])
+            user_data['password'] = hashed_password
+            partial = False
 
-        serializer = UserSerializer(User, data=user_data)
+        serializer = UserSerializer(User, data=user_data, partial=partial)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data)
