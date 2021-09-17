@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
+@staff_member_required
 @login_required(login_url="/login")
 def AdminView(request):
     return render(request, "admin.html")
@@ -74,4 +75,5 @@ def UsersAdd(request):
 @api_view(['GET'])
 def UsersEdit(request, pk):
     if (request.method == 'GET'):
-        return render(request, 'user.html', {'user': User.objects.values('id', 'username').get(pk=pk)})
+        return render(request, 'user.html', {'user': User.objects.values('id', 'username', 'email', 'phone', 'is_staff')
+        .get(pk=pk)})

@@ -8,5 +8,5 @@
 {% endblock %}
 
 {% block admin_content %}
-  {% create_form 'users' user 'username:text|password:password|email:text|phone:text' %}
+  {% create_form 'users' user 'username:text|password:password|email:email|phone:text|is_staff:checkbox' %}
 {% endblock %}

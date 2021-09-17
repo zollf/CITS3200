@@ -31,10 +31,10 @@ def users_list(request):
         # allows request._data to be modified for password hashing
         request._data = request.data.copy()
 
-        # update existing user
         hashed_password = make_password(request._data['password'])
         request._data['password'] = hashed_password
 
+        # update existing user
         if 'pk' in request.data:
             user = User.objects.get(pk=request._data['pk'])
             serializer = UserSerializer(user, data=request._data)

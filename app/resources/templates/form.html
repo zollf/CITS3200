@@ -33,6 +33,16 @@
           <label for="{{field.name}}">{{field.name|title}}</label>
           <input type="password" id="{{field.name}}" name="{{field.name}}" required/>
         </div>
+      {% elif field.type == 'email' %}
+        <div>
+          <label for="{{field.name}}">{{field.name|title}}</label>
+          <input type="email" id="{{field.name}}" name="{{field.name}}" required/>
+        </div>
+      {% else %}
+         <div>
+          <label for="{{field.name}}">{{field.name|title}}</label>
+          <input type="{{field.type}}" id="{{field.name}}" name="{{field.name}}"/>
+        </div>
       {% endif %}
     {% endfor %}
   </form>
