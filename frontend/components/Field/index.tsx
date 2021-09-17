@@ -9,18 +9,22 @@ interface Props {
   label: string;
   required?: boolean;
   type?: string;
+  value?: string;
 }
 
-const Field = ({ name, label, required = false, type = 'text' }: Props) => {
+const Field = ({ name, label, required = false, type = 'text', value }: Props) => {
   const { errors, touched, values } = useFormikContext<Record<string, unknown>>();
   const invalid = useMemo(() => errors[name] && touched[name], [errors, touched]);
 
   return (
     <div className={cc({ [styles.field]: true, [styles.invalid]: invalid })}>
-      <label htmlFor={name}>{label}</label>
+      <label className="p-bold" htmlFor={name}>
+        {label}
+      </label>
       <FormikField
+        className="h3-thin"
         name={name}
-        value={values[name]}
+        value={value || values[name]}
         type={type}
         invalid={invalid?.toString()}
         required={required}

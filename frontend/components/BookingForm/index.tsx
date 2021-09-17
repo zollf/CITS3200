@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import cc from 'classcat';
+import Arrow from '@/app/resources/static/images/arrow.svg';
+import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
 import { Formik, FormikHelpers } from 'formik';
 
 import InitialValues from './InitialValues';
@@ -53,7 +55,14 @@ const BookingForm = () => {
               [styles.submitting]: isSubmitting,
             })}
           >
-            {showConfirmation ? <Confirmation /> : <ActivePage />}
+            {step > 0 && !showConfirmation && (
+              <div className={styles.backButton}>
+                <CustomButton type={ButtonType.button} iconLeft icon={<Arrow data-rotate />} onClick={() => back()}>
+                  Back
+                </CustomButton>
+              </div>
+            )}
+            <div className={styles.currentStep}>{showConfirmation ? <Confirmation /> : <ActivePage />}</div>
           </form>
         )}
       </Formik>

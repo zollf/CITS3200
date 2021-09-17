@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './styles.module.css';
 
 enum ButtonType {
@@ -11,7 +12,7 @@ interface Props {
   type: ButtonType;
   iconLeft: boolean;
   icon: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   children: React.ReactChild;
 }
 

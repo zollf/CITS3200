@@ -1,7 +1,7 @@
 .home-wrapper {
-  height: 100%;
+  height: calc(100% - 100px);
   max-width: 100%;
-  max-height: 100%;
+  max-height: calc(100% - 100px);
   background-color: var(--uwa-blue);
   padding: 0 24px;
   padding-top: 100px;
@@ -21,4 +21,9 @@
   background-repeat: no-repeat;
   background-position: -400% 50%;
   background-size: 110%;
+}
+
+#react-app {
+  height: 100%;
+  width: 100%;
 }

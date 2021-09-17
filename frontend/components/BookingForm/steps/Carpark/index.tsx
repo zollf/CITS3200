@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import * as Yup from 'yup';
-import CarparkCard from '../../../CarparkCard';
-import { BookingContext } from '../../';
 import { useFormikContext } from 'formik';
 
+import CarparkCard from '../../../CarparkCard';
 import styles from './styles.module.css';
+import { BookingContext } from '../../';
 
 const Carpark: StepComponent = () => {
   const [carparks, setCarparks] = useState<Carpark[]>();
@@ -16,7 +16,7 @@ const Carpark: StepComponent = () => {
   }, []);
 
   const handleClick = (carpark: Carpark) => {
-    setFieldValue('carparks', carpark);
+    setFieldValue('carpark', carpark);
     next();
   };
 
@@ -24,7 +24,9 @@ const Carpark: StepComponent = () => {
     <div className={styles.carpark}>
       <h2>UniPark VIP Booking</h2>
       <h3>Please pick a car park</h3>
-      <p>Any additional enquiries, call 04 1234 5678</p>
+      <p>
+        Any additional enquiries, call <a href="">04 1234 5678</a>
+      </p>
       <div className={styles.cards}>
         {carparks?.map((c) => (
           <CarparkCard

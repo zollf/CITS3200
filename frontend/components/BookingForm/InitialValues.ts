@@ -1,5 +1,6 @@
 const InitialValues: BookingFormValues = {
-  carpark: '',
+  carpark: undefined,
+  date: new Date().toDateString(),
   booking: new Map(),
   firstName: '',
   lastName: '',

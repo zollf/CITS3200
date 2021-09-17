@@ -1,5 +1,11 @@
 .carpark > p {
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+.carpark > p > a {
+  color: var(--uwa-blue);
 }
 
 .carpark > .cards {
@@ -8,6 +14,7 @@
   flex-wrap: wrap;
   justify-content: center;
   max-width: 1000px;
+  margin: auto;
 }
 
 .carpark > .cards > div {

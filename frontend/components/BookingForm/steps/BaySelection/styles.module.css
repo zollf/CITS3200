@@ -1,3 +1,11 @@
+.baysSelection {
+  padding: 50px 0;
+}
+
+.bayButtons {
+  display: flex;
+}
+
 .table {
   display: grid;
   grid-auto-columns: auto;

@@ -1,1 +1,25 @@
-/* todo */
+.field {
+  height: 70px;
+  width: 300px;
+  border: 3px solid var(--uwa-blue);
+  border-radius: 7px;
+  display: grid;
+  grid-template-rows: 32px 1fr;
+  background: var(--white);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.field  > label {
+  padding-top: 12px;
+  padding-left: 12px;
+}
+
+.field > input {
+  width: calc(100% - 24px);
+  background: none;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: none;
+  appearance: none;
+  margin-bottom: 12px;
+}

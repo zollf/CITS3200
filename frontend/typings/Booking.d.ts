@@ -43,8 +43,9 @@ interface Carpark {
 }
 
 interface BookingFormValues {
-  carpark: Carpark;
+  carpark?: Carpark;
   booking: Map<string, Time>;
+  date: string;
   firstName: string;
   lastName: string;
   email: string;

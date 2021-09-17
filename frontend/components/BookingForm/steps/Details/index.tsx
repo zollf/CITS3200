@@ -1,31 +1,45 @@
 import React from 'react';
 import * as Yup from 'yup';
-import Field from '@/frontend/components/Field';
-import BayBookings from './BayBookings';
-import { useFormikContext } from 'formik';
+import CarparkCard from '@/frontend/components/CarparkCard';
 import Done from '@/app/resources/static/images/done.svg';
-import { CustomButton, ButtonType } from '@/frontend/components/CustomButton';
+import Field from '@/frontend/components/Field';
+import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
+import { useFormikContext } from 'formik';
+
+import BayBookings from './BayBookings';
+import styles from './styles.module.css';
 
 const Details: StepComponent = () => {
   const { values } = useFormikContext<BookingFormValues>();
 
   return (
-    <div>
-      <div>
+    <div className={styles.details}>
+      <div className={styles.detailsTop}>
         <h2>Booking Details</h2>
         <h3 data-thin>Please fill in details for the person that will be parking</h3>
-        <Field label="First Name" name="firstName" required />
-        <Field label="Last Name" name="lastName" required />
-        <Field label="Email" name="email" type="email" required />
-        <Field label="Phone" name="phone" required />
-        <Field label="Rego" name="rego" />
-        <Field label="Company" name="company" />
-        <CustomButton type={ButtonType.submit} iconLeft={false} icon={<Done />} onClick={() => null}>
-          Submit
-        </CustomButton>
       </div>
-
-      <BayBookings bayTimes={values.booking} />
+      <div className={styles.detailsContent}>
+        <div className={styles.detailsLeft}>
+          <CarparkCard
+            name={values.carpark!.name}
+            mapURL={values.carpark!.google_maps_link}
+            description={values.carpark!.description}
+          />
+          <Field label="Date" name="date" type="data" value={new Date().toDateString()} />
+          <BayBookings bayTimes={values.booking} />
+        </div>
+        <div className={styles.detailsRight}>
+          <Field label="First Name" name="firstName" required />
+          <Field label="Last Name" name="lastName" required />
+          <Field label="Email" name="email" type="email" required />
+          <Field label="Phone" name="phone" required />
+          <Field label="Rego" name="rego" />
+          <Field label="Company" name="company" />
+          <CustomButton type={ButtonType.submit} iconLeft={false} icon={<Done />} onClick={() => null}>
+            Submit
+          </CustomButton>
+        </div>
+      </div>
     </div>
   );
 };
