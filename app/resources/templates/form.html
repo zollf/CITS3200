@@ -14,7 +14,7 @@
     <a type="submit" class="admin-btn blue p-bold" href="/admin/{{title}}">Back</a>
     <button type="submit" class="admin-btn green p-bold">Save</button>
     {% if title == "users" %}
-      <button> Change Password </button>
+      <a href="password_change" class="admin-btn blue p-bold" > Change Password </a>
     {% endif %}
     {% if data.name %}
       <button type="button" class="admin-btn red p-bold" onclick="deleteEntry('/api/{{title}}/{{data.id}}')">Delete</button>
