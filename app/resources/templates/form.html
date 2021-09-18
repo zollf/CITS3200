@@ -13,7 +13,7 @@
     {% endif %}
     <a type="submit" class="admin-btn blue p-bold" href="/admin/{{title}}">Back</a>
     <button type="submit" class="admin-btn green p-bold">Save</button>
-    {% if title == "users" %}
+    {% if title == "users" and data.id is not None and data.id == current_user_id %}
       <a href="password_change" class="admin-btn blue p-bold" > Change Password </a>
     {% endif %}
     {% if data.name %}
@@ -37,11 +37,13 @@
           <input type="password" id="{{field.name}}" name="{{field.name}}" required/>
         </div>
       {% elif field.type == 'checkbox' %}
-        <div>
-          <label for="{{field.name}}">{{field.name|title}}</label>
-          <input type="hidden" id="{{field.name}}" name="{{field.name}}" value="off"/>
-          <input type="checkbox" id="{{field.name}}" name="{{field.name}}" {% if data|key:field.name %} checked {% endif %}/>
-        </div>
+        {% if data.id is None or data.id != current_user_id %}
+          <div>
+            <label for="{{field.name}}">{{field.name|title}}</label>
+            <input type="hidden" id="{{field.name}}" name="{{field.name}}" value="off"/>
+            <input type="checkbox" id="{{field.name}}" name="{{field.name}}" {% if data|key:field.name %} checked {% endif %}/>
+          </div>
+        {% endif %}
       {% else %}
          <div>
           <label for="{{field.name}}">{{field.name|title}}</label>

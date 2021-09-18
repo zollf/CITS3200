@@ -68,7 +68,7 @@ def UsersView(request):
 @api_view(['GET'])
 def UsersAdd(request):
     if (request.method == 'GET'):
-        return render(request, 'user.html', {'user': User()})
+        return render(request, 'new_user.html', {'user': User(), 'current_user_id': request.user.id})
 
 @staff_member_required
 @login_required(login_url="/login")
@@ -77,4 +77,4 @@ def UsersAdd(request):
 def UsersEdit(request, pk):
     if (request.method == 'GET'):
         return render(request, 'user.html', {'user': User.objects.values('id', 'username', 'email', 'phone', 'is_staff')
-                                             .get(pk=pk)})
+                                            .get(pk=pk), 'current_user_id': request.user.id})

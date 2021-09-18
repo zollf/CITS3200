@@ -11,7 +11,7 @@ def create_table(title: str, data: dict, headers: str, **kwargs):
     return {'title': title, 'headers': headers.split("|"), 'data': data, **kwargs}
 
 @register.inclusion_tag('form.html')
-def create_form(title: str, data: dict, fields: str):
+def create_form(title: str, data: dict, fields: str, **kwargs):
     """
     Creates form given object and fields
     Usage: `{% create_form 'carparks' carpark 'name:text|desc:text' %}`
@@ -24,4 +24,4 @@ def create_form(title: str, data: dict, fields: str):
             'name': field_arr[0],
             'type': field_arr[1]
         })
-    return {'title': title, 'fields': fields_matrix, 'data': data}
+    return {'title': title, 'fields': fields_matrix, 'data': data, **kwargs}
