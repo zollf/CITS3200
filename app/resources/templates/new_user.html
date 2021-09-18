@@ -3,11 +3,10 @@
 
 {% block admin_head %}
  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_table.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
   <script src="{% static '/scripts/delete.js' %}"></script>
 {% endblock %}
 
 {% block admin_content %}
-  {% create_table "users" users "username" current_user_id=current_user_id %}
+  {% create_form 'users' user 'username:text|password:text|email:email|phone:text|is_staff:checkbox' current_user_id=current_user_id %}
 {% endblock %}
