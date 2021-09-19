@@ -1,15 +1,50 @@
 .custombutton {
-    background-color: rgb(16, 33, 187);
-    color: white;
-    font-weight: bold;
-    align-items: center;
-    display: inline-flex;
-    padding: 9px 20px 9px 20px;
-    border-radius: 6px;
-    border: none;
+  background-color: var(--uwa-blue);
+  color: white;
+  font-weight: bold;
+  align-items: center;
+  display: inline-flex;
+  padding: 9px 20px 9px 20px;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  transition: 0.2s all ease;
 }
 
-svg > path {
-    fill: var(--white);
+.custombutton:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: scale(1.02, 1.02);
 }
+
+.custombutton > svg > path {
+  fill: var(--white);
+}
+
+.custombutton.iconLeft {
+  padding-right: 24px;
+  padding-left: 20px;
+}
+
+.custombutton {
+  padding-left: 24px;
+  padding-right: 20px;
+}
+
+.custombutton.iconLeft > svg  {
+  margin-right: 8px;
+  margin-left: 0;
+}
+
+.custombutton > svg  {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
 

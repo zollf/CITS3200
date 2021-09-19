@@ -1,18 +1,26 @@
 {% extends 'admin.html' %} 
 
 {% block admin_head %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_form.css' %}">
 {% endblock %}
 
 {% block admin_content %}
-  <h1>Settings</h1>
-  <form action="/admin/settings/" method="POST">
-    {% csrf_token %}
-    {% for setting in settings %}
-      <div class="admin-settings">
-        <label for="{{ setting.key }}">{{ setting.label }}</label>
-        <input type="{{ setting.type }}" name="{{ setting.key }}" value="{{ setting.value }}" required />
+  <div class="admin-form">
+    <form action="/admin/settings/" method="POST">
+      <div class="admin-form-top">
+        <h3>Settings</h3>
+        <button type="submit" class="admin-btn green p-bold">Submit</button>
       </div>
-    {% endfor %}
-    <button type="submit">Submit</button>
-  </form>
+    
+      {% csrf_token %}
+      {% for setting in settings %}
+        <div class="admin-form-field">
+          <label class="p-bold" for="{{ setting.key }}">{{ setting.label }}</label>
+          <input class="h4-thin" type="{{ setting.type }}" name="{{ setting.key }}" value="{{ setting.value }}" required />
+        </div>
+      {% endfor %}
+    </form>
+  </div>
 {% endblock %}

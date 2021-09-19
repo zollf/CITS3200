@@ -36,9 +36,17 @@ interface BayAction {
   time: string;
 }
 
+interface Carpark {
+  description: string;
+  google_maps_link: string;
+  name: string;
+}
+
 interface BookingFormValues {
-  carpark: any;
+  carpark?: Carpark;
   booking: Map<string, Time>;
+  hub: string;
+  date: string;
   firstName: string;
   lastName: string;
   email: string;

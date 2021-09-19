@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
-import { useFormikContext } from 'formik';
+import Arrow from '@/app/resources/static/images/arrow.svg';
+import Reset from '@/app/resources/static/images/reset.svg';
+import Calendar from '@/app/resources/static/images/calendar.svg';
+
+import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
 import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
+import { useFormikContext } from 'formik';
 
 import styles from './styles.module.css';
-import { CustomButton, ButtonType } from '@/frontend/components/CustomButton';
-import Arrow from '@/app/resources/static/images/arrow.svg';
 
 const BaySelection: StepComponent = () => {
-  const [state] = useState<BaysInitialProps>(getInitialState());
+  const [{ bays, times }] = useState<BaysInitialProps>(getInitialState());
+
   const [mouseDown, setMouseDown] = useState(false);
   const { values, setFieldValue } = useFormikContext<BookingFormValues>();
 
@@ -33,19 +37,56 @@ const BaySelection: StepComponent = () => {
     }
   };
 
+  const handleReset = () => {
+    setFieldValue('booking', new Map());
+  };
+
   return (
-    <div>
-      <h2>Select bay for Admin Carpark North on 01/01/2000</h2>
-      <CustomButton type={ButtonType.submit} iconLeft={false} icon={<Arrow />} onClick={() => null}>
-        Continue
-      </CustomButton>
-      <div className={styles.table} onMouseLeave={() => setMouseDown(false)}>
+    <div className={styles.baysSelection}>
+      <h2>
+        Select bay for <span className={styles.blue}>{values.carpark!.name}</span> on {values.date}
+      </h2>
+
+      <div className={styles.legends}>
+        <div className={styles.legend}>
+          <div className={styles.greenSquare} />
+          <p>Selected</p>
+        </div>
+
+        <div className={styles.legend}>
+          <div className={styles.redSquare} />
+          <p>Unavailable</p>
+        </div>
+
+        <div className={styles.legend}>
+          <div className={styles.yellowSquare} />
+          <p>Available</p>
+        </div>
+      </div>
+
+      <div className={styles.bayButtons}>
+        <div className={styles.bayButtonsLeft}>
+          <CustomButton onClick={handleReset} type={ButtonType.button} iconLeft icon={<Calendar />}>
+            Date
+          </CustomButton>
+        </div>
+        <div className={styles.bayButtonsRight}>
+          <CustomButton onClick={handleReset} type={ButtonType.button} icon={<Reset />}>
+            Reset
+          </CustomButton>
+          <CustomButton type={ButtonType.submit} icon={<Arrow />} disabled={!values.booking.size}>
+            Continue
+          </CustomButton>
+        </div>
+      </div>
+
+      <div className={styles.table} data-testid="table" onMouseLeave={() => setMouseDown(false)}>
         <div className={styles.top}>
           <div className={styles.topLeft}>
             <p data-small-bold>BAY</p>
           </div>
           <div className={styles.times}>
-            {state.times.map((t) => (
+            {times.map((t) => (
               <p key={`times-${t}`} data-small-bold>
                 {t}
               </p>
@@ -53,7 +94,7 @@ const BaySelection: StepComponent = () => {
           </div>
         </div>
         <div className={styles.bays}>
-          {state.bays.map((bay: Bay, i) => (
+          {bays.map((bay: Bay, i) => (
             <div key={`bays-${bay.bayNum}`} className={styles.bay} data-light={i % 2 !== 0}>
               <div className={styles.left}>
                 <p>{bay.bayNum}</p>
@@ -66,6 +107,7 @@ const BaySelection: StepComponent = () => {
                     className={styles.bayTime}
                     data-unavailable={t.status === selection.UNAVAILABLE}
                     data-selected={values.booking.has(t.slug)}
+                    data-testid="bay-time"
                     onMouseDown={() => onMouseDown(t)}
                     onMouseUp={() => setMouseDown(false)}
                     onMouseOver={() => handleHover(t)}

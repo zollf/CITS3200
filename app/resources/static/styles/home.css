@@ -1,3 +1,29 @@
-h1 {
-  color: blue;
+.home-wrapper {
+  height: calc(100% - 100px);
+  max-width: 100%;
+  max-height: calc(100% - 100px);
+  background-color: var(--uwa-blue);
+  padding: 0 24px;
+  padding-top: 100px;
+
+}
+
+.home {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background-color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/static/images/uwa-swan.svg');
+  background-repeat: no-repeat;
+  background-position: -400% 50%;
+  background-size: 110%;
+}
+
+#react-app {
+  height: 100%;
+  width: 100%;
 }

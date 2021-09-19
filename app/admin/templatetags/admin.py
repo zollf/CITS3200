@@ -14,7 +14,7 @@ def create_table(title: str, data: dict, headers: str, **kwargs):
 def create_form(title: str, data: dict, fields: str, **kwargs):
     """
     Creates form given object and fields
-    Usage: `{% create_form 'carparks' carpark 'name:text|desc:text' %}`
+    Usage: `{% create_form 'carparks' carpark 'name:text:Username|desc:text:Description' %}`
     """
     fields = fields.split("|")
     fields_matrix = []
@@ -22,6 +22,7 @@ def create_form(title: str, data: dict, fields: str, **kwargs):
         field_arr = field.split(':')
         fields_matrix.append({
             'name': field_arr[0],
-            'type': field_arr[1]
+            'type': field_arr[1],
+            'label': field_arr[2] if len(field_arr) >= 3 else field_arr[0],
         })
     return {'title': title, 'fields': fields_matrix, 'data': data, **kwargs}

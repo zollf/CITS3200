@@ -20,7 +20,9 @@ const css = {
       loader: 'css-loader',
       options: {
         import: false,
-        modules: true,
+        modules: {
+          localIdentName: '[local]_[hash:base64:5]',
+        },
       },
     },
   ],

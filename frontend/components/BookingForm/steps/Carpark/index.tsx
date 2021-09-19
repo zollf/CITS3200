@@ -1,24 +1,53 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { useEffectOnce } from 'react-use';
 import * as Yup from 'yup';
+import { useFormikContext } from 'formik';
+
 import CarparkCard from '../../../CarparkCard';
-import { CustomButton, ButtonType } from '../../../CustomButton';
-import Arrow from '@/app/resources/static/images/arrow.svg';
+import styles from './styles.module.css';
+import { BookingContext } from '../../';
 
 const Carpark: StepComponent = () => {
+  const [carparks, setCarparks] = useState<Carpark[]>();
+  const [loading, setLoading] = useState(true);
+  const { next } = useContext<BookingContext>(BookingContext);
+  const { setFieldValue, values } = useFormikContext<BookingFormValues>();
+
+  useEffectOnce(() => {
+    fetch('/api/carparks/').then((r) =>
+      r.json().then((r) => {
+        setCarparks(r);
+        setLoading(false);
+      }),
+    );
+  });
+
+  const handleClick = (carpark: Carpark) => {
+    if (values?.carpark && values.carpark.name != carpark.name) {
+      setFieldValue('booking', new Map()); // reset bookings every time they pick a new carpark
+    }
+    setFieldValue('carpark', carpark);
+    next();
+  };
+
   return (
-    <div>
+    <div className={styles.carpark} data-testid="carpark-step" data-loading={loading}>
       <h2>UniPark VIP Booking</h2>
       <h3>Please pick a car park</h3>
-      <p>Any additional enquiries, call 04 1234 5678</p>
-      <CustomButton type={ButtonType.submit} iconLeft={false} icon={<Arrow />} onClick={() => null}>
-        Continue
-      </CustomButton>
-
-      <CarparkCard
-        name="Admin Carpark South"
-        description="Carpark located somewhere."
-        mapURL="https://goo.gl/maps/RytgNDB4MW8McDBY6"
-      />
+      <p>
+        Any additional enquiries, call <a href="">04 1234 5678</a>
+      </p>
+      <div className={styles.cards} data-testid="carpark-cards">
+        {carparks?.map((c) => (
+          <CarparkCard
+            key={c.name}
+            onClick={() => handleClick(c)}
+            name={c.name}
+            description={c.description}
+            mapURL={c.google_maps_link}
+          />
+        ))}
+      </div>
     </div>
   );
 };

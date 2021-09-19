@@ -1,4 +1,6 @@
 import React from 'react';
+import cc from 'classcat';
+
 import styles from './styles.module.css';
 
 enum ButtonType {
@@ -9,15 +11,20 @@ enum ButtonType {
 
 interface Props {
   type: ButtonType;
-  iconLeft: boolean;
+  iconLeft?: boolean;
   icon: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   children: React.ReactChild;
+  disabled?: boolean;
 }
 
-const CustomButton = ({ type, iconLeft, icon, onClick, children }: Props) => {
+const CustomButton = ({ type, iconLeft = false, icon, onClick, children, disabled = false }: Props) => {
   return (
-    <button type={type} className={styles.custombutton} onClick={onClick}>
+    <button
+      type={type}
+      className={cc({ [styles.custombutton]: true, [styles.iconLeft]: iconLeft, [styles.disabled]: disabled })}
+      onClick={onClick}
+    >
       {iconLeft ? '' : children} {icon} {iconLeft ? children : ''}
     </button>
   );

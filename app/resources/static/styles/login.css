@@ -1,5 +1,42 @@
-form {
-    position: absolute;
-    left: 30%;
-    top: 30%;
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.login-form > h2 {
+  margin-bottom: 16px !important;
+}
+
+.login-form > div {
+  margin-bottom: 12px
+}
+
+.login-btn {
+  width: 130px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--uwa-blue);
+  color: white !important;
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+  margin-left: 16px;
+}
+
+.login-submit {
+  display: flex;
+  align-items:center
+}
+
+.login-checkbox {
+  margin-right: 4px;
+}
+
+.error {
+  color: var(--uwa-secondary-red);
+  margin-bottom: 24px;
+}
+

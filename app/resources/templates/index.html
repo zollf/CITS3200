@@ -4,11 +4,13 @@
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static '/styles/home.css' %}">
   <script src="{% static '/scripts/home.js' %}"></script>
+  <script defer src="{% static '/dist/home.bundle.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-  <h1>Hello World HTML with UPDATES</h1>
-  <div id="app"></div>
-  <div id="react-app"></div>
-  <script src="{% static '/dist/home.bundle.js' %}"></script>
+  <div class="home-wrapper">
+    <div class="home">
+      <div id="react-app"></div>
+    </div>
+  </div>
 {% endblock %}

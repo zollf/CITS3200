@@ -11,6 +11,11 @@
   color: white;
 }
 
+.admin-btn.auto {
+  width: auto;
+  padding: 0 16px;
+}
+
 .admin-btn.blue { background: var(--uwa-blue); }
 .admin-btn.red { background: var(--uwa-secondary-red); }
 .admin-btn.green { background: var(--uwa-secondary-green); }
