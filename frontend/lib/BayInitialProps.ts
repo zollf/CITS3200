@@ -2,7 +2,7 @@ import Times from './Times';
 
 const GlobalStartTime = '08:00';
 const GlobalEndTime = '20:00';
-const Bays = 20;
+const Bays = 40;
 
 const AVAILABLE = 0;
 const SELECTED = 1;

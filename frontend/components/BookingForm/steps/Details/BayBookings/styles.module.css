@@ -1,8 +1,10 @@
 .bayTimes {
     border: solid 3px var(--uwa-blue);
-    border-radius: 10px;
-    width: 300px;
+    border-radius: 7px;
+    width: 306px;
     font-size: 16pt;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 thead > tr > th {
