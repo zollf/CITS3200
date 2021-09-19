@@ -14,7 +14,7 @@ urlpatterns = [
     path('admin/', include(admin_urls)),
     path('api/carparks/', carparks_list),
     path('api/carparks/<int:pk>', carpark_detail),
-    path('api/carbays/<int:carpark_id>', carbays_list),
+    path('api/carbays/', carbays_list),
     path('api/carbays/<int:pk>', carbay_detail),
     path('', IndexView, name='index'),
     path('', include(authentication_urls)),

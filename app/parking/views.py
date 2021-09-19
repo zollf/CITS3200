@@ -50,20 +50,11 @@ def carpark_detail(request, pk):
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET', 'POST'])
-def carbays_list(request, carpark_id):
-    try:
-        carpark: CarPark = CarPark.objects.get(pk=carpark_id)
-    except CarPark.DoesNotExist:
-        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-
+def carbays_list(request):
     if request.method == 'GET':
-        data = CarBay.objects.filter(carpark_id=carpark.pk)
-
-        if len(data) < 1:
-            return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-
+        data = CarBay.objects.all()
         serializer = CarBaySerializer(data, context={'request': request}, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data)
     
     elif request.method == 'POST':
         carbay_data = JSONParser().parse(request)
