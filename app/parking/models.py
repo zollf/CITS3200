@@ -11,7 +11,8 @@ class CarPark(models.Model):
 
 class CarBay(models.Model):
     carpark = models.ForeignKey(
-        'CarPark',
+        CarPark,
+        related_name='carbays',
         on_delete=models.CASCADE,
     )
     bay_number = models.CharField(max_length=50)
