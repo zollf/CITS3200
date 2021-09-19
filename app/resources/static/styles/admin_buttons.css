@@ -18,3 +18,7 @@
 a {
   text-decoration: none;
 }
+
+.admin-btn-hidden {
+  visibility: hidden;
+}

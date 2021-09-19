@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
+@staff_member_required(login_url="/login")
 @login_required(login_url="/login")
 def AdminView(request):
     return render(request, "admin.html")
@@ -58,7 +59,8 @@ def CarparkEdit(request, pk):
 @api_view(['GET'])
 def UsersView(request):
     if (request.method == 'GET'):
-        return render(request, 'users.html', {'users': User.objects.values('id', 'username')})
+        return render(request, 'users.html', {'users': User.objects.values('id', 'username'),
+                                              'current_user_id': request.user.id})
 
 @staff_member_required
 @login_required(login_url="/login")
@@ -66,7 +68,7 @@ def UsersView(request):
 @api_view(['GET'])
 def UsersAdd(request):
     if (request.method == 'GET'):
-        return render(request, 'user.html', {'user': User()})
+        return render(request, 'new_user.html', {'user': User(), 'current_user_id': request.user.id})
 
 @staff_member_required
 @login_required(login_url="/login")
@@ -74,4 +76,5 @@ def UsersAdd(request):
 @api_view(['GET'])
 def UsersEdit(request, pk):
     if (request.method == 'GET'):
-        return render(request, 'user.html', {'user': User.objects.values('id', 'username').get(pk=pk)})
+        return render(request, 'user.html', {'user': User.objects.values('id', 'username', 'email', 'phone', 'is_staff')
+                                             .get(pk=pk), 'current_user_id': request.user.id})

@@ -21,13 +21,21 @@
           
           <div class="table-row">
             {% for header in headers %}
-              <h4 data-thin="true">{{row|key:header}}</h4>
+              <h4 data-thin="true">
+                {{row|key:header}}
+                {% if row.id == current_user_id %}
+                  (current user)
+                {% endif %}
+              </h4>
             {% endfor %}
           </div>
 
           <div class="table-actions">
             <a class="admin-btn blue p-bold" href="/admin/{{title}}/view/{{row.id}}">View</a>
-            <button onclick="deleteEntry('/api/{{title}}/{{row.id}}')" type="button" class="admin-btn red p-bold">Delete</button>
+            <button onclick="deleteEntry('/api/{{title}}/{{row.id}}')" type="button" 
+            class="admin-btn red p-bold {% if title == 'users' and row.id == current_user_id %} admin-btn-hidden {% endif %}">
+              Delete
+            </button>
           </div>
         </div>
       {% endfor %}

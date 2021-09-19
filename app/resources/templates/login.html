@@ -7,12 +7,10 @@
 
 
 {% block content %}
-    {% if next %}
-        {% if user.is_authenticated %}
-            <p> Hello .</p>
-        {% else %}
-            <p>Please login to see this page.</p>
-        {% endif %}
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% elif next %}
+        <p>Please login to see this page.</p>
     {% endif %}
 
     <form method="POST">
