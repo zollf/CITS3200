@@ -9,12 +9,11 @@ from app.index.views import IndexView
 from app.admin.urls import admin_urls
 from app.authentication.urls import authentication_urls, api_urls
 from app.parking.urls import parking_urls
-from app.parking.views import carbay_detail, carbays_list, carparks_list, carpark_detail
+from app.parking.views import carbay_detail, carbays_list, carpark_detail
 
 urlpatterns = [
     path('admin/', include(admin_urls)),
     path('api/carparks/', include(parking_urls)),
-    path('api/carparks/<int:pk>', include(carpark_detail)),
     path('api/carbays/', include(carbays_list)),
     path('api/carbays/<int:pk>', include(carbay_detail)),
     path('api/users/', include(api_urls)),
