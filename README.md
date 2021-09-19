@@ -150,6 +150,12 @@ docker-compose run django python manage.py migrate
 docker-compose run django python manage.py createsuperuser --username admin --email test@test.com --phone 1234
 ```
 
+or without Docker
+
+```
+manage.py createsuperuser --username admin --email test@test.com --phone 1234
+```
+
 Then create a password, usually just `password`
 Then login when redirected with `admin` and `password`
 
