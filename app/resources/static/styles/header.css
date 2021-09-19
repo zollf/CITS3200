@@ -11,3 +11,28 @@
   width: calc(100% - 48px);
   background: var(--white);
 }
+
+.header-left {
+  display: flex;
+}
+
+.header-left > a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header-btns {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 16px;
+  padding-bottom: 4px;
+}
+
+.header-btns > a {
+  text-decoration: none;
+  margin-right: 8px;
+}
+
+.header-btns > a:visited {
+  color: var(--uwa-black)
+}

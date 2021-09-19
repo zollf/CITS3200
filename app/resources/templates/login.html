@@ -3,28 +3,44 @@
 {% block head_content %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'styles/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/home.css' %}">
 {% endblock %}
 
 
 {% block content %}
-    {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
-    {% elif next %}
-        <p>Please login to see this page.</p>
-    {% endif %}
+  <div class="home-wrapper">
+    <div class="home">
+      <form method="POST" class="login-form">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}">
 
-    <form method="POST">
-        {% csrf_token %}
+          {% if next == '/' %}
+            <h2>UniPark Booking Login</h2>
+          {% elif next == '/admin/' %}
+            <h2>UniPark Admin Login</h2>
+          {% else %}
+            <h2>UniPark Login</h2>
+          {% endif %}
 
-        {{ form.username.label_tag }}
-        {{ form.username }}
-        <br> <br>
-        {{ form.password.label_tag }}
-        {{ form.password }}
+          {% if form.errors %}
+            <p class="error">Your username/password is incorrect.</p>
+          {% endif %}
 
-        <br> <br>
-        <input type="submit" value="login">
-        <input type="hidden" name="next" value="{{ next }}">
-    </form>
+          <div class="field">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+          </div>
 
+          <div class="field">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+          </div>
+          <div class="login-submit">
+            <input type="checkbox" class="login-checkbox"/>
+            <p>Remember Me</p>
+            <button type="submit" value="login" class="login-btn p-bold">Login</button>
+          </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

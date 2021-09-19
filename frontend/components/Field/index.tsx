@@ -2,8 +2,6 @@ import React, { useMemo } from 'react';
 import cc from 'classcat';
 import { Field as FormikField, useFormikContext } from 'formik';
 
-import styles from './styles.module.css';
-
 interface Props {
   name: string;
   label: string;
@@ -17,12 +15,11 @@ const Field = ({ name, label, required = false, type = 'text', value }: Props) =
   const invalid = useMemo(() => errors[name] && touched[name], [errors, touched]);
 
   return (
-    <div className={cc({ [styles.field]: true, [styles.invalid]: invalid })}>
+    <div className={cc({ field: true, invalid })}>
       <label className="p-bold" htmlFor={name}>
         {label}
       </label>
       <FormikField
-        className="h3-thin"
         name={name}
         value={value || values[name]}
         type={type}

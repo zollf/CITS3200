@@ -13,7 +13,7 @@ interface Props {
 
 const CarparkCard = ({ name, description, mapURL, onClick }: Props) => {
   return (
-    <div className={styles.card} onClick={onClick}>
+    <div className={styles.card} onClick={onClick} data-testid="carpark-card">
       <div className={styles.topHalf}>
         <h3>{name}</h3>
       </div>

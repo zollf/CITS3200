@@ -25,7 +25,7 @@ const Details: StepComponent = () => {
             mapURL={values.carpark!.google_maps_link}
             description={values.carpark!.description}
           />
-          <Field label="Date" name="date" type="data" value={new Date().toDateString()} />
+          <Field label="Date" name="date" type="data" value={values.date} />
           <BayBookings bayTimes={values.booking} />
         </div>
         <div className={styles.detailsRight}>
@@ -33,8 +33,8 @@ const Details: StepComponent = () => {
           <Field label="Last Name" name="lastName" required />
           <Field label="Email" name="email" type="email" required />
           <Field label="Phone" name="phone" required />
-          <Field label="Rego" name="rego" />
-          <Field label="Company" name="company" />
+          <Field label="Rego (Optional)" name="rego" />
+          <Field label="Company (Optional)" name="company" />
           <CustomButton type={ButtonType.submit} iconLeft={false} icon={<Done />} onClick={() => null}>
             Submit
           </CustomButton>

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 import Arrow from '@/app/resources/static/images/arrow.svg';
+import Reset from '@/app/resources/static/images/reset.svg';
+import Calendar from '@/app/resources/static/images/calendar.svg';
+
 import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
 import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
 import { useFormikContext } from 'formik';
@@ -34,19 +37,50 @@ const BaySelection: StepComponent = () => {
     }
   };
 
+  const handleReset = () => {
+    setFieldValue('booking', new Map());
+  };
+
   return (
     <div className={styles.baysSelection}>
       <h2>
-        Select bay for {values.carpark!.name} on {new Date().toDateString()}
+        Select bay for <span className={styles.blue}>{values.carpark!.name}</span> on {values.date}
       </h2>
+
+      <div className={styles.legends}>
+        <div className={styles.legend}>
+          <div className={styles.greenSquare} />
+          <p>Selected</p>
+        </div>
+
+        <div className={styles.legend}>
+          <div className={styles.redSquare} />
+          <p>Unavailable</p>
+        </div>
+
+        <div className={styles.legend}>
+          <div className={styles.yellowSquare} />
+          <p>Available</p>
+        </div>
+      </div>
+
       <div className={styles.bayButtons}>
-        {!!values.booking.size && (
-          <CustomButton type={ButtonType.submit} iconLeft={false} icon={<Arrow />}>
+        <div className={styles.bayButtonsLeft}>
+          <CustomButton onClick={handleReset} type={ButtonType.button} iconLeft icon={<Calendar />}>
+            Date
+          </CustomButton>
+        </div>
+        <div className={styles.bayButtonsRight}>
+          <CustomButton onClick={handleReset} type={ButtonType.button} icon={<Reset />}>
+            Reset
+          </CustomButton>
+          <CustomButton type={ButtonType.submit} icon={<Arrow />} disabled={!values.booking.size}>
             Continue
           </CustomButton>
-        )}
+        </div>
       </div>
-      <div className={styles.table} onMouseLeave={() => setMouseDown(false)}>
+
+      <div className={styles.table} data-testid="table" onMouseLeave={() => setMouseDown(false)}>
         <div className={styles.top}>
           <div className={styles.topLeft}>
             <p data-small-bold>BAY</p>
@@ -73,6 +107,7 @@ const BaySelection: StepComponent = () => {
                     className={styles.bayTime}
                     data-unavailable={t.status === selection.UNAVAILABLE}
                     data-selected={values.booking.has(t.slug)}
+                    data-testid="bay-time"
                     onMouseDown={() => onMouseDown(t)}
                     onMouseUp={() => setMouseDown(false)}
                     onMouseOver={() => handleHover(t)}

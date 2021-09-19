@@ -1,33 +1,33 @@
 .bayTimes {
-    border: solid 3px var(--uwa-blue);
-    border-radius: 7px;
-    width: 306px;
-    font-size: 16pt;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
-
+  border: solid 3px var(--uwa-blue);
+  border-radius: 7px;
+  width: 306px;
+  font-size: 16pt;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  background: var(--uwa-white);
 }
 
 thead > tr > th {
-    text-align: left
+  text-align: left
 }
 
 tr, td {
-    border: none;
+  border: none;
 }
 
 tbody > tr:nth-child(even) {
-    background-color: var(--light-blue);
+  background-color: var(--light-blue);
 }
 
 tbody > tr:nth-child(odd) {
-    background-color: white;
+  background-color: white;
 }
 
 thead {
-    background-color: var(--light-blue);
-    font-size: 12pt;
+  background-color: var(--light-blue);
+  font-size: 12pt;
 }
 
 td:first-child, th:first-child {
-    padding-left: 5px;
+  padding-left: 5px;
 }

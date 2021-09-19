@@ -6,50 +6,57 @@
     {% if data.id %}<input hidden name="pk" value="{{data.id}}"/>{% endif %}
     <input hidden name="redirect" value="/admin/{{title}}"/>
 
-    {% if data.name %}
-      <h3>{{title|title}} - {{data.name}}</h3>
-    {% else %}
-      <h3>Modify {{title|title}}</h3>
-    {% endif %}
-    <a type="submit" class="admin-btn blue p-bold" href="/admin/{{title}}">Back</a>
-    <button type="submit" class="admin-btn green p-bold">Save</button>
-    {% if title == "users" and data.id is not None and data.id == current_user_id %}
-      <a href="password_change" class="admin-btn blue p-bold" > Change Password </a>
-    {% endif %}
-    {% if data.name %}
-      <button type="button" class="admin-btn red p-bold" onclick="deleteEntry('/api/{{title}}/{{data.id}}')">Delete</button>
-    {% endif %}
+    <div class="admin-form-top">
+      {% if data.name %}
+        <h3>{{title|title}} - {{data.name}}</h3>
+      {% else %}
+        <h3>Create {{title|title}}</h3>
+      {% endif %}
 
-    {% for field in fields %}
-      {% if field.type == 'text' %}
-        <div>
-          <label for="{{field.name}}">{{field.name|title}}</label>
-          <input type="text" id="{{field.name}}" name="{{field.name}}" value="{{data|key:field.name}}" required/>
-        </div>
-      {% elif field.type == 'textarea' %}
-        <div>
-          <label for="{{field.name}}">{{field.name|title}}</label>
-          <textarea id="{{field.name}}" name="{{field.name}}" required>{{data|key:field.name}}</textarea>
-        </div>
-      {% elif field.type == 'password' %}
-        <div>
-          <label for="{{field.name}}">{{field.name|title}}</label>
-          <input type="password" id="{{field.name}}" name="{{field.name}}" required/>
-        </div>
-      {% elif field.type == 'checkbox' %}
-        {% if data.id is None or data.id != current_user_id %}
-          <div>
-            <label for="{{field.name}}">{{field.name|title}}</label>
-            <input type="hidden" id="{{field.name}}" name="{{field.name}}" value="off"/>
-            <input type="checkbox" id="{{field.name}}" name="{{field.name}}" {% if data|key:field.name %} checked {% endif %}/>
+      <div class="admin-form-btns">
+        <a class="admin-btn blue p-bold" href="/admin/{{title}}">Back</a>
+        <button type="submit" class="admin-btn green p-bold">Save</button>
+        {% if title == "users" and data.id is not None and data.id == current_user_id %}
+          <a href="password_change" class="admin-btn blue p-bold auto"> Change Password </a>
+        {% endif %}
+        {% if data.name %}
+          <button type="button" class="admin-btn red p-bold" onclick="deleteEntry('/api/{{title}}/{{data.id}}')">Delete</button>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="admin-form-fields">
+      {% for field in fields %}
+        {% if field.type == 'text' %}
+          <div class="admin-form-field">
+            <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
+            <input type="text" id="{{field.name}}" name="{{field.name}}" value="{{data|key:field.name}}" required/>
+          </div>
+        {% elif field.type == 'textarea' %}
+          <div class="admin-form-field">
+            <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
+            <textarea class="h4-thin" id="{{field.name}}" name="{{field.name}}" required>{{data|key:field.name}}</textarea>
+          </div>
+        {% elif field.type == 'password' %}
+          <div class="admin-form-field">
+            <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
+            <input type="password" id="{{field.name}}" name="{{field.name}}" required/>
+          </div>
+        {% elif field.type == 'checkbox' %}
+          {% if data.id is None or data.id != current_user_id %}
+            <div class="admin-form-checkbox">
+              <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
+              <input type="hidden" id="{{field.name}}" name="{{field.name}}" value="off"/>
+              <input class="h4-thin" type="checkbox" id="{{field.name}}" name="{{field.name}}" {% if data|key:field.name %} checked {% endif %}/>
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="admin-form-field">
+            <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
+            <input type="{{field.type}}" id="{{field.name}}" name="{{field.name}}" value="{{data|key:field.name}}" required/>
           </div>
         {% endif %}
-      {% else %}
-         <div>
-          <label for="{{field.name}}">{{field.name|title}}</label>
-          <input type="{{field.type}}" id="{{field.name}}" name="{{field.name}}" value="{{data|key:field.name}}" required/>
-        </div>
-      {% endif %}
-    {% endfor %}
+      {% endfor %}
+    </div>
   </form>
 </div>

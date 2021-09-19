@@ -154,3 +154,45 @@ p, .p {
 .white {
   color: var(--white) !important;
 }
+
+.field {
+  height: 70px;
+  width: 300px;
+  border: 3px solid var(--uwa-blue);
+  border-radius: 7px;
+  display: grid;
+  grid-template-rows: 28px 1fr;
+  background: var(--white);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.field.invalid {
+  border: 3px solid var(--uwa-secondary-red);
+}
+
+.field  > label {
+  padding-top: 12px;
+  padding-left: 12px;
+}
+
+.field > input {
+  width: calc(100% - 24px);
+  background: none;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: none;
+  appearance: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 33px;
+  margin: 0;
+  color: var(--uwa-black);
+}
+
+.field > input:active, .field > input:focus {
+  border: none;
+  appearance: none;
+  outline:none;
+}

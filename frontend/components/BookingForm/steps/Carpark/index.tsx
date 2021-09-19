@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { useEffectOnce } from 'react-use';
 import * as Yup from 'yup';
 import { useFormikContext } from 'formik';
 
@@ -8,28 +9,38 @@ import { BookingContext } from '../../';
 
 const Carpark: StepComponent = () => {
   const [carparks, setCarparks] = useState<Carpark[]>();
+  const [loading, setLoading] = useState(true);
   const { next } = useContext<BookingContext>(BookingContext);
-  const { setFieldValue } = useFormikContext<BookingFormValues>();
+  const { setFieldValue, values } = useFormikContext<BookingFormValues>();
 
-  useEffect(() => {
-    fetch('/api/carparks/').then(async (r) => setCarparks(await r.json()));
-  }, []);
+  useEffectOnce(() => {
+    fetch('/api/carparks/').then((r) =>
+      r.json().then((r) => {
+        setCarparks(r);
+        setLoading(false);
+      }),
+    );
+  });
 
   const handleClick = (carpark: Carpark) => {
+    if (values?.carpark && values.carpark.name != carpark.name) {
+      setFieldValue('booking', new Map()); // reset bookings every time they pick a new carpark
+    }
     setFieldValue('carpark', carpark);
     next();
   };
 
   return (
-    <div className={styles.carpark}>
+    <div className={styles.carpark} data-testid="carpark-step" data-loading={loading}>
       <h2>UniPark VIP Booking</h2>
       <h3>Please pick a car park</h3>
       <p>
         Any additional enquiries, call <a href="">04 1234 5678</a>
       </p>
-      <div className={styles.cards}>
+      <div className={styles.cards} data-testid="carpark-cards">
         {carparks?.map((c) => (
           <CarparkCard
+            key={c.name}
             onClick={() => handleClick(c)}
             name={c.name}
             description={c.description}

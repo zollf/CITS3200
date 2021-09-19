@@ -1,0 +1,10 @@
+.outputs {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+.outputs > div {
+  margin-bottom: 12px;
+}

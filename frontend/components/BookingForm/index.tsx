@@ -8,6 +8,7 @@ import InitialValues from './InitialValues';
 import styles from './styles.module.css';
 import Steps, { Confirmation } from './steps';
 
+// istanbul ignore next
 const BookingContext = React.createContext<BookingContext>({
   next: () => undefined,
   back: () => undefined,
