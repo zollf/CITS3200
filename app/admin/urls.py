@@ -1,5 +1,15 @@
 from django.contrib.auth.forms import AdminPasswordChangeForm
-from .views import SettingsView, AdminView, CarparksView, CarparkAdd, CarparkEdit, UsersView, UsersEdit, UsersAdd, StaffRequiredView, BayAdd, BayEdit
+from .views import SettingsView, \
+    AdminView, \
+    CarparksView, \
+    CarparkAdd, \
+    CarparkEdit, \
+    UsersView, \
+    UsersEdit, \
+    UsersAdd, \
+    StaffRequiredView, \
+    BayAdd, \
+    BayEdit
 from django.urls import path, reverse_lazy
 from django.contrib.auth import views as auth_views
 
