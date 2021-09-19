@@ -1,0 +1,30 @@
+.datePicker input {
+  background: var(--uwa-blue);
+  border: none;
+  border-radius: 7px;
+  padding: 9px 20px 9px 20px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 19px;
+  margin: 0;
+  color: var(--white);
+  width: 90px;
+  height: 24px;
+}
+
+.datePicker {
+  position: relative;
+}
+
+.datePicker > svg {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  z-index: 1;
+}
+
+.datePicker > svg > path {
+  fill: white;
+}

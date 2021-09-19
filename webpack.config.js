@@ -18,6 +18,17 @@ const css = {
     'style-loader',
     {
       loader: 'css-loader',
+    },
+  ],
+  exclude: /\.module\.css$/,
+};
+
+const css_modules = {
+  test: /\.css$/i,
+  use: [
+    'style-loader',
+    {
+      loader: 'css-loader',
       options: {
         import: false,
         modules: {
@@ -60,7 +71,7 @@ module.exports = {
     },
   },
   module: {
-    rules: [ts, css, svg],
+    rules: [ts, css_modules, css, svg],
   },
   optimization: {
     minimize: true,

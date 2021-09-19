@@ -19,7 +19,7 @@ const Confirmation = () => {
           description={values.carpark!.description}
           mapURL={values.carpark!.google_maps_link}
         />
-        <Field label="Date" name="date" type="data" value={values.date} />
+        <Field label="Date" name="date" type="data" value={values.date.toDateString()} />
         <BayBookings bayTimes={values.booking} />
       </div>
     </div>
