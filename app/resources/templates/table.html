@@ -2,11 +2,11 @@
 
 <div class="table-wrapper">
   {% csrf_token %}
-  <input name="redirect" value="/admin/{{title}}" hidden/>
+  <input hidden name="redirect" value="{% if redirect %}{{redirect}}{% else %}/admin/{{title}}{% endif %}"/>
 
   <div class="top">
     <h3>{{title|title}}</h3>
-    <a class="admin-btn green p-bold" href="add">Add</a>
+    <a class="admin-btn green p-bold" href="{% if url %}{{url}}{% else %}/admin/{{title}}/add{% endif %}">Add</a>
   </div>
   <div class="table">
     <div class="table-headers">
@@ -23,7 +23,7 @@
             {% for header in headers %}
               <h4 data-thin="true">
                 {{row|key:header}}
-                {% if row.id == current_user_id %}
+                {% if usertable and row.id == current_user_id %}
                   (current user)
                 {% endif %}
               </h4>
@@ -31,9 +31,15 @@
           </div>
 
           <div class="table-actions">
-            <a class="admin-btn blue p-bold" href="/admin/{{title}}/view/{{row.id}}">View</a>
-            <button onclick="deleteEntry('/api/{{title}}/{{row.id}}')" type="button" 
-            class="admin-btn red p-bold {% if title == 'users' and row.id == current_user_id %} admin-btn-hidden {% endif %}">
+            {% if carpark %}
+              <a class="admin-btn blue p-bold" href="/admin/carparks/{{ carpark }}/bay/{{row.id}}/view">View</a>
+            {% else %}
+              <a class="admin-btn blue p-bold" href="/admin/{{title}}/view/{{row.id}}">View</a>
+            {% endif %}
+            <button 
+              onclick="deleteEntry('/api/{{title}}/{{row.id}}', '{% if redirect %}{{redirect}}{% else %}/admin/{{title}}{% endif %}')" type="button" 
+              class="admin-btn red p-bold {% if title == 'users' and row.id == current_user_id %} admin-btn-hidden {% endif %}"
+            >
               Delete
             </button>
           </div>

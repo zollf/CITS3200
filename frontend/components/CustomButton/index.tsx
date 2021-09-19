@@ -24,6 +24,7 @@ const CustomButton = ({ type, iconLeft = false, icon, onClick, children, disable
       type={type}
       className={cc({ [styles.custombutton]: true, [styles.iconLeft]: iconLeft, [styles.disabled]: disabled })}
       onClick={onClick}
+      disabled={disabled}
     >
       {iconLeft ? '' : children} {icon} {iconLeft ? children : ''}
     </button>

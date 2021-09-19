@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffectOnce } from 'react-use';
 import * as Yup from 'yup';
 import Arrow from '@/app/resources/static/images/arrow.svg';
 import Reset from '@/app/resources/static/images/reset.svg';
@@ -11,10 +12,17 @@ import { useFormikContext } from 'formik';
 import styles from './styles.module.css';
 
 const BaySelection: StepComponent = () => {
-  const [{ bays, times }] = useState<BaysInitialProps>(getInitialState());
-
-  const [mouseDown, setMouseDown] = useState(false);
   const { values, setFieldValue } = useFormikContext<BookingFormValues>();
+  const [props, setInitialProps] = useState<BaysInitialProps>();
+
+  useEffectOnce(() => {
+    fetch(`/api/carparks/${values.carpark!.pk}/bays`).then((r) =>
+      r.json().then((r: BayResponse[]) => {
+        setInitialProps(getInitialState(r));
+      }),
+    );
+  });
+  const [mouseDown, setMouseDown] = useState(false);
 
   const handleClick = (time: Time) => {
     if (time.status !== selection.UNAVAILABLE) {
@@ -40,6 +48,10 @@ const BaySelection: StepComponent = () => {
   const handleReset = () => {
     setFieldValue('booking', new Map());
   };
+
+  if (!props) {
+    return null;
+  }
 
   return (
     <div className={styles.baysSelection}>
@@ -86,7 +98,7 @@ const BaySelection: StepComponent = () => {
             <p data-small-bold>BAY</p>
           </div>
           <div className={styles.times}>
-            {times.map((t) => (
+            {props.times.map((t) => (
               <p key={`times-${t}`} data-small-bold>
                 {t}
               </p>
@@ -94,7 +106,7 @@ const BaySelection: StepComponent = () => {
           </div>
         </div>
         <div className={styles.bays}>
-          {bays.map((bay: Bay, i) => (
+          {props.bays.map((bay: Bay, i) => (
             <div key={`bays-${bay.bayNum}`} className={styles.bay} data-light={i % 2 !== 0}>
               <div className={styles.left}>
                 <p>{bay.bayNum}</p>

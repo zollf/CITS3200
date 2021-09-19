@@ -30,6 +30,10 @@ const Carpark: StepComponent = () => {
     next();
   };
 
+  if (!carparks) {
+    return null;
+  }
+
   return (
     <div className={styles.carpark} data-testid="carpark-step" data-loading={loading}>
       <h2>UniPark VIP Booking</h2>
@@ -38,7 +42,7 @@ const Carpark: StepComponent = () => {
         Any additional enquiries, call <a href="">04 1234 5678</a>
       </p>
       <div className={styles.cards} data-testid="carpark-cards">
-        {carparks?.map((c) => (
+        {carparks.map((c) => (
           <CarparkCard
             key={c.name}
             onClick={() => handleClick(c)}

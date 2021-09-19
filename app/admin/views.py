@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Settings
-from app.parking.models import CarPark
+from app.parking.models import CarPark, CarBay
 from app.authentication.models import User
 
 from rest_framework.decorators import api_view
@@ -9,15 +9,31 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
-@staff_member_required(login_url="/login")
+def composed(*decs):
+    def deco(f):
+        for dec in reversed(decs):
+            f = dec(f)
+        return f
+    return deco
+
+def common_decorators(methods: list):
+    return composed(
+        staff_member_required(login_url="/admin/staff_required"),
+        login_required(login_url="/login"),
+        csrf_protect,
+        api_view(methods)
+    )
+
+@staff_member_required(login_url="/admin/staff_required")
 @login_required(login_url="/login")
 def AdminView(request):
     return render(request, "admin.html")
 
-@staff_member_required
-@login_required(login_url="/login")
-@csrf_protect
-@api_view(['GET', 'POST'])
+@login_required(login_url="/admin/login")
+def StaffRequiredView(request):
+    return render(request, "staff_required.html")
+
+@common_decorators(['GET', 'POST'])
 def SettingsView(request):
     if (request.method == 'POST'):
         for key in Settings.getKeys():
@@ -28,53 +44,66 @@ def SettingsView(request):
     elif (request.method == 'GET'):
         return render(request, 'settings.html', {'settings': Settings.objects.all()})
 
-@staff_member_required
-@login_required(login_url="/login")
-@csrf_protect
-@api_view(['GET'])
+@common_decorators(['GET'])
 def CarparksView(request):
     if (request.method == 'GET'):
         return render(request, 'carparks.html', {'carparks': CarPark.objects.values('id', 'name', 'description')})
 
-@staff_member_required
-@login_required(login_url="/login")
-@csrf_protect
-@api_view(['GET'])
+@common_decorators(['GET'])
 def CarparkAdd(request):
     if (request.method == 'GET'):
-        return render(request, 'carpark.html', {'carpark': CarPark()})
+        return render(request, 'carpark.html', {'carpark': CarPark(), 'add_bays': False})
 
-@staff_member_required
-@login_required(login_url="/login")
-@csrf_protect
-@api_view(['GET'])
+@common_decorators(['GET'])
 def CarparkEdit(request, pk):
     if (request.method == 'GET'):
-        return render(request, 'carpark.html', {'carpark': CarPark.objects.values(
-            'id', 'name', 'description', 'google_maps_link').get(pk=pk)})
+        carpark = CarPark.objects.values('id', 'name', 'description', 'google_maps_link').get(pk=pk)
+        carbays = CarBay.objects.values('id', 'bay_number', 'description').filter(carpark=pk)
+        add_url = f"/admin/carparks/{carpark['id']}/bay/add"
+        carbay_redirect = f"/admin/carparks/view/{carpark['id']}"
+        data = {
+            'carpark': carpark,
+            'carbays': carbays,
+            'add_url': add_url,
+            'id': carpark['id'],
+            'carbay_redirect': carbay_redirect,
+            'add_bays': True
+        }
+        return render(request, 'carpark.html', data)
 
-@staff_member_required
-@login_required(login_url="/login")
-@csrf_protect
-@api_view(['GET'])
+@common_decorators(['GET'])
 def UsersView(request):
     if (request.method == 'GET'):
         return render(request, 'users.html', {'users': User.objects.values('id', 'username'),
                                               'current_user_id': request.user.id})
 
-@staff_member_required
-@login_required(login_url="/login")
-@csrf_protect
-@api_view(['GET'])
+@common_decorators(['GET'])
 def UsersAdd(request):
     if (request.method == 'GET'):
         return render(request, 'new_user.html', {'user': User(), 'current_user_id': request.user.id})
 
-@staff_member_required
-@login_required(login_url="/login")
-@csrf_protect
-@api_view(['GET'])
+@common_decorators(['GET'])
 def UsersEdit(request, pk):
     if (request.method == 'GET'):
-        return render(request, 'user.html', {'user': User.objects.values('id', 'username', 'email', 'phone', 'is_staff')
-                                             .get(pk=pk), 'current_user_id': request.user.id})
+        data = {
+            'user': User.objects.values('id', 'username', 'email', 'phone', 'is_staff').get(pk=pk),
+            'current_user_id': request.user.id
+        }
+        return render(request, 'user.html', data)
+
+@common_decorators(['GET'])
+def BayAdd(request, pk):
+    if (request.method == 'GET'):
+        back_url = f"/admin/carparks/view/{pk}"
+        form_config = f"bay_number:number:Bay Number|description:textarea|carpark:hidden:{pk}"
+        return render(request, 'bay.html', {'bay': CarBay(), 'back_url': back_url, 'form': form_config})
+
+@common_decorators(['GET'])
+def BayEdit(request, pk, pk2):
+    if (request.method == 'GET'):
+        data = {
+            'back_url': f"/admin/carparks/view/{pk}",
+            'form': f"bay_number:number:Bay Number|description:textarea|carpark:hidden:{pk}",
+            'bay': CarBay.objects.values('id', 'bay_number', 'description').get(pk=pk2)
+        }
+        return render(request, 'bay.html', data)
