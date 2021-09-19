@@ -8,7 +8,7 @@ class CarBaySerializer(serializers.ModelSerializer):
 
 class CarParkSerializer(serializers.ModelSerializer):
     carbays = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    
+
     class Meta:
         model = CarPark
         fields = ('pk', 'name', 'description', 'google_maps_link', 'carbays')

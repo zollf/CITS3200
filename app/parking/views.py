@@ -69,7 +69,7 @@ def carbays_list(request):
         data = CarBay.objects.all()
         serializer = CarBaySerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
-    
+
     elif request.method == 'POST':
         carbay_data = JSONParser().parse(request)
         serializer = CarBaySerializer(data=carbay_data)
