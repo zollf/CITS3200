@@ -94,7 +94,7 @@ exports[`Booking Form Confirmation matches its snapshot 1`] = `
               data-testid="date"
               name="date"
               type="data"
-              value="Sun Sep 19 2021"
+              value="Sun Jan 02 2000"
             />
           </div>
           <table
@@ -111,6 +111,14 @@ exports[`Booking Form Confirmation matches its snapshot 1`] = `
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <td>
+                  41702
+                </td>
+                <td>
+                  08:00-08:30
+                </td>
+              </tr>
               <tr>
                 <td>
                   41702
@@ -513,7 +521,7 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
           >
             repudiandae
           </span>
-           on Sun Sep 19 2021
+           on Sun Jan 02 2000
         </h2>
         <div
           class="legends"
@@ -555,11 +563,9 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
           <div
             class="bayButtonsLeft"
           >
-            <button
-              class="custombutton iconLeft"
-              type="button"
+            <div
+              class="datePicker"
             >
-               
               <svg
                 fill="none"
                 height="24"
@@ -573,8 +579,20 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                   fill="#231F20"
                 />
               </svg>
-               Date
-            </button>
+              <div
+                class="react-datepicker-wrapper"
+              >
+                <div
+                  class="react-datepicker__input-container"
+                >
+                  <input
+                    class=""
+                    type="text"
+                    value="2/01/2000"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
           <div
             class="bayButtonsRight"
@@ -1477,7 +1495,7 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
                 data-testid="date"
                 name="date"
                 type="data"
-                value="Sun Sep 19 2021"
+                value="Sun Jan 02 2000"
               />
             </div>
             <table
@@ -1494,6 +1512,14 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td>
+                    41702
+                  </td>
+                  <td>
+                    08:00-08:30
+                  </td>
+                </tr>
                 <tr>
                   <td>
                     41702

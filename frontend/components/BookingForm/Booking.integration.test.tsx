@@ -131,7 +131,7 @@ describe('Booking Form Step 2', () => {
     fireEvent.mouseDown(getAllByTestId('bay-time')[0]);
     UserEvent.hover(getAllByTestId('bay-time')[0]);
     fireEvent.mouseLeave(getByTestId('table'));
-    await waitFor(() => expect(getAllByTestId('bay-time')[0].getAttribute('data-selected')).toBe('true'));
+    await waitFor(() => expect(getAllByTestId('bay-time')[0].getAttribute('data-selected')).toBe('false'));
   });
 
   it('completes step 2 correctly', async () => {

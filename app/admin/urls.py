@@ -31,5 +31,4 @@ admin_urls = [
 
     path('carparks/<int:pk>/bay/add', BayAdd, name="carbay_add"),
     path('carparks/<int:pk>/bay/<int:pk2>/view', BayEdit, name="carbay_edit"),
-
 ]

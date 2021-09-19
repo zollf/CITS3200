@@ -27,7 +27,7 @@ interface BayResponse {
 interface Time {
   time: string;
   slug: string;
-  status: Booking.Unavailable | Booking.Selected | Booking.Available;
+  status: number;
   bayNum: number;
   index: number;
 }
@@ -54,7 +54,7 @@ interface BookingFormValues {
   carpark?: Carpark;
   booking: Map<string, Time>;
   hub: string;
-  date: string;
+  date: Date;
   firstName: string;
   lastName: string;
   email: string;

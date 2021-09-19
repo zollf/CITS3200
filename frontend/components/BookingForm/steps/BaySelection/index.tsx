@@ -3,9 +3,10 @@ import { useEffectOnce } from 'react-use';
 import * as Yup from 'yup';
 import Arrow from '@/app/resources/static/images/arrow.svg';
 import Reset from '@/app/resources/static/images/reset.svg';
-import Calendar from '@/app/resources/static/images/calendar.svg';
 
 import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
+import DatePicker from '@/frontend/components/DatePicker';
+
 import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
 import { useFormikContext } from 'formik';
 
@@ -13,16 +14,17 @@ import styles from './styles.module.css';
 
 const BaySelection: StepComponent = () => {
   const { values, setFieldValue } = useFormikContext<BookingFormValues>();
-  const [props, setInitialProps] = useState<BaysInitialProps>();
+  const [props, setProps] = useState<BaysInitialProps>();
 
   useEffectOnce(() => {
     fetch(`/api/carparks/${values.carpark!.pk}/bays`).then((r) =>
       r.json().then((r: BayResponse[]) => {
-        setInitialProps(getInitialState(r));
+        setProps(getInitialState(r));
       }),
     );
   });
-  const [mouseDown, setMouseDown] = useState(false);
+
+  const [mouseDown, setMouseDown] = useState<number | null>(null);
 
   const handleClick = (time: Time) => {
     if (time.status !== selection.UNAVAILABLE) {
@@ -33,12 +35,17 @@ const BaySelection: StepComponent = () => {
   };
 
   const onMouseDown = (time: Time) => {
-    setMouseDown(true);
+    // so if we mouse down on something AVAILABLE, we want to be able to drag/hover to make things UNAVAILABLE and vis versa
+    setMouseDown(values.booking.has(time.slug) ? selection.UNAVAILABLE : selection.AVAILABLE);
     handleClick(time);
   };
 
   const handleHover = (time: Time) => {
-    if (mouseDown) {
+    if (mouseDown == selection.UNAVAILABLE) {
+      const booking = values.booking;
+      booking.delete(time.slug);
+      setFieldValue('booking', booking);
+    } else if (mouseDown == selection.AVAILABLE) {
       const booking = values.booking;
       booking.set(time.slug, time);
       setFieldValue('booking', booking);
@@ -49,6 +56,11 @@ const BaySelection: StepComponent = () => {
     setFieldValue('booking', new Map());
   };
 
+  const handleDateChange = (date: Date) => {
+    setFieldValue('booking', new Map());
+    setFieldValue('date', date);
+  };
+
   if (!props) {
     return null;
   }
@@ -56,7 +68,7 @@ const BaySelection: StepComponent = () => {
   return (
     <div className={styles.baysSelection}>
       <h2>
-        Select bay for <span className={styles.blue}>{values.carpark!.name}</span> on {values.date}
+        Select bay for <span className={styles.blue}>{values.carpark!.name}</span> on {values.date.toDateString()}
       </h2>
 
       <div className={styles.legends}>
@@ -78,9 +90,7 @@ const BaySelection: StepComponent = () => {
 
       <div className={styles.bayButtons}>
         <div className={styles.bayButtonsLeft}>
-          <CustomButton onClick={handleReset} type={ButtonType.button} iconLeft icon={<Calendar />}>
-            Date
-          </CustomButton>
+          <DatePicker selected={values.date} onChange={handleDateChange} />
         </div>
         <div className={styles.bayButtonsRight}>
           <CustomButton onClick={handleReset} type={ButtonType.button} icon={<Reset />}>
@@ -92,7 +102,7 @@ const BaySelection: StepComponent = () => {
         </div>
       </div>
 
-      <div className={styles.table} data-testid="table" onMouseLeave={() => setMouseDown(false)}>
+      <div className={styles.table} data-testid="table" onMouseLeave={() => setMouseDown(null)}>
         <div className={styles.top}>
           <div className={styles.topLeft}>
             <p data-small-bold>BAY</p>
@@ -121,7 +131,7 @@ const BaySelection: StepComponent = () => {
                     data-selected={values.booking.has(t.slug)}
                     data-testid="bay-time"
                     onMouseDown={() => onMouseDown(t)}
-                    onMouseUp={() => setMouseDown(false)}
+                    onMouseUp={() => setMouseDown(null)}
                     onMouseOver={() => handleHover(t)}
                     onClickCapture={() => handleClick(t)}
                     type="button"
