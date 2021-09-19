@@ -5,6 +5,7 @@ import UserEvent from '@testing-library/user-event';
 import BookingForm from './';
 import faker from 'faker';
 import { carparks } from '@/frontend/tests/mocks/carpark';
+import { bays } from '@/frontend/tests/mocks/bays';
 
 faker.seed(1);
 
@@ -13,7 +14,9 @@ beforeEach(() => {
 });
 
 const renderToStep2 = async () => {
-  fetchMock.mockResponse(JSON.stringify(carparks));
+  fetchMock.mockResponseOnce(JSON.stringify(carparks));
+  fetchMock.mockResponseOnce(JSON.stringify(bays));
+
   const component = render(<BookingForm />);
   await waitFor(() => expect(component.getAllByTestId('carpark-card').length).toBeGreaterThan(0));
   UserEvent.click(component.getAllByTestId('carpark-card')[0]);
@@ -55,7 +58,9 @@ describe('Booking Form Step 1', () => {
   });
 
   it('resets bay on different carpark selection', async () => {
-    fetchMock.mockResponse(JSON.stringify(carparks));
+    fetchMock.mockResponseOnce(JSON.stringify(carparks));
+    fetchMock.mockResponseOnce(JSON.stringify(bays));
+
     const { getByText, getAllByTestId } = render(<BookingForm />);
     await waitFor(() => expect(getAllByTestId('carpark-card').length).toBeGreaterThan(0));
     UserEvent.click(getAllByTestId('carpark-card')[0]);
@@ -63,16 +68,22 @@ describe('Booking Form Step 1', () => {
 
     UserEvent.click(getAllByTestId('bay-time')[0]);
     await waitFor(() => expect(getAllByTestId('bay-time')[0].getAttribute('data-selected')).toBe('true'));
+
+    fetchMock.mockResponseOnce(JSON.stringify(carparks));
     UserEvent.click(getByText('Back'));
+
     await waitFor(() => expect(getAllByTestId('carpark-card').length).toBeGreaterThan(0));
 
+    fetchMock.mockResponseOnce(JSON.stringify(bays));
     UserEvent.click(getAllByTestId('carpark-card')[1]);
+
     await waitFor(() => expect(getByText(/Select bay for/)).toBeInTheDocument());
     expect(getAllByTestId('bay-time')[0].getAttribute('data-selected')).toBe('false');
   });
 
   it('completes step 1 correctly', async () => {
-    fetchMock.mockResponse(JSON.stringify(carparks));
+    fetchMock.mockResponseOnce(JSON.stringify(carparks));
+    fetchMock.mockResponseOnce(JSON.stringify(bays));
     const { getByText, getAllByTestId } = render(<BookingForm />);
     await waitFor(() => expect(getAllByTestId('carpark-card').length).toBeGreaterThan(0));
     expect(getByText('UniPark VIP Booking')).toBeInTheDocument();

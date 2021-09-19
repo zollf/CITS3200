@@ -1,7 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function deleteEntry(route) {
+async function deleteEntry(route, redirect) {
   const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
-  const redirect = document.querySelector('[name=redirect]').value;
   await fetch(route, {
     headers: {
       'X-CSRFToken': csrf,

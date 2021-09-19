@@ -5,9 +5,13 @@
  {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_form.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_table.css' %}">
   <script src="{% static '/scripts/delete.js' %}"></script>
 {% endblock %}
 
 {% block admin_content %}
   {% create_form 'carparks' carpark 'name:text|description:textarea|google_maps_link:text' %}
+  {% if add_bays %}
+    {% create_table "bays" carbays "bay_number|description" url=add_url redirect=carbay_redirect carpark=id %}
+  {% endif %}
 {% endblock %}

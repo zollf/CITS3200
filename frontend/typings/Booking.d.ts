@@ -1,5 +1,5 @@
 interface StepComponent {
-  (): JSX.Element;
+  (): JSX.Element | null;
   validationSchema: import('yup').ObjectSchema;
 }
 
@@ -15,6 +15,13 @@ type Available = 3;
 interface Bay {
   bayNum: number;
   times: Time[];
+}
+
+interface BayResponse {
+  bay_number: string;
+  carpark: number;
+  description: string;
+  pk: number;
 }
 
 interface Time {
@@ -37,6 +44,7 @@ interface BayAction {
 }
 
 interface Carpark {
+  pk: string;
   description: string;
   google_maps_link: string;
   name: string;

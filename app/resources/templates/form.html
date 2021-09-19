@@ -4,7 +4,7 @@
   <form action="/api/{{title}}/" method="POST">
     {% csrf_token %}
     {% if data.id %}<input hidden name="pk" value="{{data.id}}"/>{% endif %}
-    <input hidden name="redirect" value="/admin/{{title}}"/>
+    <input hidden name="redirect" value="{% if redirect %}{{redirect}}{% else %}/admin/{{title}}{% endif %}"/>
 
     <div class="admin-form-top">
       {% if data.name %}
@@ -14,13 +14,19 @@
       {% endif %}
 
       <div class="admin-form-btns">
-        <a class="admin-btn blue p-bold" href="/admin/{{title}}">Back</a>
+        <a class="admin-btn blue p-bold" href="{% if back %}{{back}}{% else %}/admin/{{title}}{% endif %}">Back</a>
         <button type="submit" class="admin-btn green p-bold">Save</button>
         {% if title == "users" and data.id is not None and data.id == current_user_id %}
-          <a href="password_change" class="admin-btn blue p-bold auto"> Change Password </a>
+          <a href="password_change" class="admin-btn blue p-bold auto">Change Password </a>
         {% endif %}
         {% if data.name %}
-          <button type="button" class="admin-btn red p-bold" onclick="deleteEntry('/api/{{title}}/{{data.id}}')">Delete</button>
+          <button 
+            type="button" 
+            class="admin-btn red p-bold" 
+            onclick="deleteEntry('/api/{{title}}/{{data.id}}', '{% if redirect %}{{redirect}}{% else %}/admin/{{title}}{% endif %}')"
+          >
+            Delete
+          </button>
         {% endif %}
       </div>
     </div>
@@ -50,6 +56,8 @@
               <input class="h4-thin" type="checkbox" id="{{field.name}}" name="{{field.name}}" {% if data|key:field.name %} checked {% endif %}/>
             </div>
           {% endif %}
+        {% elif field.type == 'hidden' %}
+          <input type="hidden" id="{{field.name}}" name="{{field.name}}" value="{{field.value}}"/>
         {% else %}
           <div class="admin-form-field">
             <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>

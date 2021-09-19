@@ -64,20 +64,25 @@ def carpark_detail(request, pk):
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET', 'POST'])
-def carbays_list(request):
+def carbay_list(request):
     if request.method == 'GET':
         data = CarBay.objects.all()
         serializer = CarBaySerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        carbay_data = JSONParser().parse(request)
-        serializer = CarBaySerializer(data=carbay_data)
+        if 'pk' in request.data:
+            carpark = CarBay.objects.get(pk=request.data['pk'])
+            serializer = CarBaySerializer(carpark, data=request.data)
+        else:
+            serializer = CarBaySerializer(data=request.data)
 
         if not serializer.is_valid():
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         serializer.save()
+        if 'redirect' in request.data:
+            return redirect(request.data['redirect'])
         return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -102,3 +107,10 @@ def carbay_detail(request, pk):
     elif request.method == 'DELETE':
         carbay.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+def carbays_list(request, pk):
+    if request.method == 'GET':
+        data = CarBay.objects.all().filter(carpark=pk)
+        serializer = CarBaySerializer(data, context={'request': request}, many=True)
+        return Response(serializer.data)

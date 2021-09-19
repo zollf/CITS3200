@@ -9,5 +9,5 @@
 {% endblock %}
 
 {% block admin_content %}
-  {% create_form 'users' user 'username:text|password:password|email:email|phone:text|is_staff:checkbox:Staff Member' current_user_id=current_user_id %}
+  {% create_form 'bay' bay form back=back_url redirect=back_url %}
 {% endblock %}
