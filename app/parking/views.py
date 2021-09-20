@@ -125,7 +125,9 @@ def bays_booked(request):
         }
         """
         if 'date' not in request.data and 'carpark' not in request.data:
-            return JsonResponse({'error': 'Please supply what carpark and date you want.'}, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse({
+                'error': 'Please supply what carpark and date you want.'
+            }, status=status.HTTP_400_BAD_REQUEST)
 
         bays = BaysBooked.objects.filter(booking__date=request.data['date'], bay__carpark=request.data['carpark'])
         baysBookedSerializer = BaysBookedSerializer(bays, context={'request': request}, many=True)
@@ -149,7 +151,7 @@ def bookings(request):
         return Response(bookingsSerializer.data)
 
     elif request.method == 'POST':
-        """ 
+        """
         {
           "booking": {
             "carpark": 1,
@@ -175,7 +177,9 @@ def bookings(request):
         }
         """
         if 'booking' not in request.data or 'bays' not in request.data:
-            return JsonResponse({'error': 'Please supply a booking and the bay(s) booked.'}, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse({
+                'error': 'Please supply a booking and the bay(s) booked.'
+            }, status=status.HTTP_400_BAD_REQUEST)
 
         booking = request.data['booking']
 
@@ -183,7 +187,9 @@ def bookings(request):
         try:
             carpark = CarPark.objects.get(pk=booking['carpark'])
         except CarPark.DoesNotExist:
-            return JsonResponse({'error': 'No carpark could be found given the id.'}, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse({
+                'error': 'No carpark could be found given the id.'
+            }, status=status.HTTP_400_BAD_REQUEST)
 
         booking['carpark_id'] = carpark.pk
         bookingsSerializer = BookingsSerializer(data=request.data['booking'])
