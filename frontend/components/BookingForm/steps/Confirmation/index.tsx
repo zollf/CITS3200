@@ -4,6 +4,8 @@ import BayBookings from '../Details/BayBookings';
 import CarparkCard from '@/frontend/components/CarparkCard';
 import Field from '@/frontend/components/Field';
 import styles from './styles.module.css';
+import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
+import Arrow from '@/app/resources/static/images/arrow.svg';
 
 const Confirmation = () => {
   const { values } = useFormikContext<BookingFormValues>();
@@ -22,6 +24,14 @@ const Confirmation = () => {
         <Field label="Date" name="date" type="data" value={values.date.toDateString()} />
         <BayBookings bayTimes={values.booking} />
       </div>
+      <CustomButton
+        type={ButtonType.button}
+        iconLeft={false}
+        icon={<Arrow />}
+        onClick={() => (window.location.href = '/')}
+      >
+        Return
+      </CustomButton>
     </div>
   );
 };
