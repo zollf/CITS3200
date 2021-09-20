@@ -13,6 +13,7 @@ type Unavailable = 2;
 type Available = 3;
 
 interface Bay {
+  bayId: number;
   bayNum: number;
   times: Time[];
 }
@@ -24,12 +25,28 @@ interface BayResponse {
   pk: number;
 }
 
+interface BaysBookedResponse {
+  success: boolean;
+  bays: {
+    pk: number;
+    bay: {
+      bay_number: string;
+      carpark: number;
+      description: string;
+      id: number;
+    };
+    end_time: string;
+    start_time: string;
+  }[];
+}
+
 interface Time {
   time: string;
   slug: string;
   status: number;
   bayNum: number;
   index: number;
+  bayId: number;
 }
 
 interface BaysInitialProps {

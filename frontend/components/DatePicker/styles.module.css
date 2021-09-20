@@ -12,10 +12,18 @@
   color: var(--white);
   width: 90px;
   height: 24px;
+  cursor: pointer;
+  transition: 0.2s all ease;
 }
 
 .datePicker {
   position: relative;
+  transition: 0.2s all ease;
+}
+
+.datePicker:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: scale(1.02, 1.02);
 }
 
 .datePicker > svg {

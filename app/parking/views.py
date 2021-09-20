@@ -114,3 +114,133 @@ def carbays_list(request, pk):
         data = CarBay.objects.all().filter(carpark=pk)
         serializer = CarBaySerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
+
+@api_view(['POST'])
+def bays_booked(request):
+    if request.method == 'POST':
+        """
+        {
+          "date": "2000-01-01",
+          "carpark": 1
+        }
+        """
+        if 'date' not in request.data and 'carpark' not in request.data:
+            return JsonResponse({'error': 'Please supply what carpark and date you want.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        bays = BaysBooked.objects.filter(booking__date=request.data['date'], bay__carpark=request.data['carpark'])
+        baysBookedSerializer = BaysBookedSerializer(bays, context={'request': request}, many=True)
+        baysCleaned = []
+        # Do not return any information on bookings
+        for bay in baysBookedSerializer.data:
+            baysCleaned.append({
+                'pk': bay['pk'],
+                'bay': bay['bay'],
+                'start_time': bay['start_time'],
+                'end_time': bay['end_time'],
+            })
+
+        return JsonResponse({'success': True, 'bays': baysCleaned}, status=status.HTTP_200_OK)
+
+@api_view(['GET', 'POST'])
+def bookings(request):
+    if request.method == 'GET':
+        bookings = Bookings.objects.all()
+        bookingsSerializer = BookingsSerializer(bookings, context={'request': request}, many=True)
+        return Response(bookingsSerializer.data)
+
+    elif request.method == 'POST':
+        """ 
+        {
+          "booking": {
+            "carpark": 1,
+            "date": "2000-01-01", # YYYY-MM-DD
+            "name": "uniart",
+            "email": "test@test.com",
+            "rego": "1234",
+            "company": "uni",
+            "phone": 1234
+          },
+          "bays": [
+            {
+              "bay": 1,
+              "start_time": "00:00",
+              "end_time": "12:00"
+            },
+            {
+              "bay": 2,
+              "start_time": "00:00",
+              "end_time": "12:00"
+            }
+          ]
+        }
+        """
+        if 'booking' not in request.data or 'bays' not in request.data:
+            return JsonResponse({'error': 'Please supply a booking and the bay(s) booked.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        booking = request.data['booking']
+
+        # Find carpark for booking
+        try:
+            carpark = CarPark.objects.get(pk=booking['carpark'])
+        except CarPark.DoesNotExist:
+            return JsonResponse({'error': 'No carpark could be found given the id.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        booking['carpark_id'] = carpark.pk
+        bookingsSerializer = BookingsSerializer(data=request.data['booking'])
+
+        if not bookingsSerializer.is_valid():
+            return JsonResponse(bookingsSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        bookingsSerializer.save()
+
+        # Save Bays
+        for bay in request.data['bays']:
+            bayBooked = bay
+            bayBooked['booking_id'] = bookingsSerializer.data['pk']
+            bayBooked['bay_id'] = bay['bay']
+
+            baysBookedSerializer = BaysBookedSerializer(data=bayBooked)
+
+            if not baysBookedSerializer.is_valid():
+                return JsonResponse(baysBookedSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+            baysBookedSerializer.save()
+
+        return JsonResponse({'success': True}, status=status.HTTP_201_CREATED)
+
+@api_view(['GET', 'DELETE'])
+def booking(request, pk):
+    if request.method == 'GET':
+        try:
+            booking = Bookings.objects.get(pk=pk)
+        except Bookings.DoesNotExist:
+            return JsonResponse({'error': 'Booking cannot be found.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        bookingsSerializer = BookingsSerializer(booking, context={'request': request})
+
+        try:
+            bays = BaysBooked.objects.filter(booking__id=pk)
+        except Bookings.DoesNotExist:
+            return JsonResponse({'error': 'No bays can be found for this booking.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        baysBookedSerializer = BaysBookedSerializer(bays, context={'request': request}, many=True)
+
+        baysCleaned = []
+        for bay in baysBookedSerializer.data:
+            baysCleaned.append({
+                'pk': bay['pk'],
+                'bay': bay['bay'],
+                'start_time': bay['start_time'],
+                'end_time': bay['end_time'],
+            })
+
+        return JsonResponse({'booking': bookingsSerializer.data, 'bays': baysCleaned}, status=status.HTTP_200_OK)
+
+    if request.method == 'DELETE':
+        booking = Bookings.objects.get(pk=pk)
+        booking.delete()
+        bays = BaysBooked.objects.filter(booking__id=pk)
+        for bay in bays:
+            bay.delete()
+
+        return HttpResponse(status=status.HTTP_204_NO_CONTENT)

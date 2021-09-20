@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useEffectOnce } from 'react-use';
 import * as Yup from 'yup';
 import Arrow from '@/app/resources/static/images/arrow.svg';
 import Reset from '@/app/resources/static/images/reset.svg';
-
+import { format } from 'date-fns';
 import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
 import DatePicker from '@/frontend/components/DatePicker';
-
 import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
 import { useFormikContext } from 'formik';
+import getCookie from '@/frontend/lib/GetCookie';
 
 import styles from './styles.module.css';
 
@@ -16,12 +16,31 @@ const BaySelection: StepComponent = () => {
   const { values, setFieldValue } = useFormikContext<BookingFormValues>();
   const [props, setProps] = useState<BaysInitialProps>();
 
+  const getBays = useCallback(async () => {
+    return await fetch(`/api/carparks/${values.carpark!.pk}/bays`).then((r) => r.json());
+  }, [values.carpark]);
+
+  const getBaysBooked = useCallback(
+    async (date: string) => {
+      return await fetch(`/api/bays-booked`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken')!,
+        },
+        body: JSON.stringify({
+          date: date, //format(values.date, 'yyyy-MM-dd'),
+          carpark: values.carpark!.pk,
+        }),
+      }).then((r) => r.json());
+    },
+    [values.carpark, values.date],
+  );
+
   useEffectOnce(() => {
-    fetch(`/api/carparks/${values.carpark!.pk}/bays`).then((r) =>
-      r.json().then((r: BayResponse[]) => {
-        setProps(getInitialState(r));
-      }),
-    );
+    (async () => {
+      setProps(getInitialState(await getBays(), await getBaysBooked(format(values.date, 'yyyy-MM-dd'))));
+    })();
   });
 
   const [mouseDown, setMouseDown] = useState<number | null>(null);
@@ -41,11 +60,11 @@ const BaySelection: StepComponent = () => {
   };
 
   const handleHover = (time: Time) => {
-    if (mouseDown == selection.UNAVAILABLE) {
+    if (mouseDown === selection.UNAVAILABLE) {
       const booking = values.booking;
       booking.delete(time.slug);
       setFieldValue('booking', booking);
-    } else if (mouseDown == selection.AVAILABLE) {
+    } else if (mouseDown === selection.AVAILABLE) {
       const booking = values.booking;
       booking.set(time.slug, time);
       setFieldValue('booking', booking);
@@ -59,9 +78,13 @@ const BaySelection: StepComponent = () => {
   const handleDateChange = (date: Date) => {
     setFieldValue('booking', new Map());
     setFieldValue('date', date);
+    (async () => {
+      setProps(getInitialState(await getBays(), await getBaysBooked(format(date, 'yyyy-MM-dd'))));
+    })();
   };
 
   if (!props) {
+    // loading
     return null;
   }
 

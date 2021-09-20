@@ -1,4 +1,4 @@
-from app.parking.views import carparks_list, carpark_detail, carbay_list, carbay_detail, carbays_list
+from app.parking.views import carparks_list, carpark_detail, carbay_list, carbay_detail, carbays_list, bookings, bays_booked, booking
 from django.urls import path
 
 parking_urls = [
@@ -8,4 +8,8 @@ parking_urls = [
 
     path('bay/', carbay_list),
     path('bays/<int:pk>', carbay_detail),
+
+    path('bookings', bookings),
+    path('bays-booked', bays_booked),
+    path('bookings/<int:pk>', booking),
 ]

@@ -1,0 +1,13 @@
+{% extends 'admin.html' %} 
+{% load admin %}
+
+{% block admin_head %}
+ {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_table.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
+  <script src="{% static '/scripts/delete.js' %}"></script>
+{% endblock %}
+
+{% block admin_content %}
+  {% create_table "bookings" bookings "date|email" no_add="true" %}
+{% endblock %}

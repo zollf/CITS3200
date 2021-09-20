@@ -9,7 +9,9 @@ from .views import SettingsView, \
     UsersAdd, \
     StaffRequiredView, \
     BayAdd, \
-    BayEdit
+    BayEdit, \
+    BookingsView, \
+    BookingView
 from django.urls import path, reverse_lazy
 from django.contrib.auth import views as auth_views
 
@@ -31,4 +33,7 @@ admin_urls = [
 
     path('carparks/<int:pk>/bay/add', BayAdd, name="carbay_add"),
     path('carparks/<int:pk>/bay/<int:pk2>/view', BayEdit, name="carbay_edit"),
+
+    path('bookings/', BookingsView, name='bookings'),
+    path('bookings/view/<int:pk>', BookingView, name='booking')
 ]

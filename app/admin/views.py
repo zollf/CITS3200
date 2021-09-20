@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Settings
-from app.parking.models import CarPark, CarBay
+from app.parking.models import CarPark, CarBay, Bookings, BaysBooked
 from app.authentication.models import User
 
 from rest_framework.decorators import api_view
@@ -107,3 +107,16 @@ def BayEdit(request, pk, pk2):
             'bay': CarBay.objects.values('id', 'bay_number', 'description').get(pk=pk2)
         }
         return render(request, 'bay.html', data)
+
+@common_decorators(['GET'])
+def BookingsView(request):
+    if (request.method == 'GET'):
+        bookings = Bookings.objects.values('id', 'date', 'email').all()
+        return render(request, 'bookings.html', {'bookings': bookings})
+
+@common_decorators(['GET'])
+def BookingView(request, pk):
+    if (request.method == 'GET'):
+        booking = Bookings.objects.values('carpark', 'date', 'name', 'email', 'rego', 'company', 'phone').get(pk=pk)
+        # bays = BaysBooked.objects.filter(booking__id=pk)
+        return render(request, 'booking.html', {'booking': booking})
