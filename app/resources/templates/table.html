@@ -6,7 +6,9 @@
 
   <div class="top">
     <h3>{{title|title}}</h3>
-    <a class="admin-btn green p-bold" href="{% if url %}{{url}}{% else %}/admin/{{title}}/add{% endif %}">Add</a>
+    {% if not no_add %}
+      <a class="admin-btn green p-bold" href="{% if url %}{{url}}{% else %}/admin/{{title}}/add{% endif %}">Add</a>
+    {% endif %}
   </div>
   <div class="table">
     <div class="table-headers">

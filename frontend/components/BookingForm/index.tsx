@@ -2,7 +2,10 @@ import React, { useMemo, useState } from 'react';
 import cc from 'classcat';
 import Arrow from '@/app/resources/static/images/arrow.svg';
 import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
+import { format } from 'date-fns';
 import { Formik, FormikHelpers } from 'formik';
+import createListItems from '@/frontend/lib/ProcessBayMap';
+import getCookie from '@/frontend/lib/GetCookie';
 
 import InitialValues from './InitialValues';
 import styles from './styles.module.css';
@@ -18,23 +21,57 @@ const BookingContext = React.createContext<BookingContext>({
 const BookingForm = () => {
   const [step, setStep] = useState(0);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [, setError] = useState(false);
 
   const ActivePage = useMemo(() => Steps[step], [step]);
   const next = () => setStep(Math.min(step + 1, Steps.length - 1));
   const back = () => setStep(Math.max(step - 1, 0));
 
-  const finalSubmit = (value: BookingFormValues) => {
-    // todo
-    const formData = new FormData();
-    Object.keys(value).forEach((key) => formData.append(key, value[key]));
-    return undefined;
+  const finalSubmit = async (values: BookingFormValues) => {
+    const data = {
+      booking: {
+        carpark: values.carpark!.pk,
+        date: format(values.date, 'yyyy-MM-dd'),
+        name: `${values.firstName} ${values.lastName}`,
+        email: values.email,
+        rego: values.rego,
+        company: values.company,
+        phone: values.phone,
+      },
+      bays: createListItems(values.booking).map((b) => ({
+        bay: b[0]?.bayId,
+        start_time: b[0]?.time,
+        end_time: b[1]?.time || b[0]?.time,
+      })),
+    };
+
+    try {
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken')!,
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        return true;
+      }
+    } catch (e) {
+      return false;
+      // handle error error
+    }
+    return false;
   };
 
-  const handleSubmit = (value: BookingFormValues, formikHelpers: FormikHelpers<BookingFormValues>) => {
+  const handleSubmit = async (value: BookingFormValues, formikHelpers: FormikHelpers<BookingFormValues>) => {
     formikHelpers.setSubmitting(false);
     if (step === Steps.length - 1) {
-      finalSubmit(value);
-      setShowConfirmation(true);
+      if (await finalSubmit(value)) {
+        setShowConfirmation(true);
+      } else {
+        setError(true);
+      }
     } else {
       next();
     }

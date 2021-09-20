@@ -887,91 +887,91 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="false"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
@@ -1005,7 +1005,7 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                 class="left"
               >
                 <p>
-                  30233
+                  12812
                 </p>
               </div>
               <div
@@ -1196,7 +1196,7 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                 class="left"
               >
                 <p>
-                  18626
+                  9233
                 </p>
               </div>
               <div

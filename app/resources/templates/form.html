@@ -36,17 +36,17 @@
         {% if field.type == 'text' %}
           <div class="admin-form-field">
             <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
-            <input type="text" id="{{field.name}}" name="{{field.name}}" value="{{data|key:field.name}}" required/>
+            <input type="text" id="{{field.name}}" name="{{field.name}}" value="{{data|key:field.name}}" required {% if static %}disabled{% endif %}/>
           </div>
         {% elif field.type == 'textarea' %}
           <div class="admin-form-field">
             <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
-            <textarea class="h4-thin" id="{{field.name}}" name="{{field.name}}" required>{{data|key:field.name}}</textarea>
+            <textarea class="h4-thin" id="{{field.name}}" name="{{field.name}}" required {% if static %}disabled{% endif %}>{{data|key:field.name}}</textarea>
           </div>
         {% elif field.type == 'password' %}
           <div class="admin-form-field">
             <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
-            <input type="password" id="{{field.name}}" name="{{field.name}}" required/>
+            <input type="password" id="{{field.name}}" name="{{field.name}}" required {% if static %}disabled{% endif %}/>
           </div>
         {% elif field.type == 'checkbox' %}
           {% if data.id is None or data.id != current_user_id %}
@@ -61,7 +61,7 @@
         {% else %}
           <div class="admin-form-field">
             <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
-            <input type="{{field.type}}" id="{{field.name}}" name="{{field.name}}" value="{{data|key:field.name}}" required/>
+            <input type="{{field.type}}" id="{{field.name}}" name="{{field.name}}" value="{{data|key:field.name}}" required {% if static %}disabled{% endif %}/>
           </div>
         {% endif %}
       {% endfor %}

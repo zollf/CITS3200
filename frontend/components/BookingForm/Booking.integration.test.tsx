@@ -6,6 +6,7 @@ import BookingForm from './';
 import faker from 'faker';
 import { carparks } from '@/frontend/tests/mocks/carpark';
 import { bays } from '@/frontend/tests/mocks/bays';
+import { baysBooked } from '@/frontend/tests/mocks/baysBooked';
 
 faker.seed(1);
 
@@ -16,6 +17,7 @@ beforeEach(() => {
 const renderToStep2 = async () => {
   fetchMock.mockResponseOnce(JSON.stringify(carparks));
   fetchMock.mockResponseOnce(JSON.stringify(bays));
+  fetchMock.mockResponseOnce(JSON.stringify({ success: true, bays: baysBooked }));
 
   const component = render(<BookingForm />);
   await waitFor(() => expect(component.getAllByTestId('carpark-card').length).toBeGreaterThan(0));
@@ -60,6 +62,7 @@ describe('Booking Form Step 1', () => {
   it('resets bay on different carpark selection', async () => {
     fetchMock.mockResponseOnce(JSON.stringify(carparks));
     fetchMock.mockResponseOnce(JSON.stringify(bays));
+    fetchMock.mockResponseOnce(JSON.stringify({ success: true, bays: baysBooked }));
 
     const { getByText, getAllByTestId } = render(<BookingForm />);
     await waitFor(() => expect(getAllByTestId('carpark-card').length).toBeGreaterThan(0));
@@ -75,6 +78,8 @@ describe('Booking Form Step 1', () => {
     await waitFor(() => expect(getAllByTestId('carpark-card').length).toBeGreaterThan(0));
 
     fetchMock.mockResponseOnce(JSON.stringify(bays));
+    fetchMock.mockResponseOnce(JSON.stringify({ success: true, bays: baysBooked }));
+
     UserEvent.click(getAllByTestId('carpark-card')[1]);
 
     await waitFor(() => expect(getByText(/Select bay for/)).toBeInTheDocument());
@@ -84,6 +89,7 @@ describe('Booking Form Step 1', () => {
   it('completes step 1 correctly', async () => {
     fetchMock.mockResponseOnce(JSON.stringify(carparks));
     fetchMock.mockResponseOnce(JSON.stringify(bays));
+    fetchMock.mockResponseOnce(JSON.stringify({ success: true, bays: baysBooked }));
     const { getByText, getAllByTestId } = render(<BookingForm />);
     await waitFor(() => expect(getAllByTestId('carpark-card').length).toBeGreaterThan(0));
     expect(getByText('UniPark VIP Booking')).toBeInTheDocument();
