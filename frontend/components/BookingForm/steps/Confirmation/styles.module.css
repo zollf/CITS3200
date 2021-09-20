@@ -8,3 +8,7 @@
 .outputs > div {
   margin-bottom: 12px;
 }
+
+button {
+  float: right;
+}

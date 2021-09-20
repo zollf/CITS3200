@@ -5,7 +5,7 @@ import CarparkCard from '@/frontend/components/CarparkCard';
 import Field from '@/frontend/components/Field';
 import styles from './styles.module.css';
 import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
-import Checkbox from '@/app/resources/static/images/check-box.svg';
+import Arrow from '@/app/resources/static/images/arrow.svg';
 
 const Confirmation = () => {
   const { values } = useFormikContext<BookingFormValues>();
@@ -26,8 +26,8 @@ const Confirmation = () => {
       </div>
       <CustomButton
         type={ButtonType.button}
-        iconLeft={true}
-        icon={<Checkbox />}
+        iconLeft={false}
+        icon={<Arrow />}
         onClick={() => (window.location.href = '/')}
       >
         Return
