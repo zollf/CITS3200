@@ -1,4 +1,6 @@
 # CITS3200 Project
+UniPark booking system for CITS3200 project.
+
 https://unipark.herokuapp.com/
 
 ## Pre-Setup
@@ -64,9 +66,6 @@ docker-compose up
 ```
 
 Open http://localhost:8000
-
-You'll still need to run Webpack separately. This is done for simplicity sakes rather making it into another container and then running a dev server to feed static files through a port. Instead we just bundle and import as CDN.
-
 ---
 ## Running Up Without Docker
 In short you'll need to run 2-3 services/applications concurrently.
