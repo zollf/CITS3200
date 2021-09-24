@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
   <script src="{% static '/scripts/delete.js' %}"></script>
 {% endblock %}
-{% block title %} Bookings {% endblock %}
+{% block title %} UniPark | Bookings {% endblock %}
 
 {% block admin_content %}
   {% create_table "bookings" bookings "date|email" no_add="true" %}
