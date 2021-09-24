@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_form.css' %}">
   <script src="{% static '/scripts/delete.js' %}"></script>
 {% endblock %}
+{% block title %} UniPark | Add Bay {% endblock %}
 
 {% block admin_content %}
   {% create_form 'bay' bay form back=back_url redirect=back_url %}

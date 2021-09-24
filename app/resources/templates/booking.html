@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_form.css' %}">
   <script src="{% static '/scripts/delete.js' %}"></script>
 {% endblock %}
+{% block title %} UniPark | View Booking {% endblock %}
 
 {% block admin_content %}
   {% create_form 'bookings' booking 'carpark:text|date:text|name:text|email:email|rego:text|company:text|phone:text' static="true" %}
