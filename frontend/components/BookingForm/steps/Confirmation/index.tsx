@@ -1,11 +1,12 @@
 import React from 'react';
-import { useFormikContext } from 'formik';
-import BayBookings from '../Details/BayBookings';
+import Arrow from '@/app/resources/static/images/arrow.svg';
 import CarparkCard from '@/frontend/components/CarparkCard';
 import Field from '@/frontend/components/Field';
-import styles from './styles.module.css';
 import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
-import Arrow from '@/app/resources/static/images/arrow.svg';
+import { useFormikContext } from 'formik';
+
+import BayBookings from '../Details/BayBookings';
+import styles from './styles.module.css';
 
 const Confirmation = () => {
   const { values } = useFormikContext<BookingFormValues>();

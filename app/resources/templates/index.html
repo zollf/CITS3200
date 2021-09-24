@@ -3,8 +3,8 @@
 {% block head_content %}
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static '/styles/home.css' %}">
-  <script src="{% static '/scripts/home.js' %}"></script>
   <script defer src="{% static '/dist/home.bundle.js' %}"></script>
+  {% comment %} <script defer src="http://localhost:3000/home.bundle.js"></script> {% endcomment %}
 {% endblock %}
 {% block title %} UniPark Booking {% endblock %}
 

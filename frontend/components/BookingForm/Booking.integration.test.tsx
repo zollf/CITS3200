@@ -1,12 +1,12 @@
 import React from 'react';
-import { waitFor, render, fireEvent } from '@testing-library/react';
 import UserEvent from '@testing-library/user-event';
-
-import BookingForm from './';
 import faker from 'faker';
-import { carparks } from '@/frontend/tests/mocks/carpark';
 import { bays } from '@/frontend/tests/mocks/bays';
 import { baysBooked } from '@/frontend/tests/mocks/baysBooked';
+import { carparks } from '@/frontend/tests/mocks/carpark';
+import { fireEvent, render, waitFor } from '@testing-library/react';
+
+import BookingForm from './';
 
 faker.seed(1);
 

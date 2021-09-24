@@ -1,14 +1,14 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 import * as Yup from 'yup';
 import Arrow from '@/app/resources/static/images/arrow.svg';
-import Reset from '@/app/resources/static/images/reset.svg';
-import { format } from 'date-fns';
-import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
 import DatePicker from '@/frontend/components/DatePicker';
+import Reset from '@/app/resources/static/images/reset.svg';
+import getCookie from '@/frontend/lib/GetCookie';
+import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
+import { format } from 'date-fns';
 import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
 import { useFormikContext } from 'formik';
-import getCookie from '@/frontend/lib/GetCookie';
 
 import styles from './styles.module.css';
 

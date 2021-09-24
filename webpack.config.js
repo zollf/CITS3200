@@ -56,6 +56,7 @@ const svg = {
 };
 
 module.exports = {
+  mode: 'development',
   entry: {
     ...files,
     styles: glob.sync('./frontend/**/*.css'),
@@ -75,5 +76,15 @@ module.exports = {
   },
   optimization: {
     minimize: true,
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, './resources/static/dist'),
+    },
+    compress: true,
+    port: 3000,
+  },
+  watchOptions: {
+    poll: 500,
   },
 };
