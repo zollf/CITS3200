@@ -13,7 +13,7 @@ import styles from './styles.module.css';
 import Steps, { Confirmation } from './steps';
 
 import ReactModal from 'react-modal';
-import documentation from '@/app/resources/static/documentation/docs.js';
+import documentation from '@/app/resources/static/documentation/docs';
 
 // istanbul ignore next
 const BookingContext = React.createContext<BookingContext>({
