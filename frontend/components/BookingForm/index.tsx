@@ -13,6 +13,7 @@ import styles from './styles.module.css';
 import Steps, { Confirmation } from './steps';
 
 import ReactModal from 'react-modal';
+import documentation from '@/app/resources/static/documentation/docs.js';
 
 // istanbul ignore next
 const BookingContext = React.createContext<BookingContext>({
@@ -97,9 +98,26 @@ const BookingForm = () => {
               [styles.submitting]: isSubmitting,
             })}
           >
+            {!showConfirmation && (
+              <div className={styles.helpButton}>
+                <CustomButton
+                  type={ButtonType.button}
+                  icon={<Help />}
+                  iconLeft={false}
+                  onClick={() => setShowHelp(true)}
+                >
+                  Need Help
+                </CustomButton>
+              </div>
+            )}
             {step > 0 && !showConfirmation && (
               <div className={styles.backButton}>
-                <CustomButton type={ButtonType.button} iconLeft icon={<Arrow data-rotate />} onClick={() => back()}>
+                <CustomButton
+                  type={ButtonType.button}
+                  iconLeft={true}
+                  icon={<Arrow data-rotate />}
+                  onClick={() => back()}
+                >
                   Back
                 </CustomButton>
               </div>
@@ -108,9 +126,6 @@ const BookingForm = () => {
           </form>
         )}
       </Formik>
-      <CustomButton type={ButtonType.button} icon={<Help />} iconLeft={false} onClick={() => setShowHelp(true)}>
-        Need Help
-      </CustomButton>
 
       <ReactModal
         isOpen={showHelp}
@@ -119,10 +134,12 @@ const BookingForm = () => {
         shouldCloseOnOverlayClick={true}
         className={styles.modal}
       >
-        Hello
-        <CustomButton onClick={() => setShowHelp(false)} type={ButtonType.button} icon={undefined}>
-          Close
-        </CustomButton>
+        {documentation[step]}
+        <div className={styles.closeButton}>
+          <CustomButton onClick={() => setShowHelp(false)} type={ButtonType.button} icon={undefined}>
+            Close
+          </CustomButton>
+        </div>
       </ReactModal>
     </BookingContext.Provider>
   );

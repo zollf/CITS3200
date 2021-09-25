@@ -12,6 +12,17 @@ svg[data-rotate="true"] {
   left: 24px;
 }
 
+.helpButton {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.closeButton {
+  position: absolute;
+  bottom: 20px;
+}
+
 .bookingForm {
   position: relative;
   height: 100%;
@@ -26,13 +37,15 @@ svg[data-rotate="true"] {
 
 .modal {
   position: absolute;
-  inset: 300px;
+  margin: auto;
+  inset: 600px;
+  width: 500px;
+  height: 200px;
   border: 1px solid #ccc;
   background: #fff;
   overflow: auto;
-  /*-webkit-overflow-scrolling: 'touch';*/
+  border-color: var(--uwa-blue);
   border-radius: 4px;
   outline: none;
   padding: 20px;
-  opacity: 90%;
 }
