@@ -23,3 +23,16 @@ svg[data-rotate="true"] {
   justify-content: center;
   align-items: center;
 }
+
+.modal {
+  position: absolute;
+  inset: 300px;
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  /*-webkit-overflow-scrolling: 'touch';*/
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  opacity: 90%;
+}

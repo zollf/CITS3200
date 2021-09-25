@@ -1,15 +1,18 @@
 import React, { useMemo, useState } from 'react';
 import cc from 'classcat';
 import Arrow from '@/app/resources/static/images/arrow.svg';
+import Help from '@/app/resources/static/images/help.svg';
+import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
+import { format } from 'date-fns';
+import { Formik, FormikHelpers } from 'formik';
 import createListItems from '@/frontend/lib/ProcessBayMap';
 import getCookie from '@/frontend/lib/GetCookie';
-import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
-import { Formik, FormikHelpers } from 'formik';
-import { format } from 'date-fns';
 
 import InitialValues from './InitialValues';
 import styles from './styles.module.css';
 import Steps, { Confirmation } from './steps';
+
+import ReactModal from 'react-modal';
 
 // istanbul ignore next
 const BookingContext = React.createContext<BookingContext>({
@@ -22,6 +25,7 @@ const BookingForm = () => {
   const [step, setStep] = useState(0);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [, setError] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const ActivePage = useMemo(() => Steps[step], [step]);
   const next = () => setStep(Math.min(step + 1, Steps.length - 1));
@@ -104,6 +108,22 @@ const BookingForm = () => {
           </form>
         )}
       </Formik>
+      <CustomButton type={ButtonType.button} icon={<Help />} iconLeft={false} onClick={() => setShowHelp(true)}>
+        Need Help
+      </CustomButton>
+
+      <ReactModal
+        isOpen={showHelp}
+        shouldCloseOnEsc={true}
+        onRequestClose={() => setShowHelp(false)}
+        shouldCloseOnOverlayClick={true}
+        className={styles.modal}
+      >
+        Hello
+        <CustomButton onClick={() => setShowHelp(false)} type={ButtonType.button} icon={undefined}>
+          Close
+        </CustomButton>
+      </ReactModal>
     </BookingContext.Provider>
   );
 };
