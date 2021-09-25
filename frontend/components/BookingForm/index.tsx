@@ -1,15 +1,19 @@
 import React, { useMemo, useState } from 'react';
 import cc from 'classcat';
 import Arrow from '@/app/resources/static/images/arrow.svg';
+import Help from '@/app/resources/static/images/help.svg';
+import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
+import { format } from 'date-fns';
+import { Formik, FormikHelpers } from 'formik';
 import createListItems from '@/frontend/lib/ProcessBayMap';
 import getCookie from '@/frontend/lib/GetCookie';
-import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
-import { Formik, FormikHelpers } from 'formik';
-import { format } from 'date-fns';
 
 import InitialValues from './InitialValues';
 import styles from './styles.module.css';
 import Steps, { Confirmation } from './steps';
+
+import ReactModal from 'react-modal';
+import documentation from '@/frontend/lib/documentation';
 
 // istanbul ignore next
 const BookingContext = React.createContext<BookingContext>({
@@ -22,6 +26,7 @@ const BookingForm = () => {
   const [step, setStep] = useState(0);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [, setError] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const ActivePage = useMemo(() => Steps[step], [step]);
   const next = () => setStep(Math.min(step + 1, Steps.length - 1));
@@ -93,9 +98,26 @@ const BookingForm = () => {
               [styles.submitting]: isSubmitting,
             })}
           >
+            {!showConfirmation && (
+              <div className={styles.helpButton}>
+                <CustomButton
+                  type={ButtonType.button}
+                  icon={<Help />}
+                  iconLeft={false}
+                  onClick={() => setShowHelp(true)}
+                >
+                  Need Help
+                </CustomButton>
+              </div>
+            )}
             {step > 0 && !showConfirmation && (
               <div className={styles.backButton}>
-                <CustomButton type={ButtonType.button} iconLeft icon={<Arrow data-rotate />} onClick={() => back()}>
+                <CustomButton
+                  type={ButtonType.button}
+                  iconLeft={true}
+                  icon={<Arrow data-rotate />}
+                  onClick={() => back()}
+                >
                   Back
                 </CustomButton>
               </div>
@@ -104,6 +126,21 @@ const BookingForm = () => {
           </form>
         )}
       </Formik>
+
+      <ReactModal
+        isOpen={showHelp}
+        shouldCloseOnEsc={true}
+        onRequestClose={() => setShowHelp(false)}
+        shouldCloseOnOverlayClick={true}
+        className={styles.modal}
+      >
+        {documentation[step]}
+        <div className={styles.closeButton}>
+          <CustomButton onClick={() => setShowHelp(false)} type={ButtonType.button} icon={undefined}>
+            Close
+          </CustomButton>
+        </div>
+      </ReactModal>
     </BookingContext.Provider>
   );
 };
