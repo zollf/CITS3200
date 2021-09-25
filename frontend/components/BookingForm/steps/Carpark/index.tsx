@@ -9,6 +9,7 @@ import { BookingContext } from '../../';
 
 const Carpark: StepComponent = () => {
   const [carparks, setCarparks] = useState<Carpark[]>();
+  const [phoneNumber, setPhoneNumber] = useState('12345678');
   const [loading, setLoading] = useState(true);
   const { next } = useContext<BookingContext>(BookingContext);
   const { setFieldValue, values } = useFormikContext<BookingFormValues>();
@@ -20,6 +21,12 @@ const Carpark: StepComponent = () => {
         setLoading(false);
       }),
     );
+
+    fetch('/admin/settings_list').then((r) => {
+      r.json().then((data) => {
+        setPhoneNumber(data['phone']);
+      });
+    });
   });
 
   const handleClick = (carpark: Carpark) => {
@@ -39,7 +46,7 @@ const Carpark: StepComponent = () => {
       <h2>UniPark VIP Booking</h2>
       <h3>Please pick a car park</h3>
       <p>
-        Any additional enquiries, call <a href="">04 1234 5678</a>
+        Any additional enquiries, call <a href="">{phoneNumber}</a>
       </p>
       <div className={styles.cards} data-testid="carpark-cards">
         {carparks.map((c) => (

@@ -202,9 +202,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
           Any additional enquiries, call 
           <a
             href=""
-          >
-            04 1234 5678
-          </a>
+          />
         </p>
         <div
           class="cards"

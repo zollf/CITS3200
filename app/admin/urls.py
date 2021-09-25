@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import AdminPasswordChangeForm
 from .views import SettingsView, \
+    settings_list, \
     AdminView, \
     CarparksView, \
     CarparkAdd, \
@@ -20,6 +21,7 @@ admin_urls = [
     path('staff_required/', StaffRequiredView, name="staff_required"),
 
     path('settings/', SettingsView, name='settings'),
+    path('settings_list/', settings_list, name='settings_list'),
 
     path('users/', UsersView, name='users'),
     path('users/add', UsersAdd, name='user_add'),

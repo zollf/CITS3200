@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Settings
+from rest_framework.response import Response
 from app.parking.models import CarPark, CarBay, Bookings, BaysBooked
 from app.authentication.models import User
 
@@ -43,6 +44,12 @@ def SettingsView(request):
         return redirect('/admin/settings')
     elif (request.method == 'GET'):
         return render(request, 'settings.html', {'settings': Settings.objects.all()})
+
+@login_required(login_url="/login")
+@csrf_protect
+@api_view(['GET'])
+def settings_list(request):
+    return Response(Settings.getDict())
 
 @common_decorators(['GET'])
 def CarparksView(request):
