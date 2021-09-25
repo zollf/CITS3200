@@ -1,7 +1,16 @@
 import Times from './Times';
 
-const GlobalStartTime = '08:00';
-const GlobalEndTime = '20:00';
+let GlobalStartTime: string, GlobalEndTime: string;
+
+const getGlobalTimes = async () => {
+  const response = await fetch('admin/settings_list');
+  const json = await response.json();
+  GlobalStartTime = json['start_date'];
+  GlobalEndTime = json['end_date'];
+};
+
+getGlobalTimes();
+
 const AVAILABLE = 0;
 const SELECTED = 1;
 const UNAVAILABLE = 2;
@@ -13,16 +22,20 @@ const getInitialState = (bayResponse: BayResponse[], bookedBaysResponse: BaysBoo
   let foundStart = false;
   let translation = 0;
   for (let i = 0; i < Times.length; i++) {
+    console.log(GlobalStartTime);
     if (Times[i] == GlobalStartTime) {
       translation = i;
       foundStart = true;
     }
-    if (foundStart) times.push(Times[i]);
-    if (Times[i] == GlobalEndTime) break;
+    if (foundStart) {
+      times.push(Times[i]);
+      // need foundStart to be true if for example 12:00 A.M. is the end time
+      if (Times[i] == GlobalEndTime) break;
+    }
   }
 
   const ppBaysBooked = ProcessBaysBooked(bookedBaysResponse.bays, times);
-
+  console.log(times.length);
   const bays: Bay[] = bayResponse.map((b, i) => ({
     bayId: b.pk,
     bayNum: parseInt(b.bay_number),
