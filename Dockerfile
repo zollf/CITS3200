@@ -1,11 +1,11 @@
-FROM python:3.9-alpine
+FROM python:3.9-slim
 
 WORKDIR /usr/src/app
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN apk add --no-cache mariadb-dev build-base
+RUN apt-get update && apt-get install -y default-libmysqlclient-dev gcc
 RUN pip install --upgrade pip 
 COPY ./requirements.txt /usr/src/app
 RUN pip install -r requirements.txt
