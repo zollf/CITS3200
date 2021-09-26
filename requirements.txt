@@ -9,3 +9,4 @@ pycodestyle # Used for checking lint
 autopep8 # Used for fixing lint
 django-components # creates reusable template components in Django
 assertpy # better asserts
+xhtml2pdf # html to pdf
