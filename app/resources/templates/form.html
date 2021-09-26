@@ -17,7 +17,10 @@
         <a class="admin-btn blue p-bold" href="{% if back %}{{back}}{% else %}/admin/{{title}}{% endif %}">Back</a>
         <button type="submit" class="admin-btn green p-bold">Save</button>
         {% if title == "users" and data.id is not None and data.id == current_user_id %}
-          <a href="password_change" class="admin-btn blue p-bold auto">Change Password </a>
+          <a href="password_change" class="admin-btn blue p-bold auto">Change Password</a>
+        {% endif %}
+        {% if title == "bookings" %}
+          <a href="/admin/bookings/download/{{data.id}}" target="_blank" rel="noopener noreferrer" class="admin-btn blue p-bold auto">Download PDF</a>
         {% endif %}
         {% if data.name %}
           <button 
