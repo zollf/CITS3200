@@ -13,7 +13,7 @@ import styles from './styles.module.css';
 import Steps, { Confirmation } from './steps';
 
 import ReactModal from 'react-modal';
-import documentation from '@/frontend/lib/documentation';
+import { useEffectOnce } from 'react-use';
 
 // istanbul ignore next
 const BookingContext = React.createContext<BookingContext>({
@@ -27,6 +27,18 @@ const BookingForm = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [, setError] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+  const [documentation, setDocumentation] = useState<string[]>([]);
+
+  useEffectOnce(() => {
+    const getSettings = async () => {
+      const response = await fetch('/admin/settings_list');
+      const json = await response.json();
+      for (let i = 0; i < Steps.length; i++) {
+        setDocumentation((documentation) => [...documentation, json[`help${i}`]]);
+      }
+    };
+    getSettings();
+  });
 
   const ActivePage = useMemo(() => Steps[step], [step]);
   const next = () => setStep(Math.min(step + 1, Steps.length - 1));
@@ -81,6 +93,8 @@ const BookingForm = () => {
       next();
     }
   };
+
+  if (documentation.length == 0) return null;
 
   return (
     <BookingContext.Provider value={{ next, back, step }}>

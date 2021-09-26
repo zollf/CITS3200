@@ -46,7 +46,7 @@ const Carpark: StepComponent = () => {
       <h2>UniPark VIP Booking</h2>
       <h3>Please pick a car park</h3>
       <p>
-        Any additional enquiries, call <a href="">{phoneNumber}</a>
+        Any additional enquiries, call <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
       </p>
       <div className={styles.cards} data-testid="carpark-cards">
         {carparks.map((c) => (
