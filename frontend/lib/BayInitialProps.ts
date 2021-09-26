@@ -22,7 +22,6 @@ const getInitialState = (bayResponse: BayResponse[], bookedBaysResponse: BaysBoo
   let foundStart = false;
   let translation = 0;
   for (let i = 0; i < Times.length; i++) {
-    console.log(GlobalStartTime);
     if (Times[i] == GlobalStartTime) {
       translation = i;
       foundStart = true;
@@ -35,7 +34,6 @@ const getInitialState = (bayResponse: BayResponse[], bookedBaysResponse: BaysBoo
   }
 
   const ppBaysBooked = ProcessBaysBooked(bookedBaysResponse.bays, times);
-  console.log(times.length);
   const bays: Bay[] = bayResponse.map((b, i) => ({
     bayId: b.pk,
     bayNum: parseInt(b.bay_number),
