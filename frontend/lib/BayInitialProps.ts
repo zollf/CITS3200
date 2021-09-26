@@ -1,15 +1,7 @@
 import Times from './Times';
 
-let GlobalStartTime: string, GlobalEndTime: string;
-
-const getGlobalTimes = async () => {
-  const response = await fetch('admin/settings_list');
-  const json = await response.json();
-  GlobalStartTime = json['start_date'];
-  GlobalEndTime = json['end_date'];
-};
-
-getGlobalTimes();
+const GlobalStartTime = document.getElementById('globalStartTime')!.dataset.globalStartTime;
+const GlobalEndTime = document.getElementById('globalEndTime')!.dataset.globalEndTime;
 
 const AVAILABLE = 0;
 const SELECTED = 1;
