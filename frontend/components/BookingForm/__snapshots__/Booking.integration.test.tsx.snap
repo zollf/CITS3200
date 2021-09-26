@@ -201,7 +201,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
         <p>
           Any additional enquiries, call 
           <a
-            href=""
+            href="tel:undefined"
           />
         </p>
         <div

@@ -1,7 +1,12 @@
 import Times from './Times';
 
-const GlobalStartTime = document.getElementById('globalStartTime')!.dataset.globalStartTime;
-const GlobalEndTime = document.getElementById('globalEndTime')!.dataset.globalEndTime;
+// default is 00:00 and 24:00
+const GlobalStartTime =
+  (document.getElementById('globalStartTime') && document.getElementById('globalStartTime')!.dataset.globalStartTime) ??
+  '00:00';
+const GlobalEndTime =
+  (document.getElementById('globalEndTime') && document.getElementById('globalEndTime')!.dataset.globalEndTime) ??
+  '24:00';
 
 const AVAILABLE = 0;
 const SELECTED = 1;

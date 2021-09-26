@@ -18,13 +18,13 @@ const Carpark: StepComponent = () => {
     fetch('/api/carparks/').then((r) =>
       r.json().then((r) => {
         setCarparks(r);
-        setLoading(false);
       }),
     );
 
     fetch('/admin/settings_list').then((r) => {
       r.json().then((data) => {
         setPhoneNumber(data['phone']);
+        setLoading(false);
       });
     });
   });
