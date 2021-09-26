@@ -110,6 +110,7 @@ def BookingView(request, pk):
         # bays = BaysBooked.objects.filter(booking__id=pk)
         return render(request, 'booking.html', {'booking': booking})
 
+@login_required(login_url="/admin/login")
 def BookingPDF(request, pk):
     if (request.method == 'GET'):
         booking = Bookings.objects.get(pk=pk)
