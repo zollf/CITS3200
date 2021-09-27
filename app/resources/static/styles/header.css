@@ -18,19 +18,27 @@
 
 .header-left > a {
   text-decoration: none;
-  cursor: pointer;
-}
-
-.header-btns {
-  display: flex;
-  align-items: flex-end;
-  margin-left: 16px;
-  padding-bottom: 4px;
+  cursor: pointer; 
 }
 
 .header-btns > a {
+  display: inline-flex;
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 7px;
+  background-color: var(--uwa-blue);
   text-decoration: none;
-  margin-right: 8px;
+  font-size: 14.5px;
+  color: var(--white) !important;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 4px 0px #0000001A;
+  margin-left: 5px;
+  position: relative;
+  left: 670px;
+  top: 9px;
 }
 
 .header-btns > a:visited {
