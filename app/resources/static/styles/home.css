@@ -27,3 +27,7 @@
   height: 100%;
   width: 100%;
 }
+
+.hidden-settings {
+  display: none;
+}

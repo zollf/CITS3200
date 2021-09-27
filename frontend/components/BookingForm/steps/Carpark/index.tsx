@@ -5,12 +5,12 @@ import { useFormikContext } from 'formik';
 
 import CarparkCard from '../../../CarparkCard';
 import styles from './styles.module.css';
-import { BookingContext } from '../../';
+import { BookingContext } from '@/frontend/components/BookingForm/index';
 
 const Carpark: StepComponent = () => {
   const [carparks, setCarparks] = useState<Carpark[]>();
   const [loading, setLoading] = useState(true);
-  const { next } = useContext<BookingContext>(BookingContext);
+  const { next, phone } = useContext<BookingContext>(BookingContext);
   const { setFieldValue, values } = useFormikContext<BookingFormValues>();
 
   useEffectOnce(() => {
@@ -39,7 +39,7 @@ const Carpark: StepComponent = () => {
       <h2>UniPark VIP Booking</h2>
       <h3>Please pick a car park</h3>
       <p>
-        Any additional enquiries, call <a href="">04 1234 5678</a>
+        Any additional enquiries, call <a href={`tel:${phone}`}>{phone}</a>
       </p>
       <div className={styles.cards} data-testid="carpark-cards">
         {carparks.map((c) => (
