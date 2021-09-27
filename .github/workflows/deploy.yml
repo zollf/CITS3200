@@ -73,8 +73,11 @@ jobs:
         run: yarn install
       - name: Minify React
         run: yarn build
-      - name: Apt Updates
-        run: apt-get update && apt-get install -y default-libmysqlclient-dev gcc
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
       - name: Pip Install
         run: pip install -r requirements.txt
       - name: Migrate
