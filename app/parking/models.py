@@ -1,4 +1,5 @@
 from django.db import models
+from app.authentication.models import User
 
 class CarPark(models.Model):
     name = models.CharField(max_length=50)
@@ -7,7 +8,6 @@ class CarPark(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class CarBay(models.Model):
     carpark = models.ForeignKey(
@@ -24,11 +24,16 @@ class Bookings(models.Model):
         related_name='booking_carpark',
         on_delete=models.CASCADE,
     )
+    user = models.ForeignKey(
+        User,
+        related_name='booking_user',
+        on_delete=models.CASCADE,
+    )
     date = models.DateField()
     name = models.CharField(max_length=50)
     email = models.EmailField(blank=False)
-    rego = models.CharField(max_length=20)
-    company = models.CharField(max_length=50)
+    rego = models.CharField(max_length=20, blank=True)
+    company = models.CharField(max_length=50, blank=True)
     phone = models.CharField(max_length=10)
 
 class BaysBooked(models.Model):

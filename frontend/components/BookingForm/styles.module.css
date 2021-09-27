@@ -38,14 +38,14 @@ svg[data-rotate="true"] {
 .modal {
   position: absolute;
   margin: auto;
-  inset: 600px;
+  left: calc(50% - 250px);
+  top: calc(50% - 100px);
   width: 500px;
   height: 200px;
-  border: 1px solid #ccc;
+  border: 3px solid var(--uwa-blue);
   background: #fff;
   overflow: auto;
-  border-color: var(--uwa-blue);
-  border-radius: 4px;
+  border-radius: 7px;
   outline: none;
   padding: 20px;
 }

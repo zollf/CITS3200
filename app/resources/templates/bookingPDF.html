@@ -9,14 +9,10 @@
       @page {
         size: A4;
         margin: 1cm;
+      }
 
-        @frame background {
-          -pdf-frame-content: 'background_content';
-          right: 400px;
-          width: 1001px;
-          height: 1338px;
-          bottom: 900px;
-        }
+      h2 {
+        margin: 0;
       }
 
       * {
@@ -26,10 +22,25 @@
   </head>
   <body>
     <div class="container">
-      <h1>Booking: {{booking.name}}</h1>
-      <div id="background_content">
-        {% comment %} <img src="{{url}}/static/images/swan.png" > {% endcomment %}
-      </div>
+      <h1>UniPark Booking</h1>
+
+      <h1>Booking Information</h1>
+      <h2>Booking For: {{booking.name}}</h2>
+      <h2>Booking Date: {{booking.date}}</h2>
+      <h2>Booking Date: {{booking.email}}</h2>
+      <h2>Booking Rego: {{booking.rego}}</h2>
+      <h2>Booking Company: {{booking.company}}</h2>
+      <h2>Booking Phone: {{booking.phone}}</h2>
+
+      <h1>Carpark Information</h1>
+      <h2>Carpark Name: {{booking.carpark.name}}</h2>
+      <h2>Carpark Description: {{booking.carpark.description}}</h2>
+      <h2>Carpark Maps Link: {{booking.carpark.google_maps_link}}</h2>
+
+      <h1>Bays Booked Information</h1>
+      {% for bayBooked in bays %}
+        <h2>Bay {{bayBooked.bay.bay_number}} | From {{bayBooked.start_time}} to {{bayBooked.end_time}}</h2>
+      {% endfor %}
     </div>
   </body>
 </html>
