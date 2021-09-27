@@ -5,7 +5,7 @@ import { useFormikContext } from 'formik';
 
 import CarparkCard from '../../../CarparkCard';
 import styles from './styles.module.css';
-import { BookingContext } from '../../';
+import { BookingContext } from '@/frontend/components/BookingForm/index';
 
 const Carpark: StepComponent = () => {
   const [carparks, setCarparks] = useState<Carpark[]>();

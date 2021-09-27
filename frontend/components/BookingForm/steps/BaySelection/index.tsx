@@ -11,7 +11,7 @@ import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
 import { useFormikContext } from 'formik';
 
 import styles from './styles.module.css';
-import { BookingContext } from '../../';
+import { BookingContext } from '@/frontend/components/BookingForm/index';
 
 const BaySelection: StepComponent = () => {
   const { values, setFieldValue } = useFormikContext<BookingFormValues>();
