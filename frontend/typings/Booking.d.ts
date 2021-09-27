@@ -7,7 +7,11 @@ interface BookingContext {
   next: () => void;
   back: () => void;
   step: number;
+  globalStartTime: string;
+  globalEndTime: string;
+  phone: string;
 }
+
 type Selected = 1;
 type Unavailable = 2;
 type Available = 3;

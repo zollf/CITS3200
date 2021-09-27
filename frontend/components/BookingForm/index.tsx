@@ -15,14 +15,23 @@ import Steps, { Confirmation } from './steps';
 import ReactModal from 'react-modal';
 import { useEffectOnce } from 'react-use';
 
+interface Props {
+  globalStartTime: string;
+  globalEndTime: string;
+  phone: string;
+}
+
 // istanbul ignore next
 const BookingContext = React.createContext<BookingContext>({
   next: () => undefined,
   back: () => undefined,
   step: 0,
+  globalStartTime: '00:00',
+  globalEndTime: '00:00',
+  phone: '04 1234 5678',
 });
 
-const BookingForm = () => {
+const BookingForm = ({ globalStartTime, globalEndTime, phone }: Props) => {
   const [step, setStep] = useState(0);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [, setError] = useState(false);
@@ -33,9 +42,7 @@ const BookingForm = () => {
     const getSettings = async () => {
       const response = await fetch('/admin/settings_list');
       const json = await response.json();
-      for (let i = 0; i < Steps.length; i++) {
-        setDocumentation((documentation) => [...documentation, json[`help${i}`]]);
-      }
+      setDocumentation([...new Array(Steps.length)].map((_, i) => json[`help${i}`]));
     };
     getSettings();
   });
@@ -97,7 +104,7 @@ const BookingForm = () => {
   if (documentation.length == 0) return null;
 
   return (
-    <BookingContext.Provider value={{ next, back, step }}>
+    <BookingContext.Provider value={{ next, back, step, globalStartTime, globalEndTime, phone }}>
       <Formik<BookingFormValues>
         initialValues={InitialValues}
         validationSchema={ActivePage.validationSchema}

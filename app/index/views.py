@@ -4,5 +4,4 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def IndexView(request):
-    print(Settings.getDict())
     return render(request, "index.html", context=Settings.getDict())

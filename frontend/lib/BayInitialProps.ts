@@ -1,32 +1,29 @@
 import Times from './Times';
 
-// default is 00:00 and 24:00
-const GlobalStartTime =
-  (document.getElementById('globalStartTime') && document.getElementById('globalStartTime')!.dataset.globalStartTime) ??
-  '00:00';
-const GlobalEndTime =
-  (document.getElementById('globalEndTime') && document.getElementById('globalEndTime')!.dataset.globalEndTime) ??
-  '24:00';
-
 const AVAILABLE = 0;
 const SELECTED = 1;
 const UNAVAILABLE = 2;
 
 const selection = { AVAILABLE, SELECTED, UNAVAILABLE };
 
-const getInitialState = (bayResponse: BayResponse[], bookedBaysResponse: BaysBookedResponse): BaysInitialProps => {
+const getInitialState = (
+  bayResponse: BayResponse[],
+  bookedBaysResponse: BaysBookedResponse,
+  globalStartTime: string,
+  globalEndTime: string,
+): BaysInitialProps => {
   const times: string[] = [];
   let foundStart = false;
   let translation = 0;
   for (let i = 0; i < Times.length; i++) {
-    if (Times[i] == GlobalStartTime) {
+    if (Times[i] == globalStartTime) {
       translation = i;
       foundStart = true;
     }
     if (foundStart) {
       times.push(Times[i]);
       // need foundStart to be true if for example 12:00 A.M. is the end time
-      if (Times[i] == GlobalEndTime) break;
+      if (Times[i] == globalEndTime) break;
     }
   }
 

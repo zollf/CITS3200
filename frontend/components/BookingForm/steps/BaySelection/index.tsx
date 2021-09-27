@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 import * as Yup from 'yup';
 import Arrow from '@/app/resources/static/images/arrow.svg';
@@ -11,9 +11,11 @@ import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
 import { useFormikContext } from 'formik';
 
 import styles from './styles.module.css';
+import { BookingContext } from '../../';
 
 const BaySelection: StepComponent = () => {
   const { values, setFieldValue } = useFormikContext<BookingFormValues>();
+  const { globalStartTime, globalEndTime } = useContext<BookingContext>(BookingContext);
   const [props, setProps] = useState<BaysInitialProps>();
 
   const getBays = useCallback(async () => {
@@ -39,7 +41,14 @@ const BaySelection: StepComponent = () => {
 
   useEffectOnce(() => {
     (async () => {
-      setProps(getInitialState(await getBays(), await getBaysBooked(format(values.date, 'yyyy-MM-dd'))));
+      setProps(
+        getInitialState(
+          await getBays(),
+          await getBaysBooked(format(values.date, 'yyyy-MM-dd')),
+          globalStartTime,
+          globalEndTime,
+        ),
+      );
     })();
   });
 
@@ -79,7 +88,14 @@ const BaySelection: StepComponent = () => {
     setFieldValue('booking', new Map());
     setFieldValue('date', date);
     (async () => {
-      setProps(getInitialState(await getBays(), await getBaysBooked(format(date, 'yyyy-MM-dd'))));
+      setProps(
+        getInitialState(
+          await getBays(),
+          await getBaysBooked(format(date, 'yyyy-MM-dd')),
+          globalStartTime,
+          globalEndTime,
+        ),
+      );
     })();
   };
 
