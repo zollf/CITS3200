@@ -73,6 +73,8 @@ jobs:
         run: yarn install
       - name: Minify React
         run: yarn build
+      - name: Migrate
+        run: python manage.py migrate
       - name: Heroku Login
         uses: akhileshns/heroku-deploy@v3.12.12 
         with:
