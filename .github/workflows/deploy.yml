@@ -73,6 +73,10 @@ jobs:
         run: yarn install
       - name: Minify React
         run: yarn build
+      - name: Apt Updates
+        run: apt-get update && apt-get install -y default-libmysqlclient-dev gcc
+      - name: Pip Install
+        run: pip install -r requirements.txt
       - name: Migrate
         run: python manage.py migrate
       - name: Heroku Login
