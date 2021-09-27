@@ -12,7 +12,8 @@ from .views import SettingsView, \
     BayAdd, \
     BayEdit, \
     BookingsView, \
-    BookingView
+    BookingView, \
+    BookingPDF
 from django.urls import path, reverse_lazy
 from django.contrib.auth import views as auth_views
 
@@ -37,5 +38,6 @@ admin_urls = [
     path('carparks/<int:pk>/bay/<int:pk2>/view', BayEdit, name="carbay_edit"),
 
     path('bookings/', BookingsView, name='bookings'),
-    path('bookings/view/<int:pk>', BookingView, name='booking')
+    path('bookings/view/<int:pk>', BookingView, name='booking'),
+    path('bookings/download/<int:pk>', BookingPDF, name='booking_pdf')
 ]

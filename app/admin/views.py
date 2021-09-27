@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Settings
@@ -10,20 +11,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
-def composed(*decs):
-    def deco(f):
-        for dec in reversed(decs):
-            f = dec(f)
-        return f
-    return deco
-
-def common_decorators(methods: list):
-    return composed(
-        staff_member_required(login_url="/admin/staff_required"),
-        login_required(login_url="/login"),
-        csrf_protect,
-        api_view(methods)
-    )
+from .utils import common_decorators, renderPDF
 
 @staff_member_required(login_url="/admin/staff_required")
 @login_required(login_url="/login")
@@ -124,6 +112,15 @@ def BookingsView(request):
 @common_decorators(['GET'])
 def BookingView(request, pk):
     if (request.method == 'GET'):
-        booking = Bookings.objects.values('carpark', 'date', 'name', 'email', 'rego', 'company', 'phone').get(pk=pk)
+        booking = Bookings.objects.values('id', 'carpark', 'date', 'name', 'email',
+                                          'rego', 'company', 'phone').get(pk=pk)
         # bays = BaysBooked.objects.filter(booking__id=pk)
         return render(request, 'booking.html', {'booking': booking})
+
+@login_required(login_url="/admin/login")
+def BookingPDF(request, pk):
+    if (request.method == 'GET'):
+        booking = Bookings.objects.get(pk=pk)
+        # Todo fix pdf static url
+        url = settings.LIVE_URL if settings.IS_PROD else 'http://localhost:8000'
+        return renderPDF('bookingPDF.html', {'booking': booking, 'url': url})
