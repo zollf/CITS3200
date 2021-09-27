@@ -81,7 +81,7 @@ def UsersAdd(request):
 def UsersEdit(request, pk):
     if (request.method == 'GET'):
         data = {
-            'user': User.objects.values('id', 'username', 'email', 'phone', 'is_staff').get(pk=pk),
+            'user': User.objects.values('id', 'username', 'email', 'phone', 'is_staff', 'hub').get(pk=pk),
             'current_user_id': request.user.id
         }
         return render(request, 'user.html', data)
@@ -113,9 +113,10 @@ def BookingsView(request):
 def BookingView(request, pk):
     if (request.method == 'GET'):
         booking = Bookings.objects.values('id', 'carpark', 'date', 'name', 'email',
-                                          'rego', 'company', 'phone').get(pk=pk)
-        # bays = BaysBooked.objects.filter(booking__id=pk)
-        return render(request, 'booking.html', {'booking': booking})
+                                          'rego', 'company', 'phone', 'user').get(pk=pk)
+        bays = BaysBooked.objects.filter(booking__id=pk)
+        user = User.objects.values('id', 'username', 'hub', 'email').get(pk=booking['user'])
+        return render(request, 'booking.html', {'booking': booking, 'bays': bays, 'user': user})
 
 @login_required(login_url="/admin/login")
 def BookingPDF(request, pk):
@@ -123,4 +124,5 @@ def BookingPDF(request, pk):
         booking = Bookings.objects.get(pk=pk)
         # Todo fix pdf static url
         url = settings.LIVE_URL if settings.IS_PROD else 'http://localhost:8000'
-        return renderPDF('bookingPDF.html', {'booking': booking, 'url': url})
+        bays = BaysBooked.objects.filter(booking__id=pk)
+        return renderPDF('bookingPDF.html', {'booking': booking, 'url': url, 'bays': bays})

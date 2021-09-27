@@ -6,6 +6,8 @@ const initialProps = {
   globalStartTime: document.getElementById('globalStartTime')?.dataset.globalStartTime || '10:00',
   globalEndTime: document.getElementById('globalEndTime')?.dataset.globalEndTime || '24:00',
   phone: document.getElementById('phone')?.dataset.phone || '04 1234 5678',
+  userId: document.getElementById('user')?.dataset.user || null,
+  hub: document.getElementById('hub')?.dataset.hub || '',
 };
 
 ReactDOM.render(<BookingForm {...initialProps} />, document.getElementById('react-app'));

@@ -10,6 +10,7 @@ interface BookingContext {
   globalStartTime: string;
   globalEndTime: string;
   phone: string;
+  hub: string;
 }
 
 type Selected = 1;
@@ -74,7 +75,6 @@ interface Carpark {
 interface BookingFormValues {
   carpark?: Carpark;
   booking: Map<string, Time>;
-  hub: string;
   date: Date;
   firstName: string;
   lastName: string;

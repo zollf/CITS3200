@@ -1,16 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 import * as Yup from 'yup';
+import { BookingContext } from '@/frontend/components/BookingForm/index';
 import { useFormikContext } from 'formik';
 
 import CarparkCard from '../../../CarparkCard';
 import styles from './styles.module.css';
-import { BookingContext } from '@/frontend/components/BookingForm/index';
 
 const Carpark: StepComponent = () => {
   const [carparks, setCarparks] = useState<Carpark[]>();
   const [loading, setLoading] = useState(true);
-  const { next, phone } = useContext<BookingContext>(BookingContext);
+  const { next, phone, hub } = useContext<BookingContext>(BookingContext);
   const { setFieldValue, values } = useFormikContext<BookingFormValues>();
 
   useEffectOnce(() => {
@@ -37,7 +37,7 @@ const Carpark: StepComponent = () => {
   return (
     <div className={styles.carpark} data-testid="carpark-step" data-loading={loading}>
       <h2>UniPark VIP Booking</h2>
-      <h3>Please pick a car park</h3>
+      <h3>Welcome {hub}. Please pick a car park</h3>
       <p>
         Any additional enquiries, call <a href={`tel:${phone}`}>{phone}</a>
       </p>

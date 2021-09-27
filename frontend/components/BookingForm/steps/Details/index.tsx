@@ -25,7 +25,7 @@ const Details: StepComponent = () => {
             mapURL={values.carpark!.google_maps_link}
             description={values.carpark!.description}
           />
-          <Field label="Date" name="date" type="data" value={values.date.toDateString()} />
+          <Field label="Date" name="date" type="data" value={values.date.toDateString()} disabled />
           <BayBookings bayTimes={values.booking} />
         </div>
         <div className={styles.detailsRight}>

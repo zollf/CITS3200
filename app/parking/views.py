@@ -10,6 +10,7 @@ from rest_framework import status
 from rest_framework.parsers import JSONParser
 
 from .models import CarPark, CarBay
+from app.authentication.models import User
 from .serializers import *
 
 @login_required(login_url="/login")
@@ -161,6 +162,7 @@ def bookings(request):
             "rego": "1234",
             "company": "uni",
             "phone": 1234
+            "user": "1"
           },
           "bays": [
             {
@@ -192,6 +194,17 @@ def bookings(request):
             }, status=status.HTTP_400_BAD_REQUEST)
 
         booking['carpark_id'] = carpark.pk
+
+        # Find user for booking
+        try:
+            user = User.objects.get(pk=booking['user'])
+        except User.DoesNotExist:
+            return JsonResponse({
+                'error': 'No user could be found given the id.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        booking['user_id'] = user.pk
+
         bookingsSerializer = BookingsSerializer(data=request.data['booking'])
 
         if not bookingsSerializer.is_valid():

@@ -19,6 +19,8 @@ interface Props {
   globalStartTime: string;
   globalEndTime: string;
   phone: string;
+  userId: string | null;
+  hub: string;
 }
 
 // istanbul ignore next
@@ -29,9 +31,10 @@ const BookingContext = React.createContext<BookingContext>({
   globalStartTime: '00:00',
   globalEndTime: '00:00',
   phone: '04 1234 5678',
+  hub: '',
 });
 
-const BookingForm = ({ globalStartTime, globalEndTime, phone }: Props) => {
+const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Props) => {
   const [step, setStep] = useState(0);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [, setError] = useState(false);
@@ -61,6 +64,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone }: Props) => {
         rego: values.rego,
         company: values.company,
         phone: values.phone,
+        user: userId,
       },
       bays: createListItems(values.booking).map((b) => ({
         bay: b[0]?.bayId,
@@ -104,7 +108,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone }: Props) => {
   if (documentation.length == 0) return null;
 
   return (
-    <BookingContext.Provider value={{ next, back, step, globalStartTime, globalEndTime, phone }}>
+    <BookingContext.Provider value={{ next, back, step, globalStartTime, globalEndTime, phone, hub }}>
       <Formik<BookingFormValues>
         initialValues={InitialValues}
         validationSchema={ActivePage.validationSchema}

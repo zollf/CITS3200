@@ -19,6 +19,8 @@ const initialProps = {
   globalStartTime: '00:00',
   globalEndTime: '24:00',
   phone: '04 1234 5678',
+  hub: 'uniart',
+  userId: '1',
 };
 
 const renderToStep2 = async () => {
