@@ -9,26 +9,33 @@
     <div class="admin-form-top">
       {% if data.name %}
         <h3>{{title|title}} - {{data.name}}</h3>
+      {% elif data.username %}
+        <h3>{{title|title}} - {{data.username}}</h3>
       {% else %}
         <h3>Create {{title|title}}</h3>
       {% endif %}
 
-      <div class="admin-form-btns">
-        <a class="admin-btn blue p-bold" href="{% if back %}{{back}}{% else %}/admin/{{title}}{% endif %}">Back</a>
-        <button type="submit" class="admin-btn green p-bold">Save</button>
-        {% if title == "users" and data.id is not None and data.id == current_user_id %}
-          <a href="password_change" class="admin-btn blue p-bold auto">Change Password </a>
-        {% endif %}
-        {% if data.name %}
-          <button 
-            type="button" 
-            class="admin-btn red p-bold" 
-            onclick="deleteEntry('/api/{{title}}/{{data.id}}', '{% if redirect %}{{redirect}}{% else %}/admin/{{title}}{% endif %}')"
-          >
-            Delete
-          </button>
-        {% endif %}
-      </div>
+      {% if nobtn != "true" %}
+        <div class="admin-form-btns">
+          <a class="admin-btn blue p-bold" href="{% if back %}{{back}}{% else %}/admin/{{title}}{% endif %}">Back</a>
+          <button type="submit" class="admin-btn green p-bold">Save</button>
+          {% if title == "users" and data.id is not None and data.id == current_user_id %}
+            <a href="password_change" class="admin-btn blue p-bold auto">Change Password</a>
+          {% endif %}
+          {% if title == "bookings" %}
+            <a href="/admin/bookings/download/{{data.id}}" target="_blank" rel="noopener noreferrer" class="admin-btn blue p-bold auto">Download PDF</a>
+          {% endif %}
+          {% if data.name %}
+            <button 
+              type="button" 
+              class="admin-btn red p-bold" 
+              onclick="deleteEntry('/api/{{title}}/{{data.id}}', '{% if redirect %}{{redirect}}{% else %}/admin/{{title}}{% endif %}')"
+            >
+              Delete
+            </button>
+          {% endif %}
+        </div>
+      {% endif %}
     </div>
 
     <div class="admin-form-fields">

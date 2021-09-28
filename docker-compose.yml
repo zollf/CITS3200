@@ -27,6 +27,24 @@ services:
     volumes:
       - ./:/app:cached
     ports:
-      - "8000:8000"
+      - 8000:8000
     depends_on:
       - mysql
+    
+  node:
+    build:
+      context: .
+      dockerfile: docker/node.dev.Dockerfile
+    environment:
+      <<: *app_environment
+    env_file: .env
+    volumes:
+      - ./:/app:cached
+      - node_modules:/app/node_modules:delegated
+      - yarn_config:/usr/local/share/.config
+    ports:
+      - 3000:3000
+
+volumes:
+  node_modules:
+  yarn_config:

@@ -16,10 +16,11 @@ class CarParkSerializer(serializers.ModelSerializer):
 
 class BookingsSerializer(serializers.ModelSerializer):
     carpark_id = serializers.IntegerField(write_only=True)
+    user_id = serializers.IntegerField(write_only=True)
 
     class Meta:
         model = Bookings
-        fields = ('pk', 'carpark', 'carpark_id', 'date', 'name', 'email', 'rego', 'company', 'phone')
+        fields = ('pk', 'carpark', 'carpark_id', 'date', 'name', 'email', 'rego', 'company', 'phone', 'user', 'user_id')
         depth = 1
 
 class BaysBookedSerializer(serializers.ModelSerializer):

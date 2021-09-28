@@ -7,7 +7,8 @@
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_form.css' %}">
   <script src="{% static '/scripts/delete.js' %}"></script>
 {% endblock %}
+{% block title %} UniPark | View User {% endblock %}
 
 {% block admin_content %}
-  {% create_form 'users' user 'username:text|email:email|phone:text|is_staff:checkbox:Staff Member' current_user_id=current_user_id %}
+  {% create_form 'users' user 'username:text|email:email|phone:text|hub:text|is_staff:checkbox:Staff Member' current_user_id=current_user_id %}
 {% endblock %}

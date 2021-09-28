@@ -23,7 +23,7 @@ class CustomUserManager(UserManager):
 
 class User(AbstractUser):
     email = models.EmailField(blank=False)
-    # hub_id = models.IntegerField()
+    hub = models.TextField(null=True)
     phone = models.CharField(max_length=10)
     locked = models.BooleanField(default=False)
     login_count = models.IntegerField(default=0)

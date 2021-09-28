@@ -1,19 +1,21 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 import * as Yup from 'yup';
 import Arrow from '@/app/resources/static/images/arrow.svg';
-import Reset from '@/app/resources/static/images/reset.svg';
-import { format } from 'date-fns';
-import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
 import DatePicker from '@/frontend/components/DatePicker';
+import Reset from '@/app/resources/static/images/reset.svg';
+import getCookie from '@/frontend/lib/GetCookie';
+import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
+import { format } from 'date-fns';
 import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
 import { useFormikContext } from 'formik';
-import getCookie from '@/frontend/lib/GetCookie';
 
 import styles from './styles.module.css';
+import { BookingContext } from '@/frontend/components/BookingForm/index';
 
 const BaySelection: StepComponent = () => {
   const { values, setFieldValue } = useFormikContext<BookingFormValues>();
+  const { globalStartTime, globalEndTime } = useContext<BookingContext>(BookingContext);
   const [props, setProps] = useState<BaysInitialProps>();
 
   const getBays = useCallback(async () => {
@@ -39,7 +41,14 @@ const BaySelection: StepComponent = () => {
 
   useEffectOnce(() => {
     (async () => {
-      setProps(getInitialState(await getBays(), await getBaysBooked(format(values.date, 'yyyy-MM-dd'))));
+      setProps(
+        getInitialState(
+          await getBays(),
+          await getBaysBooked(format(values.date, 'yyyy-MM-dd')),
+          globalStartTime,
+          globalEndTime,
+        ),
+      );
     })();
   });
 
@@ -79,7 +88,14 @@ const BaySelection: StepComponent = () => {
     setFieldValue('booking', new Map());
     setFieldValue('date', date);
     (async () => {
-      setProps(getInitialState(await getBays(), await getBaysBooked(format(date, 'yyyy-MM-dd'))));
+      setProps(
+        getInitialState(
+          await getBays(),
+          await getBaysBooked(format(date, 'yyyy-MM-dd')),
+          globalStartTime,
+          globalEndTime,
+        ),
+      );
     })();
   };
 

@@ -92,6 +92,7 @@ exports[`Booking Form Confirmation matches its snapshot 1`] = `
             </label>
             <input
               data-testid="date"
+              disabled=""
               name="date"
               type="data"
               value="Sun Jan 02 2000"
@@ -116,7 +117,7 @@ exports[`Booking Form Confirmation matches its snapshot 1`] = `
                   41702
                 </td>
                 <td>
-                  08:00-08:30
+                  00:00-00:30
                 </td>
               </tr>
               <tr>
@@ -124,7 +125,7 @@ exports[`Booking Form Confirmation matches its snapshot 1`] = `
                   41702
                 </td>
                 <td>
-                  09:00-09:30
+                  01:00-01:30
                 </td>
               </tr>
             </tbody>
@@ -161,6 +162,30 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
     class="bookingForm"
   >
     <div
+      class="helpButton"
+    >
+      <button
+        class="custombutton"
+        type="button"
+      >
+        Need Help 
+        <svg
+          fill="none"
+          height="24"
+          id="help"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
+            fill="#323232"
+          />
+        </svg>
+         
+      </button>
+    </div>
+    <div
       class="currentStep"
     >
       <div
@@ -172,12 +197,12 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
           UniPark VIP Booking
         </h2>
         <h3>
-          Please pick a car park
+          Welcome uniart. Please pick a car park
         </h3>
         <p>
           Any additional enquiries, call 
           <a
-            href=""
+            href="tel:04 1234 5678"
           >
             04 1234 5678
           </a>
@@ -504,6 +529,30 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
     class="bookingForm"
   >
     <div
+      class="helpButton"
+    >
+      <button
+        class="custombutton"
+        type="button"
+      >
+        Need Help 
+        <svg
+          fill="none"
+          height="24"
+          id="help"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
+            fill="#323232"
+          />
+        </svg>
+         
+      </button>
+    </div>
+    <div
       class="backButton"
     >
       <button
@@ -679,6 +728,86 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
               <p
                 data-small-bold="true"
               >
+                00:00
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                00:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                01:00
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                01:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                02:00
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                02:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                03:00
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                03:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                04:00
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                04:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                05:00
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                05:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                06:00
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                06:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                07:00
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                07:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
                 08:00
               </p>
               <p
@@ -801,6 +930,46 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
               >
                 20:00
               </p>
+              <p
+                data-small-bold="true"
+              >
+                20:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                21:00
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                21:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                22:00
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                22:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                23:00
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                23:30
+              </p>
+              <p
+                data-small-bold="true"
+              >
+                24:00
+              </p>
             </div>
           </div>
           <div
@@ -887,7 +1056,112 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="true"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
                   type="button"
                 />
                 <button
@@ -972,6 +1246,69 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                   data-selected="false"
                   data-testid="bay-time"
                   data-unavailable="true"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="true"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
                   type="button"
                 />
                 <button
@@ -1011,6 +1348,174 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
               <div
                 class="bayTimes"
               >
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
                 <button
                   class="bayTime"
                   data-selected="false"
@@ -1377,6 +1882,174 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                   data-unavailable="false"
                   type="button"
                 />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
               </div>
             </div>
           </div>
@@ -1392,6 +2065,30 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
   <form
     class="bookingForm"
   >
+    <div
+      class="helpButton"
+    >
+      <button
+        class="custombutton"
+        type="button"
+      >
+        Need Help 
+        <svg
+          fill="none"
+          height="24"
+          id="help"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
+            fill="#323232"
+          />
+        </svg>
+         
+      </button>
+    </div>
     <div
       class="backButton"
     >
@@ -1512,6 +2209,7 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
               </label>
               <input
                 data-testid="date"
+                disabled=""
                 name="date"
                 type="data"
                 value="Sun Jan 02 2000"
@@ -1536,7 +2234,7 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
                     41702
                   </td>
                   <td>
-                    08:00-08:30
+                    00:00-00:30
                   </td>
                 </tr>
                 <tr>
@@ -1544,7 +2242,7 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
                     41702
                   </td>
                   <td>
-                    09:00-09:30
+                    01:00-01:30
                   </td>
                 </tr>
               </tbody>

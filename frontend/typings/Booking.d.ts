@@ -7,7 +7,12 @@ interface BookingContext {
   next: () => void;
   back: () => void;
   step: number;
+  globalStartTime: string;
+  globalEndTime: string;
+  phone: string;
+  hub: string;
 }
+
 type Selected = 1;
 type Unavailable = 2;
 type Available = 3;
@@ -70,7 +75,6 @@ interface Carpark {
 interface BookingFormValues {
   carpark?: Carpark;
   booking: Map<string, Time>;
-  hub: string;
   date: Date;
   firstName: string;
   lastName: string;

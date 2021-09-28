@@ -5,6 +5,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_form.css' %}">
 {% endblock %}
+{% block title %} UniPark | Settings {% endblock %}
 
 {% block admin_content %}
   <div class="admin-form">
@@ -17,8 +18,13 @@
       {% csrf_token %}
       {% for setting in settings %}
         <div class="admin-form-field">
-          <label class="p-bold" for="{{ setting.key }}">{{ setting.label }}</label>
-          <input class="h4-thin" type="{{ setting.type }}" name="{{ setting.key }}" value="{{ setting.value }}" required />
+          {% if setting.type == "textarea" %}
+            <label class="p-bold" for="{{ setting.key }}">{{ setting.label }}</label>
+            <textarea class="h4-thin" name="{{ setting.key }}" required>{{ setting.value }}</textarea>
+          {% else %}
+            <label class="p-bold" for="{{ setting.key }}">{{ setting.label }}</label>
+            <input class="h4-thin" type="{{ setting.type }}" name="{{ setting.key }}" value="{{ setting.value }}" required />
+          {% endif%}
         </div>
       {% endfor %}
     </form>

@@ -3,14 +3,20 @@
 {% block head_content %}
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static '/styles/home.css' %}">
-  <script src="{% static '/scripts/home.js' %}"></script>
   <script defer src="{% static '/dist/home.bundle.js' %}"></script>
+  {% comment %} <script defer src="http://localhost:3000/home.bundle.js"></script> {% endcomment %}
 {% endblock %}
+{% block title %} UniPark Booking {% endblock %}
 
 {% block content %}
   <div class="home-wrapper">
     <div class="home">
       <div id="react-app"></div>
     </div>
+    <div id="globalStartTime" class="hidden-settings" data-global-start-time="{{ start_date }}"></div>
+    <div id="globalEndTime" class="hidden-settings" data-global-end-time="{{ end_date }}"></div>
+    <div id="phone" class="hidden-settings" data-phone="{{ phone }}"></div>
+    <div id="user" class="hidden-settings" data-user="{{ user.id }}"></div>
+    <div id="hub" class="hidden-settings" data-hub="{{ user.hub }}"></div>
   </div>
 {% endblock %}

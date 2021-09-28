@@ -1,9 +1,10 @@
+import 'react-datepicker/dist/react-datepicker.css';
+
 import React from 'react';
 import DatePickerReact from 'react-datepicker';
 import Calendar from '@/app/resources/static/images/calendar.svg';
 import { addDays } from '@/frontend/lib/utils';
 
-import 'react-datepicker/dist/react-datepicker.css';
 import styles from './styles.module.css';
 
 interface Props {

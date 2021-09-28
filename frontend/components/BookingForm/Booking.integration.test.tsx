@@ -1,12 +1,13 @@
 import React from 'react';
-import { waitFor, render, fireEvent } from '@testing-library/react';
 import UserEvent from '@testing-library/user-event';
-
-import BookingForm from './';
 import faker from 'faker';
-import { carparks } from '@/frontend/tests/mocks/carpark';
+import help from '@/frontend/tests/mocks/help';
 import { bays } from '@/frontend/tests/mocks/bays';
 import { baysBooked } from '@/frontend/tests/mocks/baysBooked';
+import { carparks } from '@/frontend/tests/mocks/carpark';
+import { fireEvent, render, waitFor } from '@testing-library/react';
+
+import BookingForm from './';
 
 faker.seed(1);
 
@@ -14,12 +15,21 @@ beforeEach(() => {
   fetchMock.resetMocks();
 });
 
+const initialProps = {
+  globalStartTime: '00:00',
+  globalEndTime: '24:00',
+  phone: '04 1234 5678',
+  hub: 'uniart',
+  userId: '1',
+};
+
 const renderToStep2 = async () => {
+  fetchMock.mockResponseOnce(JSON.stringify(help));
   fetchMock.mockResponseOnce(JSON.stringify(carparks));
   fetchMock.mockResponseOnce(JSON.stringify(bays));
   fetchMock.mockResponseOnce(JSON.stringify({ success: true, bays: baysBooked }));
 
-  const component = render(<BookingForm />);
+  const component = render(<BookingForm {...initialProps} />);
   await waitFor(() => expect(component.getAllByTestId('carpark-card').length).toBeGreaterThan(0));
   UserEvent.click(component.getAllByTestId('carpark-card')[0]);
   await waitFor(() => expect(component.getByText(/Select bay for/)).toBeInTheDocument());
@@ -46,25 +56,28 @@ const renderToConfirmation = async () => {
 
 describe('Booking Form Step 1', () => {
   it('matches its snapshot', async () => {
+    fetchMock.mockResponseOnce(JSON.stringify(help));
     fetchMock.mockResponse(JSON.stringify(carparks));
-    const { asFragment, getAllByTestId } = render(<BookingForm />);
+    const { asFragment, getAllByTestId } = render(<BookingForm {...initialProps} />);
     await waitFor(() => expect(getAllByTestId('carpark-card').length).toBeGreaterThan(0));
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('no carparks renders no cards', async () => {
+    fetchMock.mockResponseOnce(JSON.stringify(help));
     fetchMock.mockResponse(JSON.stringify([]));
-    const { getByTestId } = render(<BookingForm />);
+    const { getByTestId } = render(<BookingForm {...initialProps} />);
     await waitFor(() => expect(getByTestId('carpark-step').getAttribute('data-loading')).toBe('false'));
     expect(getByTestId('carpark-cards').children.length).toBe(0);
   });
 
   it('resets bay on different carpark selection', async () => {
+    fetchMock.mockResponseOnce(JSON.stringify(help));
     fetchMock.mockResponseOnce(JSON.stringify(carparks));
     fetchMock.mockResponseOnce(JSON.stringify(bays));
     fetchMock.mockResponseOnce(JSON.stringify({ success: true, bays: baysBooked }));
 
-    const { getByText, getAllByTestId } = render(<BookingForm />);
+    const { getByText, getAllByTestId } = render(<BookingForm {...initialProps} />);
     await waitFor(() => expect(getAllByTestId('carpark-card').length).toBeGreaterThan(0));
     UserEvent.click(getAllByTestId('carpark-card')[0]);
     await waitFor(() => expect(getByText(/Select bay for/)).toBeInTheDocument());
@@ -87,10 +100,11 @@ describe('Booking Form Step 1', () => {
   });
 
   it('completes step 1 correctly', async () => {
+    fetchMock.mockResponseOnce(JSON.stringify(help));
     fetchMock.mockResponseOnce(JSON.stringify(carparks));
     fetchMock.mockResponseOnce(JSON.stringify(bays));
     fetchMock.mockResponseOnce(JSON.stringify({ success: true, bays: baysBooked }));
-    const { getByText, getAllByTestId } = render(<BookingForm />);
+    const { getByText, getAllByTestId } = render(<BookingForm {...initialProps} />);
     await waitFor(() => expect(getAllByTestId('carpark-card').length).toBeGreaterThan(0));
     expect(getByText('UniPark VIP Booking')).toBeInTheDocument();
     UserEvent.click(getAllByTestId('carpark-card')[0]);

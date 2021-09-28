@@ -5,9 +5,38 @@
  {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_form.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_table.css' %}">
+
   <script src="{% static '/scripts/delete.js' %}"></script>
 {% endblock %}
+{% block title %} UniPark | View Booking {% endblock %}
 
 {% block admin_content %}
   {% create_form 'bookings' booking 'carpark:text|date:text|name:text|email:email|rego:text|company:text|phone:text' static="true" %}
+  {% create_form 'User' user 'username:text|email:text|hub:text' static="true" nobtn="true" %}
+
+  <div class="table-wrapper">
+    <div class="top">
+      <h3>Bays Booked</h3>
+    </div>
+    <div class="table">
+      <div class="table-headers">
+        <p data-small-bold="true">Bay Number</p>
+        <p data-small-bold="true">Start Time</p>
+        <p data-small-bold="true">End Time</p>
+      </div>
+
+      <div class="table-rows">
+        {% for bay in bays %}
+          <div class="table-row-actions" data-light="{% if forloop.counter|divisibleby:2 == 0 %}true{% else %}false{% endif %}">
+            <div class="table-row">
+              <h4 data-thin="true">{{bay.bay.bay_number}}</h4>
+              <h4 data-thin="true">{{bay.start_time}}</h4>
+              <h4 data-thin="true">{{bay.end_time}}</h4>
+            </div>
+            <div class="table-actions"></div>
+          </div>
+        {% endfor %}
+      </div> 
+  </div>
 {% endblock %}

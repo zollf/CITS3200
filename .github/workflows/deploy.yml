@@ -61,6 +61,7 @@ jobs:
         with:
           envkey_ENV: prod
           envkey_DEBUG: True
+          envkey_LIVE_URL: https://unipark.herokuapp.com
           envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
           envkey_MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           envkey_MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
@@ -72,6 +73,15 @@ jobs:
         run: yarn install
       - name: Minify React
         run: yarn build
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: Pip Install
+        run: pip install -r requirements.txt
+      - name: Migrate
+        run: python manage.py migrate
       - name: Heroku Login
         uses: akhileshns/heroku-deploy@v3.12.12 
         with:

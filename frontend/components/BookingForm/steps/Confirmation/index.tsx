@@ -1,17 +1,21 @@
-import React from 'react';
-import { useFormikContext } from 'formik';
-import BayBookings from '../Details/BayBookings';
+import React, { useContext } from 'react';
+import Arrow from '@/app/resources/static/images/arrow.svg';
 import CarparkCard from '@/frontend/components/CarparkCard';
 import Field from '@/frontend/components/Field';
-import styles from './styles.module.css';
+import { BookingContext } from '@/frontend/components/BookingForm/index';
 import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
-import Arrow from '@/app/resources/static/images/arrow.svg';
+import { useFormikContext } from 'formik';
+
+import BayBookings from '../Details/BayBookings';
+import styles from './styles.module.css';
 
 const Confirmation = () => {
+  const { hub } = useContext<BookingContext>(BookingContext);
   const { values } = useFormikContext<BookingFormValues>();
+
   return (
     <div>
-      <h2>Thank you {values.hub}</h2>
+      <h2>Thank you {hub}</h2>
       <h3 data-thin>
         {values.firstName} {values.lastName} will receive an email confirmation of the booking
       </h3>
@@ -21,7 +25,7 @@ const Confirmation = () => {
           description={values.carpark!.description}
           mapURL={values.carpark!.google_maps_link}
         />
-        <Field label="Date" name="date" type="data" value={values.date.toDateString()} />
+        <Field label="Date" name="date" type="data" value={values.date.toDateString()} disabled />
         <BayBookings bayTimes={values.booking} />
       </div>
       <CustomButton
