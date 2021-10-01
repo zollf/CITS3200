@@ -2,19 +2,20 @@
 <div class="header">
   <div class="header-left">
     <a class="h1" href="/">UniPark</a>
-    <div class="header-btns">
+  </div>
+
+
+  <div class="header-right">
+    <a href=" https://www.uwa.edu.au/" target="_blank" rel="noopener noreferrer">
+      <svg width="158" height="52" style="position: absolute">
+        <use xlink:href="{% static "images/uwa-logo.svg" %}#uwa-logo" width="158" height="52"/>
+      </svg>
+    </a>
+    <div class="header-btns" style="position: relative">
       {%if user.is_authenticated and 'admin' not in request.path %}
         <a href="/admin">Dashboard</a>
         <a href="/logout">Logout</a>
       {% endif %}
     </div>
-  </div>
-
-  <div>
-    <a href="https://www.uwa.edu.au/" target="_blank" rel="noopener noreferrer">
-      <svg width="158" height="52">
-        <use xlink:href="{% static "images/uwa-logo.svg" %}#uwa-logo" width="158" height="52"/>
-      </svg>
-    </a>
   </div>
 </div>
