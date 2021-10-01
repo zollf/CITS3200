@@ -21,6 +21,11 @@
   cursor: pointer; 
 }
 
+.header-btns {
+  right: 230px;
+  top: 7px;
+}
+
 .header-btns > a {
   display: inline-flex;
   width: 100px;
@@ -35,10 +40,6 @@
   align-items: center;
   justify-content: center;
   box-shadow: 4px 4px 4px 0px #0000001A;
-  margin-left: 5px;
-  position: relative;
-  left: 670px;
-  top: 9px;
 }
 
 .header-btns > a:visited {
