@@ -2314,8 +2314,9 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
               <input
                 data-testid="phone"
                 name="phone"
+                pattern="[+]?[0-9]{6,}"
                 required=""
-                type="text"
+                type="tel"
                 value=""
               />
             </div>
