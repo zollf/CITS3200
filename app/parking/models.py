@@ -16,7 +16,7 @@ class CarBay(models.Model):
         on_delete=models.CASCADE,
     )
     bay_number = models.CharField(max_length=50)
-    description = models.TextField()
+    description = models.TextField(blank=True)
 
 class Bookings(models.Model):
     carpark = models.ForeignKey(
