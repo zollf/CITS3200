@@ -32,7 +32,7 @@ const Details: StepComponent = () => {
           <Field label="First Name" name="firstName" required />
           <Field label="Last Name" name="lastName" required />
           <Field label="Email" name="email" type="email" required />
-          <Field label="Phone" name="phone" required />
+          <Field label="Phone" name="phone" type="tel" pattern="[+]?[0-9]{6,}" required />
           <Field label="Rego (Optional)" name="rego" />
           <Field label="Company (Optional)" name="company" />
           <CustomButton type={ButtonType.submit} iconLeft={false} icon={<Done />} onClick={() => null}>

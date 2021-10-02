@@ -9,9 +9,10 @@ interface Props {
   type?: string;
   value?: string;
   disabled?: boolean;
+  pattern?: string;
 }
 
-const Field = ({ name, label, required = false, type = 'text', value, disabled = false }: Props) => {
+const Field = ({ name, label, required = false, type = 'text', value, disabled = false, pattern }: Props) => {
   const { errors, touched, values } = useFormikContext<Record<string, unknown>>();
   const invalid = useMemo(() => errors[name] && touched[name], [errors, touched]);
 
@@ -28,6 +29,7 @@ const Field = ({ name, label, required = false, type = 'text', value, disabled =
         required={required}
         data-testid={name}
         disabled={disabled}
+        pattern={pattern}
       />
     </div>
   );
