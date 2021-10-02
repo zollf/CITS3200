@@ -1,0 +1,27 @@
+{% extends 'base.html' %} 
+
+{% block head_content %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static '/styles/admin_panel.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/styles/home.css' %}">
+  {% block admin_head %}{% endblock %}
+{% endblock %}
+{% block title %} UniPark | Admin panel {% endblock %}
+
+{% block content %}
+    <!--sidebar menu start-->
+    <div class="admin">
+      <div class="sidebar">
+          <a href="/admin" class="h4-thin white {% if request.path == "/admin/" %}active{% endif %}">Dashboard</a>
+          <a href="/admin/carparks" class="h4-thin white {% if "carparks" in request.path %}active{% endif %}">Car parks</a>
+          <a href="/admin/bookings" class="h4-thin white">Bookings</a>
+          <a href="/admin/users" class="h4-thin white {% if "users" in request.path %}active{% endif %}">Users</a>
+          <a href="/admin/settings" class="h4-thin white {% if "settings" in request.path %}active{% endif %}">Settings</a>
+          <a href="/logout" class="h4-thin white">Logout</a>
+      </div>
+      <div class="content">
+          {% block admin_content %}{% endblock %}
+      </div>
+    </div>
+    <!--sidebar menu end-->
+{% endblock %}
