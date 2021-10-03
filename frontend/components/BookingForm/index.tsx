@@ -1,4 +1,6 @@
 import React, { useMemo, useState } from 'react';
+import ReactModal from 'react-modal';
+import { useEffectOnce } from 'react-use';
 import cc from 'classcat';
 import Arrow from '@/app/resources/static/images/arrow.svg';
 import Help from '@/app/resources/static/images/help.svg';
@@ -7,13 +9,13 @@ import { format } from 'date-fns';
 import { Formik, FormikHelpers } from 'formik';
 import createListItems from '@/frontend/lib/ProcessBayMap';
 import getCookie from '@/frontend/lib/GetCookie';
+import Spinner from '@atlaskit/spinner';
 
 import InitialValues from './InitialValues';
-import styles from './styles.module.css';
+
 import Steps, { Confirmation } from './steps';
 
-import ReactModal from 'react-modal';
-import { useEffectOnce } from 'react-use';
+import styles from './styles.module.css';
 
 interface Props {
   globalStartTime: string;
@@ -27,19 +29,23 @@ interface Props {
 const BookingContext = React.createContext<BookingContext>({
   next: () => undefined,
   back: () => undefined,
+  setLoading: () => undefined,
+  setError: () => undefined,
   step: 0,
   globalStartTime: '00:00',
   globalEndTime: '00:00',
   phone: '04 1234 5678',
   hub: '',
+  loading: false,
 });
 
 const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Props) => {
   const [step, setStep] = useState(0);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [, setError] = useState(false);
+  const [error, setError] = useState('');
   const [showHelp, setShowHelp] = useState(false);
   const [documentation, setDocumentation] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffectOnce(() => {
     const getSettings = async () => {
@@ -55,6 +61,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
   const back = () => setStep(Math.max(step - 1, 0));
 
   const finalSubmit = async (values: BookingFormValues) => {
+    setLoading(true);
     const data = {
       booking: {
         carpark: values.carpark!.pk,
@@ -81,26 +88,37 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
           'X-CSRFToken': getCookie('csrftoken')!,
         },
         body: JSON.stringify(data),
-      });
-      if (response.ok) {
+      }).then((r) => r.json());
+      setLoading(false);
+      if (response?.success) {
         return true;
+      } else {
+        if (response?.error) {
+          setError(response.error);
+        } else if (response?.errors) {
+          const firstKey = Object.keys(response?.errors)[0];
+          setError(`${firstKey}: ${response?.errors[firstKey]}`);
+        } else {
+          setError('Something went wrong');
+        }
+        return false;
       }
     } catch (e) {
+      setError('Something went wrong');
+      setLoading(false);
       return false;
-      // handle error error
     }
-    return false;
   };
 
   const handleSubmit = async (value: BookingFormValues, formikHelpers: FormikHelpers<BookingFormValues>) => {
     formikHelpers.setSubmitting(false);
     if (step === Steps.length - 1) {
       if (await finalSubmit(value)) {
+        setError('');
         setShowConfirmation(true);
-      } else {
-        setError(true);
       }
     } else {
+      setError('');
       next();
     }
   };
@@ -108,47 +126,57 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
   if (documentation.length == 0) return null;
 
   return (
-    <BookingContext.Provider value={{ next, back, step, globalStartTime, globalEndTime, phone, hub }}>
+    <BookingContext.Provider
+      value={{ next, back, step, globalStartTime, globalEndTime, phone, hub, setLoading, loading, setError }}
+    >
       <Formik<BookingFormValues>
         initialValues={InitialValues}
         validationSchema={ActivePage.validationSchema}
         onSubmit={handleSubmit}
         validateOnChange
       >
-        {({ handleSubmit, isSubmitting }) => (
-          <form
-            onSubmit={handleSubmit}
-            className={cc({
-              [styles.bookingForm]: true,
-              [styles.submitting]: isSubmitting,
-            })}
-          >
-            {!showConfirmation && (
-              <div className={styles.helpButton}>
-                <CustomButton
-                  type={ButtonType.button}
-                  icon={<Help />}
-                  iconLeft={false}
-                  onClick={() => setShowHelp(true)}
-                >
-                  Need Help
-                </CustomButton>
+        {({ handleSubmit }) => (
+          <>
+            {loading && (
+              <div className={styles.loading}>
+                <Spinner size="xlarge" />
               </div>
             )}
-            {step > 0 && !showConfirmation && (
-              <div className={styles.backButton}>
-                <CustomButton
-                  type={ButtonType.button}
-                  iconLeft={true}
-                  icon={<Arrow data-rotate />}
-                  onClick={() => back()}
-                >
-                  Back
-                </CustomButton>
-              </div>
-            )}
-            <div className={styles.currentStep}>{showConfirmation ? <Confirmation /> : <ActivePage />}</div>
-          </form>
+            <form
+              onSubmit={handleSubmit}
+              className={cc({
+                [styles.bookingForm]: true,
+                [styles.isLoading]: loading,
+              })}
+            >
+              {!showConfirmation && (
+                <div className={styles.helpButton}>
+                  <CustomButton
+                    type={ButtonType.button}
+                    icon={<Help />}
+                    iconLeft={false}
+                    onClick={() => setShowHelp(true)}
+                  >
+                    Need Help
+                  </CustomButton>
+                </div>
+              )}
+              {step > 0 && !showConfirmation && (
+                <div className={styles.backButton}>
+                  <CustomButton
+                    type={ButtonType.button}
+                    iconLeft={true}
+                    icon={<Arrow data-rotate />}
+                    onClick={() => back()}
+                  >
+                    Back
+                  </CustomButton>
+                </div>
+              )}
+              {error && <div className={styles.error}>{error}</div>}
+              <div className={styles.currentStep}>{showConfirmation ? <Confirmation /> : <ActivePage />}</div>
+            </form>
+          </>
         )}
       </Formik>
 
@@ -158,6 +186,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
         onRequestClose={() => setShowHelp(false)}
         shouldCloseOnOverlayClick={true}
         className={styles.modal}
+        ariaHideApp={false}
       >
         {documentation[step]}
         <div className={styles.closeButton}>

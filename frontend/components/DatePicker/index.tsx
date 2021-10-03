@@ -21,6 +21,7 @@ const DatePicker = ({ selected, onChange }: Props) => {
         onChange={onChange}
         dateFormat="d/MM/yyyy"
         minDate={addDays(new Date(), 1)}
+        data-testid="date"
       />
     </div>
   );

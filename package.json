@@ -12,6 +12,7 @@
   },
   "author": "group28",
   "devDependencies": {
+    "@atlaskit/spinner": "^15.1.2",
     "@babel/core": "^7.12.3",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.15.0",
@@ -74,5 +75,11 @@
       "style": "react",
       "options": {}
     }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all"
   }
 }

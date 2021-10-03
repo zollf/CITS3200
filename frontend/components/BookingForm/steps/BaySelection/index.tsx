@@ -5,17 +5,17 @@ import Arrow from '@/app/resources/static/images/arrow.svg';
 import DatePicker from '@/frontend/components/DatePicker';
 import Reset from '@/app/resources/static/images/reset.svg';
 import getCookie from '@/frontend/lib/GetCookie';
+import { BookingContext } from '@/frontend/components/BookingForm/index';
 import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
 import { format } from 'date-fns';
 import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
 import { useFormikContext } from 'formik';
 
 import styles from './styles.module.css';
-import { BookingContext } from '@/frontend/components/BookingForm/index';
 
 const BaySelection: StepComponent = () => {
   const { values, setFieldValue } = useFormikContext<BookingFormValues>();
-  const { globalStartTime, globalEndTime } = useContext<BookingContext>(BookingContext);
+  const { globalStartTime, globalEndTime, setLoading, setError } = useContext<BookingContext>(BookingContext);
   const [props, setProps] = useState<BaysInitialProps>();
 
   const getBays = useCallback(async () => {
@@ -40,15 +40,21 @@ const BaySelection: StepComponent = () => {
   );
 
   useEffectOnce(() => {
+    setLoading(true);
     (async () => {
-      setProps(
-        getInitialState(
-          await getBays(),
-          await getBaysBooked(format(values.date, 'yyyy-MM-dd')),
-          globalStartTime,
-          globalEndTime,
-        ),
-      );
+      try {
+        setProps(
+          getInitialState(
+            await getBays(),
+            await getBaysBooked(format(values.date, 'yyyy-MM-dd')),
+            globalStartTime,
+            globalEndTime,
+          ),
+        );
+      } catch (e) {
+        setError(`Something went wrong when fetching bays for carpark ${values.carpark?.name}`);
+      }
+      setLoading(false);
     })();
   });
 
@@ -85,17 +91,23 @@ const BaySelection: StepComponent = () => {
   };
 
   const handleDateChange = (date: Date) => {
+    setLoading(true);
     setFieldValue('booking', new Map());
     setFieldValue('date', date);
     (async () => {
-      setProps(
-        getInitialState(
-          await getBays(),
-          await getBaysBooked(format(date, 'yyyy-MM-dd')),
-          globalStartTime,
-          globalEndTime,
-        ),
-      );
+      try {
+        setProps(
+          getInitialState(
+            await getBays(),
+            await getBaysBooked(format(date, 'yyyy-MM-dd')),
+            globalStartTime,
+            globalEndTime,
+          ),
+        );
+      } catch (e) {
+        setError(`Something went wrong when fetching bays for carpark ${values.carpark?.name}`);
+      }
+      setLoading(false);
     })();
   };
 
