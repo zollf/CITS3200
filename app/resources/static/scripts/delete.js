@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+/* eslint-disable @typescript-eslint/no-unused-vars */
 async function deleteEntry(route, redirect) {
   const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
   await fetch(route, {
@@ -10,4 +10,14 @@ async function deleteEntry(route, redirect) {
   });
 
   window.location.assign(redirect);
+}
+
+function confirmDeletion(route, redirect) {
+  const modal = document.getElementById('modal');
+  const yesButton = document.getElementById('modal-yes');
+  const noButton = document.getElementById('modal-no');
+
+  modal.style.display = 'block';
+  yesButton.onclick = () => deleteEntry(route, redirect);
+  noButton.onclick = () => (modal.style.display = 'none');
 }

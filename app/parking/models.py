@@ -34,7 +34,7 @@ class Bookings(models.Model):
     email = models.EmailField(blank=False)
     rego = models.CharField(max_length=20, blank=True)
     company = models.CharField(max_length=50, blank=True)
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=15)
 
 class BaysBooked(models.Model):
     booking = models.ForeignKey(
