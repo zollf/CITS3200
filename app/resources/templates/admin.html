@@ -19,9 +19,25 @@
           <a href="/admin/settings" class="h4-thin white {% if "settings" in request.path %}active{% endif %}">Settings</a>
           <a href="/logout" class="h4-thin white">Logout</a>
       </div>
+      <!--sidebar menu end-->
       <div class="content">
           {% block admin_content %}{% endblock %}
       </div>
+
+      <div id="modal" class="modal">
+        <div class="modal-popup"> 
+          <div class="modal-content">
+            <p> Are you sure? </p>
+            <button id="modal-yes" class="admin-btn red p-bold modal-buttons"> Yes </button>
+            <button id="modal-no" class="admin-btn blue p-bold modal-buttons"> No </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <!--sidebar menu end-->
+    <script>
+      window.onclick = (event) => {
+        const modal = document.getElementById("modal");
+        if (event.target == modal) modal.style.display = 'none';
+      }
+    </script>
 {% endblock %}
