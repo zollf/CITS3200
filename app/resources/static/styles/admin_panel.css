@@ -46,12 +46,29 @@
   background-color: rgba(0,0,0,0.4);
 }
 
-.modal-content {
+.modal-popup {
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
   border: 3px solid var(--uwa-blue);
   width: 350px;
   height: 250px;
+  position: relative;
+}
+
+.modal-content {
   text-align: center;
+  height: inherit;
+}
+
+#modal-yes {
+  position: absolute;
+  left: 5%;
+  bottom: 10%;
+}
+
+#modal-no {
+  position: absolute;
+  right: 5%;
+  bottom: 10%;
 }
