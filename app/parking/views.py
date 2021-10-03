@@ -209,7 +209,7 @@ def bookings(request):
 
         if not bookingsSerializer.is_valid():
             return JsonResponse({
-              'errors': bookingsSerializer.errors
+                'errors': bookingsSerializer.errors
             }, status=status.HTTP_400_BAD_REQUEST)
 
         bookingsSerializer.save()
@@ -224,7 +224,7 @@ def bookings(request):
 
             if not baysBookedSerializer.is_valid():
                 return JsonResponse({
-                  'errors':  baysBookedSerializer.errors
+                    'errors': baysBookedSerializer.errors
                 }, status=status.HTTP_400_BAD_REQUEST)
 
             baysBookedSerializer.save()
