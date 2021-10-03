@@ -41,7 +41,6 @@
             <button 
               onclick="confirmDeletion('/api/{{title}}/{{row.id}}', '{% if redirect %}{{redirect}}{% else %}/admin/{{title}}{% endif %}')" type="button" 
               class="admin-btn red p-bold {% if title == 'users' and row.id == current_user_id %} admin-btn-hidden {% endif %}"
-              {# deleteEntry('/api/{{title}}/{{row.id}}', '{% if redirect %}{{redirect}}{% else %}/admin/{{title}}{% endif %}') #}
             >
               Delete
             </button>
