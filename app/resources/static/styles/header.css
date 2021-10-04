@@ -1,8 +1,8 @@
 .header {
   display: flex;
-  justify-content: space-between;
   padding: 24px;
   height: 52px;
+  justify-content: space-between;
   max-height: 52px;
   box-shadow: 4px 4px 4px 0px #0000001A;
   position: absolute;
