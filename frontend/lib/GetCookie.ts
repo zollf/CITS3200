@@ -1,5 +1,5 @@
 //https://docs.djangoproject.com/en/3.2/ref/csrf/
-
+/* istanbul ignore file */
 export default function getCookie(name: string) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== '') {

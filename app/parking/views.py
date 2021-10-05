@@ -208,7 +208,9 @@ def bookings(request):
         bookingsSerializer = BookingsSerializer(data=request.data['booking'])
 
         if not bookingsSerializer.is_valid():
-            return JsonResponse(bookingsSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse({
+                'errors': bookingsSerializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
 
         bookingsSerializer.save()
 
@@ -221,7 +223,9 @@ def bookings(request):
             baysBookedSerializer = BaysBookedSerializer(data=bayBooked)
 
             if not baysBookedSerializer.is_valid():
-                return JsonResponse(baysBookedSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                return JsonResponse({
+                    'errors': baysBookedSerializer.errors
+                }, status=status.HTTP_400_BAD_REQUEST)
 
             baysBookedSerializer.save()
 
