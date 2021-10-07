@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/home.css' %}">
+{% endblock %}
+{% block title %} UniPark | Reset Password Confirmation {% endblock %}    
+
+{% block content %}
+    <div class="home-wrapper">
+        <div class="reset">
+            <p> Please enter a new password </p> 
+            <br> <br>
+            <form method="POST" class="login-form"> 
+              {% csrf_token %}
+              {{ form.new_password1.help_text }}
+              <br>
+              <div class="field"> 
+                {{ form.new_password1.label_tag }}
+                {{ form.new_password1 }} 
+              </div>
+              <div class="field"> 
+                {{ form.new_password2.label_tag }}
+                {{ form.new_password2 }} 
+              </div>
+              <div class="login-submit">
+                <button type="submit" class="login-btn p-bold"> Submit </button>
+              </div>
+              <div class="error"> 
+                {{ form.new_password2.errors }}
+              </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
