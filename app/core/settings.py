@@ -93,10 +93,10 @@ AUTH_USER_MODEL = 'authentication.User'
 LOGIN_URL = "login/"
 LOGIN_REDIRECT_URL = "/"  # in case next parameter is not specified in GET request
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#EMAIL_HOST = 
+# EMAIL_HOST =
 #EMAIL_PORT = 25
-#EMAIL_HOST_USER = 
-#EMAIL_HOST_PASSWORD = 
+# EMAIL_HOST_USER =
+# EMAIL_HOST_PASSWORD =
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
