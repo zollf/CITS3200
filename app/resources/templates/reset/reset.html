@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/home.css' %}">
+{% endblock %}
+{% block title %} UniPark | Reset Password {% endblock %}    
+
+{% block content %}
+    <div class="home-wrapper">
+        <div class="reset">
+            <p> Please enter the email associated with the account. A one-time
+            link will be sent to the email allowing you to reset your password. </p> 
+            <br> <br>
+            <form method="POST" class="login-form"> 
+              {% csrf_token %}
+              <div class="field"> 
+                {{ form.email.label_tag }}
+                {{ form.email }} 
+              </div>
+              <div class="login-submit">
+                <button type="submit" class="login-btn p-bold"> Send </button>
+              </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
