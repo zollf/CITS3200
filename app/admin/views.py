@@ -8,6 +8,7 @@ from app.authentication.models import User
 
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_protect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -75,7 +76,8 @@ def UsersView(request):
 @common_decorators(['GET'])
 def UsersAdd(request):
     if (request.method == 'GET'):
-        return render(request, 'new_user.html', {'user': User(), 'current_user_id': request.user.id})
+        return render(request, 'new_user.html', {'user': User(), 'current_user_id': request.user.id,
+                                                 'errors': request.session.pop("errors", None)})
 
 @common_decorators(['GET'])
 def UsersEdit(request, pk):
