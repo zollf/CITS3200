@@ -94,7 +94,7 @@ LOGIN_URL = "login/"
 LOGIN_REDIRECT_URL = "/"  # in case next parameter is not specified in GET request
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_HOST =
-#EMAIL_PORT = 25
+# EMAIL_PORT = 25
 # EMAIL_HOST_USER =
 # EMAIL_HOST_PASSWORD =
 
