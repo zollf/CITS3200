@@ -53,7 +53,6 @@ def users_list(request):
             if 'redirect' in request._data:
                 request.session["errors"] = [str(error[1][0]).replace("this field", error[0])
                                              for error in serializer.errors.items()]
-                print(serializer.errors)
                 return redirect('user_add')
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

@@ -79,6 +79,10 @@ def carbay_list(request):
             serializer = CarBaySerializer(data=request.data)
 
         if not serializer.is_valid():
+            if 'redirect' in request.data:
+                request.session["bay_errors"] = [str(error[1][0]).replace("this field", error[0])
+                                             for error in serializer.errors.items()]
+                return redirect(f"/admin/carparks/{request.data.get('carpark', '')}/bay/add")
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         serializer.save()
