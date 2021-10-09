@@ -18,7 +18,7 @@ from .utils import common_decorators, renderPDF
 def AdminView(request):
     return render(request, "admin.html")
 
-@login_required(login_url="/admin/login")
+@login_required(login_url="/login")
 def StaffRequiredView(request):
     return render(request, "staff_required.html")
 
