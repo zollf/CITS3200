@@ -13,6 +13,7 @@
 
 {% block admin_content %}
   {% create_form 'bookings' booking 'carpark:text|date:text|name:text|email:email|rego:text|company:text|phone:text' static="true" %}
+  {% create_form 'carparks' carpark 'name:text|description:text' static="true" nobtn="true" %}
   {% create_form 'User' user 'username:text|email:text|hub:text' static="true" nobtn="true" %}
 
   <div class="table-wrapper">

@@ -9,17 +9,21 @@ import styles from './styles.module.css';
 
 const Carpark: StepComponent = () => {
   const [carparks, setCarparks] = useState<Carpark[]>();
-  const [loading, setLoading] = useState(true);
-  const { next, phone, hub } = useContext<BookingContext>(BookingContext);
+  const { next, phone, hub, setLoading, loading, setError } = useContext<BookingContext>(BookingContext);
   const { setFieldValue, values } = useFormikContext<BookingFormValues>();
 
   useEffectOnce(() => {
-    fetch('/api/carparks/').then((r) =>
-      r.json().then((r) => {
-        setCarparks(r);
-        setLoading(false);
-      }),
-    );
+    setLoading(true);
+    fetch('/api/carparks/')
+      .then((r) =>
+        r.json().then((r) => {
+          setCarparks(r);
+        }),
+      )
+      .catch(() => {
+        setError('Something went wrong when fetching carpark data.');
+      });
+    setLoading(false);
   });
 
   const handleClick = (carpark: Carpark) => {

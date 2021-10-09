@@ -15,7 +15,7 @@ exports[`Booking Form Confirmation matches its snapshot 1`] = `
         <h3
           data-thin="true"
         >
-          Keaton Keeling will receive an email confirmation of the booking
+          Damaris Brakus will receive an email confirmation of the booking
         </h3>
         <div
           class="outputs"
@@ -2314,8 +2314,9 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
               <input
                 data-testid="phone"
                 name="phone"
+                pattern="[+]?[0-9]{6,}"
                 required=""
-                type="text"
+                type="tel"
                 value=""
               />
             </div>

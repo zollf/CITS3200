@@ -22,17 +22,34 @@
 }
 
 .header-btns {
-  display: flex;
-  align-items: flex-end;
-  margin-left: 16px;
-  padding-bottom: 4px;
+  position: absolute;
+  right: 200px;
+  top: 32px;
 }
-
 .header-btns > a {
+  display: inline-flex;
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 7px;
+  background-color: var(--uwa-blue);
   text-decoration: none;
-  margin-right: 8px;
+  font-size: 14.5px;
+  color: var(--white) !important;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 4px 0px #0000001A;
 }
 
 .header-btns > a:visited {
   color: var(--uwa-black)
+}
+
+/* Makes buttons disappear below certain screen width to prevent overlap
+with 'UniPark' text*/
+@media only screen and (max-width: 630px) {
+  .header-btns {
+      display: none;
+  }
 }
