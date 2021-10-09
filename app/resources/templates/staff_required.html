@@ -14,14 +14,8 @@
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
 
-        {% if next == '/' %}
-          <h2>UniPark Booking Login</h2>
-        {% elif next == '/admin/' %}
-          <h2>UniPark Admin Login</h2>
-        {% else %}
-          <h2>Please login to a staff account</h2>
-        {% endif %}
-
+        <h2>Please login to a staff account</h2>
+        
         <div class="logout-submit">
           <a href="/logout">Logout</a>
         </div>
