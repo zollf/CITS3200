@@ -15,7 +15,7 @@ def log_and_send_mail(subject: str, to_email: list, category: str, template: str
     )
     msg.attach_alternative(html_body, "text/html")
     msg.send(fail_silently=False)
-    
+
     # If msg.send does not fail then we log
     email = Emails(
         name=Emails.events[category]['name'],
