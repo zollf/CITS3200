@@ -1,23 +1,31 @@
-{% extends 'base.html' %} 
+{% extends "base.html" %}
 
 {% block head_content %}
   {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static '/styles/admin_panel.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/staff_required.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static '/styles/home.css' %}">
-  {% block admin_head %}{% endblock %}
 {% endblock %}
-{% block title %} UniPark | Admin panel {% endblock %}
+{% block title %} UniPark | Staff Required {% endblock %}
 
 {% block content %}
-    <!--sidebar menu start-->
-    <div class="admin">
-      <div class="sidebar">
-          <a href="/admin" class="h4-thin white {% if request.path == "/admin/" %}active{% endif %}">Dashboard</a>
-          <a href="/logout" class="h4-thin white">Logout</a>
-      </div>
-      <div class="content">
-          {% block admin_content %}{% endblock %}
-      </div>
+  <div class="home-wrapper">
+    <div class="home">
+      <form method="POST" class="logout-form">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+
+        {% if next == '/' %}
+          <h2>UniPark Booking Login</h2>
+        {% elif next == '/admin/' %}
+          <h2>UniPark Admin Login</h2>
+        {% else %}
+          <h2>Please login to a staff account</h2>
+        {% endif %}
+
+        <div class="logout-submit">
+          <a href="/logout">Logout</a>
+        </div>
+      </form>
     </div>
-    <!--sidebar menu end-->
+  </div>
 {% endblock %}

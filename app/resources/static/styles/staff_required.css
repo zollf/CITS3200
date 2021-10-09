@@ -1,0 +1,32 @@
+.logout-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.logout-form > h2 {
+    margin-bottom: 16px !important;
+}
+  
+.logout-form > div {
+    margin-bottom: 12px
+}
+
+.logout-submit > a {
+    display: inline-flex;
+    width: 130px;
+    height: 52px;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--uwa-blue);
+    text-decoration: none;
+    color: var(--white) !important;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 4px 0px #0000001A;
+}
+  
+.logout-submit > a:visited {
+    color: var(--uwa-black)
+}
