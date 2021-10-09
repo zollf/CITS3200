@@ -10,16 +10,15 @@
 {% block content %}
   <div class="home-wrapper">
     <div class="home">
-      <form method="POST" class="logout-form">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}">
+      <div class="logout-form">
 
         <h2>Please login to a staff account</h2>
-        
+          
         <div class="logout-submit">
           <a href="/logout">Logout</a>
         </div>
-      </form>
+
+      </div>
     </div>
   </div>
 {% endblock %}
