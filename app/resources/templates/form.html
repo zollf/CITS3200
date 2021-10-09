@@ -46,10 +46,17 @@
             <input type="text" id="{{field.name}}" name="{{field.name}}" value="{{data|key:field.name}}" required {% if static %}disabled{% endif %}/>
           </div>
         {% elif field.type == 'textarea' %}
-          <div class="admin-form-field">
-            <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
-            <textarea class="h4-thin" id="{{field.name}}" name="{{field.name}}" required {% if static %}disabled{% endif %}>{{data|key:field.name}}</textarea>
-          </div>
+          {% if field.require == 'True' %}
+            <div class="admin-form-field">
+              <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
+              <textarea class="h4-thin" id="{{field.name}}" name="{{field.name}}" required {% if static %}disabled{% endif %}>{{data|key:field.name}}</textarea>
+            </div>
+          {% else %}
+            <div class="admin-form-field">
+              <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
+              <textarea class="h4-thin" id="{{field.name}}" name="{{field.name}}" {% if static %}disabled{% endif %}>{{data|key:field.name}}</textarea>
+            </div>
+          {% endif %}
         {% elif field.type == 'password' %}
           <div class="admin-form-field">
             <label class="p-bold" for="{{field.name}}">{{field.label|title}}</label>
