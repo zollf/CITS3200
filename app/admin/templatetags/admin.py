@@ -21,23 +21,19 @@ def create_form(title: str, data: dict, fields: str, **kwargs):
     for field in fields:
         field_arr = field.split(':')
 
-        if "," in field_arr[1]:
-            field_arr[1] = field_arr[1].split(',')
-            print(field_arr[1])
-
         if field_arr[1] == 'hidden':
             fields_matrix.append({
                 'name': field_arr[0],
-                'type': field_arr[1] if isinstance(field_arr[1], str) else field_arr[1][0],
+                'type': field_arr[1] if "r_" not in field_arr[1] else field_arr[1][2:],
                 'value': field_arr[2] if len(field_arr) >= 3 else '',
-                'require': "True" if isinstance(field_arr[1], str) else "False"
+                'required': True if "r_" not in field_arr[1] else False
             })
         else:
             fields_matrix.append({
                 'name': field_arr[0],
-                'type': field_arr[1] if isinstance(field_arr[1], str) else field_arr[1][0],
+                'type': field_arr[1] if "r_" not in field_arr[1] else field_arr[1][2:],
                 'label': field_arr[2] if len(field_arr) >= 3 else field_arr[0],
-                'require': "True" if isinstance(field_arr[1], str) else "False"
+                'required': True if "r_" not in field_arr[1] else False
             })
     print(fields_matrix)
     return {'title': title, 'fields': fields_matrix, 'data': data, **kwargs}
