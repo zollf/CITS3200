@@ -38,12 +38,15 @@
             {% else %}
               <a class="admin-btn blue p-bold" href="/admin/{{title}}/view/{{row.id}}">View</a>
             {% endif %}
-            <button 
-              onclick="confirmDeletion('/api/{{title}}/{{row.id}}', '{% if redirect %}{{redirect}}{% else %}/admin/{{title}}{% endif %}')" type="button" 
-              class="admin-btn red p-bold {% if title == 'users' and row.id == current_user_id %} admin-btn-hidden {% endif %}"
-            >
-              Delete
-            </button>
+
+            {% if not no_del %}
+              <button 
+                onclick="confirmDeletion('/api/{{title}}/{{row.id}}', '{% if redirect %}{{redirect}}{% else %}/admin/{{title}}{% endif %}')" type="button" 
+                class="admin-btn red p-bold {% if title == 'users' and row.id == current_user_id %} admin-btn-hidden {% endif %}"
+              >
+                Delete
+              </button>
+            {% endif %}
           </div>
         </div>
       {% endfor %}

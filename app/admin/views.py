@@ -5,6 +5,7 @@ from .models import Settings
 from rest_framework.response import Response
 from app.parking.models import CarPark, CarBay, Bookings, BaysBooked
 from app.authentication.models import User
+from app.emails.models import Emails
 
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_protect
@@ -127,3 +128,15 @@ def BookingPDF(request, pk):
         url = settings.LIVE_URL if settings.IS_PROD else 'http://localhost:8000'
         bays = BaysBooked.objects.filter(booking__id=pk)
         return renderPDF('bookingPDF.html', {'booking': booking, 'url': url, 'bays': bays})
+
+@common_decorators(['GET'])
+def EmailsView(request):
+    if (request.method == 'GET'):
+        emails = Emails.objects.values('name', 'category', 'date', 'id').all().order_by('-id')[:10]
+        return render(request, 'emails.html', {'emails': emails})
+
+@common_decorators(['GET'])
+def EmailView(request, pk):
+    if (request.method == 'GET'):
+        email = Emails.objects.values('name', 'category', 'date', 'id', 'description', 'payload').get(pk=pk)
+        return render(request, 'email.html', {'email': email})

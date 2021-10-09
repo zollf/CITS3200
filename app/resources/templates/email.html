@@ -1,0 +1,16 @@
+{% extends 'admin.html' %} 
+{% load admin %}
+
+{% block admin_head %}
+ {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_form.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_table.css' %}">
+
+  <script src="{% static '/scripts/delete.js' %}"></script>
+{% endblock %}
+{% block title %} UniPark | View Email {% endblock %}
+
+{% block admin_content %}
+  {% create_form 'emails' email 'id:text|name:text|description:text|category:text|date:text|payload:textarea' static="true" nobtn="true" %}
+{% endblock %}

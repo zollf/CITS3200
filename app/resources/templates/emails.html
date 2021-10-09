@@ -1,0 +1,35 @@
+{% extends 'admin.html' %} 
+{% load admin %}
+
+{% block admin_head %}
+ {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_table.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_form.css' %}">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/admin_buttons.css' %}">
+  <script src="{% static '/scripts/delete.js' %}"></script>
+{% endblock %}
+{% block title %} UniPark | Emails {% endblock %}
+
+{% block admin_content %}
+  <div class="table-wrapper">
+    <div class="top">
+      <h3>Emails</h3>
+    </div>
+    <br/>
+    <form action="/api/emails/test/" method="POST">
+      {% csrf_token %}
+      <input hidden name="redirect" value="/admin/emails/" />
+      <div class="admin-form-fields">
+        <div class="admin-form-field">
+          <label class="p-bold" for="email">Test Email</label>
+          <input type="text" id="toEmail" name="toEmail" value="" required/>
+        </div>
+        <p class="error">{{error}}</p>
+        <button type="submit" class="admin-btn blue p-bold auto">Test Email</a>
+      </div>
+    </form>
+  </div>
+  {% create_table "emails" emails "id|name|category|date" no_add="True" no_del="True" %}
+
+{% endblock %}
