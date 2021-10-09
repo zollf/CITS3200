@@ -13,12 +13,12 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 from .utils import common_decorators, renderPDF
 
-@staff_member_required(login_url="/admin/staff_required")
 @login_required(login_url="/login")
+@staff_member_required(login_url="/admin/staff_required")
+
 def AdminView(request):
     return render(request, "admin.html")
 
-@login_required(login_url="/login")
 def StaffRequiredView(request):
     return render(request, "staff_required.html")
 
