@@ -68,6 +68,12 @@ jobs:
           envkey_MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           envkey_MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
           envkey_MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+          envkey_EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+          envkey_EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+          envkey_EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+          envkey_EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+          envkey_EMAIL_USE_TLS: ${{ secrets.EMAIL_USE_TLS }}
+          envkey_DEFAULT_FROM_EMAIL: ${{ secrets.DEFAULT_FROM_EMAIL }}
           file_name: .env 
       - name: Yarn Install
         run: yarn install
