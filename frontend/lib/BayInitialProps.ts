@@ -51,7 +51,7 @@ interface PreprocessedTimes {
 }
 
 const ProcessBaysBooked = (bookedBaysResponse: BaysBookedResponse['bays']): PreprocessedTimes => {
-  // We use Times as sometimes Gloabl Times don't encapsulate buffered times.
+  // We use Times as sometimes Global Start/End Time don't encapsulate buffered times.
   const baysBooked: PreprocessedTimes = {};
   bookedBaysResponse.forEach((b) => {
     let foundStart = false;
