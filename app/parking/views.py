@@ -161,7 +161,7 @@ def bookings(request):
             "email": "test@test.com",
             "rego": "1234",
             "company": "uni",
-            "phone": 1234
+            "phone": 1234,
             "user": "1"
           },
           "bays": [
@@ -214,11 +214,33 @@ def bookings(request):
 
         bookingsSerializer.save()
 
-        # Save Bays
+        # Save BaysBooked
         for bay in request.data['bays']:
             bayBooked = bay
             bayBooked['booking_id'] = bookingsSerializer.data['pk']
             bayBooked['bay_id'] = bay['bay']
+
+            # Calculating BEFORE buffer
+            start_time_hr, start_time_min = bayBooked['start_time'].split(':')  # either 0, 30
+            start_time_hr, start_time_min = int(start_time_hr), int(start_time_min)
+
+            start_time_min -= 30
+            if start_time_min < 0:
+                start_time_hr = max(start_time_hr - 1, 0)
+                start_time_min = 30
+
+            bayBooked['start_time'] = f"{start_time_hr:02}:{start_time_min:02}"
+
+            # Calculating AFTER buffer
+            end_time_hr, end_time_min = bayBooked['end_time'].split(':')  # either 0, 30
+            end_time_hr, end_time_min = int(end_time_hr), int(end_time_min)
+
+            end_time_min += 30
+            if end_time_min > 30:
+                end_time_hr = min(end_time_hr + 1, 23)
+                end_time_min = 0
+
+            bayBooked['end_time'] = f"{end_time_hr:02}:{end_time_min:02}"
 
             baysBookedSerializer = BaysBookedSerializer(data=bayBooked)
 

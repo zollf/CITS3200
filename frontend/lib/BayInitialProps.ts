@@ -27,7 +27,7 @@ const getInitialState = (
     }
   }
 
-  const ppBaysBooked = ProcessBaysBooked(bookedBaysResponse.bays, times);
+  const ppBaysBooked = ProcessBaysBooked(bookedBaysResponse.bays);
   const bays: Bay[] = bayResponse.map((b, i) => ({
     bayId: b.pk,
     bayNum: parseInt(b.bay_number),
@@ -50,23 +50,24 @@ interface PreprocessedTimes {
   };
 }
 
-const ProcessBaysBooked = (bookedBaysResponse: BaysBookedResponse['bays'], times: string[]): PreprocessedTimes => {
+const ProcessBaysBooked = (bookedBaysResponse: BaysBookedResponse['bays']): PreprocessedTimes => {
+  // We use Times as sometimes Gloabl Times don't encapsulate buffered times.
   const baysBooked: PreprocessedTimes = {};
   bookedBaysResponse.forEach((b) => {
     let foundStart = false;
-    const START_TIME = b.start_time.slice(0, -3);
+    const START_TIME = b.start_time.slice(0, -3); // slices the seconds off and ':' from HH:MM:SS
     const END_TIME = b.end_time.slice(0, -3);
-    for (let i = 0; i < times.length; i++) {
-      if (times[i] === START_TIME) foundStart = true;
+    for (let i = 0; i < Times.length; i++) {
+      if (Times[i] === START_TIME) foundStart = true;
       if (foundStart) {
         if (!baysBooked[b.bay.id]) {
           baysBooked[b.bay.id] = {};
-          baysBooked[b.bay.id][times[i]] = true;
+          baysBooked[b.bay.id][Times[i]] = true;
         } else {
-          baysBooked[b.bay.id][times[i]] = true;
+          baysBooked[b.bay.id][Times[i]] = true;
         }
       }
-      if (times[i] === END_TIME) break;
+      if (Times[i] === END_TIME) break;
     }
   });
 
