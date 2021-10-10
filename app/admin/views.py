@@ -90,7 +90,7 @@ def UsersEdit(request, pk):
 def BayAdd(request, pk):
     if (request.method == 'GET'):
         back_url = f"/admin/carparks/view/{pk}"
-        form_config = f"bay_number:number:Bay Number|description:n_textarea: Description (Optional)|carpark:hidden:{pk}"
+        form_config = f"bay_number:number:Bay Number|description:n_textarea:Description (Optional)|carpark:hidden:{pk}"
         return render(request, 'bay.html', {'bay': CarBay(), 'back_url': back_url, 'form': form_config})
 
 @common_decorators(['GET'])
@@ -98,7 +98,7 @@ def BayEdit(request, pk, pk2):
     if (request.method == 'GET'):
         data = {
             'back_url': f"/admin/carparks/view/{pk}",
-            'form': f"bay_number:number:Bay Number|description:textarea|carpark:hidden:{pk}",
+            'form': f"bay_number:number:Bay Number|description:n_textarea:Description (Optional)|carpark:hidden:{pk}",
             'bay': CarBay.objects.values('id', 'bay_number', 'description').get(pk=pk2)
         }
         return render(request, 'bay.html', data)
