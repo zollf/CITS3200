@@ -39,3 +39,8 @@
   border: 3px solid var(--uwa-blue);
   resize: vertical;
 }
+
+.error {
+  color: var(--uwa-secondary-red);
+  margin-bottom: 24px;
+}

@@ -116,7 +116,8 @@ def BookingView(request, pk):
                                           'rego', 'company', 'phone', 'user').get(pk=pk)
         bays = BaysBooked.objects.filter(booking__id=pk)
         user = User.objects.values('id', 'username', 'hub', 'email').get(pk=booking['user'])
-        return render(request, 'booking.html', {'booking': booking, 'bays': bays, 'user': user})
+        carpark = CarPark.objects.values('id', 'name', 'description').get(pk=booking['carpark'])
+        return render(request, 'booking.html', {'booking': booking, 'bays': bays, 'user': user, 'carpark': carpark})
 
 @login_required(login_url="/admin/login")
 def BookingPDF(request, pk):

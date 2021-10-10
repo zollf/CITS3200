@@ -6,11 +6,14 @@ interface StepComponent {
 interface BookingContext {
   next: () => void;
   back: () => void;
+  setLoading: (loading: bool) => void;
+  setError: (error: string) => void;
   step: number;
   globalStartTime: string;
   globalEndTime: string;
   phone: string;
   hub: string;
+  loading: boolean;
 }
 
 type Selected = 1;
