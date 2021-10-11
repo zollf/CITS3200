@@ -1,4 +1,4 @@
-from django.core.mail import send_mail, EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 
 from .models import Emails
@@ -21,7 +21,7 @@ def log_and_send_mail(subject: str, to_email: list, category: str, template: str
         name=Emails.events[category]['name'],
         description=Emails.events[category]['description'],
         category=category,
-        payload="",
+        payload=str(data),
         date=date.today(),
     )
     email.save()
