@@ -24,6 +24,7 @@ interface Bay {
   bayId: number;
   bayNum: number;
   times: Time[];
+  desc: string;
 }
 
 interface BayResponse {

@@ -43,6 +43,7 @@
 }
 
 .left {
+  position: relative;
   justify-content: center;
   align-items: center;
 }
@@ -116,3 +117,38 @@
 .greenSquare { background: var(--uwa-secondary-green)}
 .redSquare { background: var(--uwa-secondary-red)}
 .yellowSquare { background: var(--uwa-secondary-gold)}
+
+.additionInfo {
+  position: absolute;
+  right: 4px;
+  top: 5px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.additionInfo > svg {
+  width: 15px;
+  height: 15px;
+}
+
+.closeButton {
+  position: absolute;
+  bottom: 20px;
+}
+
+.modal {
+  position: absolute;
+  margin: auto;
+  left: calc(50% - 250px);
+  top: calc(50% - 100px);
+  width: 500px;
+  height: 200px;
+  border: 3px solid var(--uwa-blue);
+  background: #fff;
+  overflow: auto;
+  border-radius: 7px;
+  outline: none;
+  padding: 20px;
+}

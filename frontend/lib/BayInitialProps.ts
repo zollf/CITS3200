@@ -31,6 +31,7 @@ const getInitialState = (
   const bays: Bay[] = bayResponse.map((b, i) => ({
     bayId: b.pk,
     bayNum: parseInt(b.bay_number),
+    desc: b.description,
     times: [...new Array(times.length)].map((_, j) => ({
       slug: `bay:${i + 1}-time:${times[j]}`,
       status: ppBaysBooked[b.pk]?.[times[j]] ? UNAVAILABLE : AVAILABLE,
