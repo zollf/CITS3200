@@ -11,7 +11,7 @@
 {% block title %} UniPark | View Carpark {% endblock %}
 
 {% block admin_content %}
-  {% create_form 'carparks' carpark 'name:text|description:textarea|google_maps_link:text' %}
+  {% create_form 'carparks' carpark 'name:text|description:textarea|google_maps_link:text:Google Maps Link' %}
   {% if add_bays %}
     {% create_table "bays" carbays "bay_number|description" url=add_url redirect=carbay_redirect carpark=id %}
   {% endif %}

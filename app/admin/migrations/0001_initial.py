@@ -13,12 +13,12 @@ class Migration(migrations.Migration):
     def insertData(apps, schema_editor):
         Settings = apps.get_model('booking_admin', 'Settings')
         phone = Settings(key="phone", label="Phone", value="04 1234 5678", type="text")
-        start_date = Settings(key="start_date", label="Global Start Date", value="00:00", type="time")
-        end_date = Settings(key="end_date", label="Global End Date", value="00:00", type="time")
+        start_time = Settings(key="start_time", label="Global Start Time", value="00:00", type="time")
+        end_time = Settings(key="end_time", label="Global End Time", value="00:00", type="time")
 
         phone.save()
-        start_date.save()
-        end_date.save()
+        start_time.save()
+        end_time.save()
 
     operations = [
         migrations.CreateModel(
