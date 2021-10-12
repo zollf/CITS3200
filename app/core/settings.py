@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'app.parking',
     'app.authentication',
     'app.admin',
+    'app.emails',
 ]
 
 MIDDLEWARE = [
@@ -92,11 +93,16 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = 'authentication.User'
 LOGIN_URL = "login/"
 LOGIN_REDIRECT_URL = "/"  # in case next parameter is not specified in GET request
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST =
-# EMAIL_PORT = 25
-# EMAIL_HOST_USER =
-# EMAIL_HOST_PASSWORD =
+
+# Email Setups
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS") == "True"
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+SERVER_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
