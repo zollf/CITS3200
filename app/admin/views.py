@@ -48,7 +48,8 @@ def CarparksView(request):
 @common_decorators(['GET'])
 def CarparkAdd(request):
     if (request.method == 'GET'):
-        return render(request, 'carpark.html', {'carpark': CarPark(), 'add_bays': False})
+        return render(request, 'carpark.html', {'carpark': CarPark(), 'add_bays': False, 
+        'errors': request.session.pop("new_carpark_errors", None)})
 
 @common_decorators(['GET'])
 def CarparkEdit(request, pk):
@@ -63,7 +64,8 @@ def CarparkEdit(request, pk):
             'add_url': add_url,
             'id': carpark['id'],
             'carbay_redirect': carbay_redirect,
-            'add_bays': True
+            'add_bays': True,
+            'errors': request.session.pop("edit_carpark_errors", None)
         }
         return render(request, 'carpark.html', data)
 
@@ -77,14 +79,15 @@ def UsersView(request):
 def UsersAdd(request):
     if (request.method == 'GET'):
         return render(request, 'new_user.html', {'user': User(), 'current_user_id': request.user.id,
-                                                 'errors': request.session.pop("errors", None)})
+                                                 'errors': request.session.pop("add_user_errors", None)})
 
 @common_decorators(['GET'])
 def UsersEdit(request, pk):
     if (request.method == 'GET'):
         data = {
             'user': User.objects.values('id', 'username', 'email', 'phone', 'is_staff', 'hub').get(pk=pk),
-            'current_user_id': request.user.id
+            'current_user_id': request.user.id,
+            'errors': request.session.pop("edit_user_errors", None)
         }
         return render(request, 'user.html', data)
 

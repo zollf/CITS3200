@@ -51,9 +51,13 @@ def users_list(request):
         if not serializer.is_valid():
             # redisplay page with errors or return JSON
             if 'redirect' in request._data:
-                request.session["errors"] = [str(error[1][0]).replace("this field", error[0])
-                                             for error in serializer.errors.items()]
-                return redirect('user_add')
+                errors = [str(error[1][0]).replace("this field", error[0]) for error in serializer.errors.items()]
+                if 'pk' in request.data:
+                    request.session["edit_user_errors"] = errors
+                    return redirect(f"/admin/users/view/{request.data.get('pk', '')}")
+                else:
+                    request.session['add_user_errors'] = errors
+                    return redirect('user_add')
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         serializer.save()
