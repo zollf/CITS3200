@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/staff_required.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/styles/home.css' %}">
+{% endblock %}
+{% block title %} UniPark | Staff Required {% endblock %}
+
+{% block content %}
+  <div class="home-wrapper">
+    <div class="home">
+      <div class="logout-form">
+
+        <h2>Please login to a staff account</h2>
+          
+        <div class="logout-submit">
+          <a href="/logout">Logout</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

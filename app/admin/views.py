@@ -14,12 +14,12 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 from .utils import common_decorators, renderPDF
 
-@staff_member_required(login_url="/admin/staff_required")
 @login_required(login_url="/login")
+@staff_member_required(login_url="/admin/staff_required")
 def AdminView(request):
     return render(request, "admin.html")
 
-@login_required(login_url="/admin/login")
+@login_required(login_url="/login")
 def StaffRequiredView(request):
     return render(request, "staff_required.html")
 
@@ -48,8 +48,8 @@ def CarparksView(request):
 @common_decorators(['GET'])
 def CarparkAdd(request):
     if (request.method == 'GET'):
-        return render(request, 'carpark.html', {'carpark': CarPark(), 'add_bays': False, 
-        'errors': request.session.pop("new_carpark_errors", None)})
+        return render(request, 'carpark.html', {'carpark': CarPark(), 'add_bays': False,
+                                                'errors': request.session.pop("new_carpark_errors", None)})
 
 @common_decorators(['GET'])
 def CarparkEdit(request, pk):
@@ -95,8 +95,8 @@ def UsersEdit(request, pk):
 def BayAdd(request, pk):
     if (request.method == 'GET'):
         back_url = f"/admin/carparks/view/{pk}"
-        form_config = f"bay_number:number:Bay Number|description:textarea|carpark:hidden:{pk}"
-        return render(request, 'bay.html', {'bay': CarBay(), 'back_url': back_url, 'form': form_config, 
+        form_config = f"bay_number:number:Bay Number|description:n_textarea:Description (Optional)|carpark:hidden:{pk}"
+        return render(request, 'bay.html', {'bay': CarBay(), 'back_url': back_url, 'form': form_config,
                                             'errors': request.session.pop("bay_errors", None)})
 
 @common_decorators(['GET'])
@@ -104,7 +104,7 @@ def BayEdit(request, pk, pk2):
     if (request.method == 'GET'):
         data = {
             'back_url': f"/admin/carparks/view/{pk}",
-            'form': f"bay_number:number:Bay Number|description:textarea|carpark:hidden:{pk}",
+            'form': f"bay_number:number:Bay Number|description:n_textarea:Description (Optional)|carpark:hidden:{pk}",
             'bay': CarBay.objects.values('id', 'bay_number', 'description').get(pk=pk2)
         }
         return render(request, 'bay.html', data)
