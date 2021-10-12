@@ -73,5 +73,14 @@
         {% endif %}
       {% endfor %}
     </div>
+    {% if errors %}
+      <br> <br>
+      {% for error in errors %}
+        <li class="error">
+          {{ error }}
+        </li>
+      {% endfor %}
+    {% endif %}
+
   </form>
 </div>

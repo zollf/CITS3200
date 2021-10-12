@@ -2,6 +2,7 @@ from django.contrib.auth import logout
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.hashers import make_password
 
@@ -9,6 +10,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import JSONParser
+
+from django.contrib import messages
 
 from .models import User
 from .serializers import *
@@ -46,9 +49,15 @@ def users_list(request):
             serializer = UserSerializer(data=request._data, partial=partial)
 
         if not serializer.is_valid():
-            # redirect to given page if exists or return JSON
+            # redisplay page with errors or return JSON
             if 'redirect' in request._data:
-                return redirect(request._data['redirect'])
+                errors = [str(error[1][0]).replace("this field", error[0]) for error in serializer.errors.items()]
+                if 'pk' in request.data:
+                    request.session["edit_user_errors"] = errors
+                    return redirect(f"/admin/users/view/{request.data.get('pk', '')}")
+                else:
+                    request.session['add_user_errors'] = errors
+                    return redirect('user_add')
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         serializer.save()

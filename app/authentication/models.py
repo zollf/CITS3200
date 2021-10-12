@@ -24,7 +24,7 @@ class CustomUserManager(UserManager):
 class User(AbstractUser):
     email = models.EmailField(blank=False)
     hub = models.TextField(null=True)
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=15)
     locked = models.BooleanField(default=False)
     login_count = models.IntegerField(default=0)
     last_login = models.DateTimeField(null=True)

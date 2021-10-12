@@ -31,7 +31,14 @@ def carparks_list(request):
 
         if not serializer.is_valid():
             if 'redirect' in request.data:
-                return redirect(request.data['redirect'])
+                errors = [str(error[1][0]).replace("this field", error[0]) for error in serializer.errors.items()]
+                if 'pk' in request.data:
+                    request.session["edit_carpark_errors"] = errors
+                    return redirect(f"/admin/carparks/view/{request.data.get('pk', '')}")
+                else:
+                    request.session["new_carpark_errors"] = errors
+                    return redirect(f"/admin/carparks/add")
+
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         serializer.save()
@@ -79,6 +86,10 @@ def carbay_list(request):
             serializer = CarBaySerializer(data=request.data)
 
         if not serializer.is_valid():
+            if 'redirect' in request.data:
+                request.session["bay_errors"] = [str(error[1][0]).replace("this field", error[0])
+                                                 for error in serializer.errors.items()]
+                return redirect(f"/admin/carparks/{request.data.get('carpark', '')}/bay/add")
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         serializer.save()
