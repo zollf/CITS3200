@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Alegreya';
+    src: url('')
+}
+
+.dashboard {
+    padding: 50px;
+    font-size: 24px;
+}

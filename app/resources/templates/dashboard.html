@@ -1,0 +1,25 @@
+{% extends 'admin.html' %}
+
+{% block admin_head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/dashboard.css' %}">
+{% endblock %}
+
+{% block admin_content %}
+    <div class="dashboard">
+        Welcome to the Admin Panel! <br />
+        <ul>
+            <li> 
+                Documentation for the Admin Panel can be found <a href="https://drive.google.com/file/d/1_8X9ecMo2S6YUvN0GXyE2AWd-r5-_dEB/view?usp=sharing" 
+                target="_blank" rel="noopener noreferrer"> here</a>. 
+            </li> 
+            <li>
+                Documentation for the booking process (user manual) can be found <a href="https://drive.google.com/file/d/1xEMgkj7YqwY5IHF_m3EFmJSTwVdlgu1x/view?usp=sharing" target="_blank" 
+                rel="noopener noreferrer"> here</a>.
+            </li>
+        </ul>
+
+        This website was developed by Dylan Kennedy, Jayden Teo, Arun Muthu, Joel Milligan, Pin-Hsuan Tseng and 
+        Joel Fitzpatrick as part of the CITS3200 unit.
+    </div>
+{% endblock %}
