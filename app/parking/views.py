@@ -155,6 +155,7 @@ def bays_booked(request):
 
         return JsonResponse({'success': True, 'bays': baysCleaned}, status=status.HTTP_200_OK)
 
+@login_required(login_url="/login")
 @api_view(['GET', 'POST'])
 def bookings(request):
     if request.method == 'GET':
@@ -240,8 +241,9 @@ def bookings(request):
 
             baysBookedSerializer.save()
 
-        return JsonResponse({'success': True}, status=status.HTTP_201_CREATED)
+        return JsonResponse({'success': True, 'booking_id': bookingsSerializer.data['pk']}, status=status.HTTP_201_CREATED)
 
+@login_required(login_url="/login")
 @api_view(['GET', 'DELETE'])
 def booking(request, pk):
     if request.method == 'GET':

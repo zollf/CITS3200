@@ -14,6 +14,7 @@ interface BookingContext {
   phone: string;
   hub: string;
   loading: boolean;
+  bookingId: number;
 }
 
 type Selected = 1;

@@ -16,13 +16,19 @@ interface Props {
   onClick?: () => void;
   children: React.ReactChild;
   disabled?: boolean;
+  customClass?: any;
 }
-
-const CustomButton = ({ type, iconLeft = false, icon, onClick, children, disabled = false }: Props) => {
+console.log(typeof styles.custombutton);
+const CustomButton = ({ type, iconLeft = false, icon, onClick, children, disabled = false, customClass }: Props) => {
   return (
     <button
       type={type}
-      className={cc({ [styles.custombutton]: true, [styles.iconLeft]: iconLeft, [styles.disabled]: disabled })}
+      className={cc({
+        [styles.custombutton]: true,
+        [styles.iconLeft]: iconLeft,
+        [styles.disabled]: disabled,
+        [customClass]: !!customClass,
+      })}
       onClick={onClick}
       disabled={disabled}
     >
