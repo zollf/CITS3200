@@ -241,7 +241,8 @@ def bookings(request):
 
             baysBookedSerializer.save()
 
-        return JsonResponse({'success': True, 'booking_id': bookingsSerializer.data['pk']}, status=status.HTTP_201_CREATED)
+        return JsonResponse({'success': True, 'booking_id': bookingsSerializer.data['pk']},
+                            status=status.HTTP_201_CREATED)
 
 @login_required(login_url="/login")
 @api_view(['GET', 'DELETE'])
