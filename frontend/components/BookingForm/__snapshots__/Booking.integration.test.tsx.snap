@@ -132,6 +132,25 @@ exports[`Booking Form Confirmation matches its snapshot 1`] = `
           </table>
         </div>
         <button
+          class="custombutton download"
+          type="button"
+        >
+          Download PDF 
+          <svg
+            fill="none"
+            height="24"
+            viewBox="0 -3 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14 6h-4V0H4v6H0l7 7 7-7zM0 15v2h14v-2H0z"
+              fill="#FDFDFD"
+            />
+          </svg>
+           
+        </button>
+        <button
           class="custombutton"
           type="button"
         >
