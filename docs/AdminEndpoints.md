@@ -43,37 +43,37 @@
 
 `api/bays-booked`
 
-| Method | Action |
-| ------ | ------ |
-| POST   | ???    |
+| Method | Action                                                    |
+| ------ | --------------------------------------------------------- |
+| POST   | Returns the bays booked for a carpark at a specified date |
 
 `api/bookings`
 
-| Method | Action |
-| ------ | ------ |
-| GET    | ???    |
-| POST   | ???    |
+| Method | Action               |
+| ------ | -------------------- |
+| GET    | Returns all bookings |
+| POST   | Creates a booking    |
 
-`api/bookings/<int>`
+`api/booking/<id>`
 
-| Method | Action |
-| ------ | ------ |
-| GET    | ???    |
-| DELETE | ???    |
+| Method | Action                         |
+| ------ | ------------------------------ |
+| GET    | Returns specified booking `id` |
+| DELETE | Deletes booking `id`           |
 
 ## Users
 
-`api/users [GET, POST]`
+`api/users`
 
-| Method | Action |
-| ------ | ------ |
-| GET    | ???    |
-| POST   | ???    |
+| Method | Action                  |
+| ------ | ----------------------- |
+| GET    | Returns all admin users |
+| POST   | Creates a new user      |
 
-`api/users/<int> [GET, PUT, DELETE]`
+`api/users/<id>`
 
-| Method | Action |
-| ------ | ------ |
-| GET    | ???    |
-| PUT    | ???    |
-| DELETE | ???    |
+| Method | Action            |
+| ------ | ----------------- |
+| GET    | Returns user `id` |
+| PUT    | Updates user `id` |
+| DELETE | Deletes user `id` |
