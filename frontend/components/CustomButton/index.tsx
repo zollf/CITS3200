@@ -18,7 +18,7 @@ interface Props {
   disabled?: boolean;
   customClass?: any;
 }
-console.log(typeof styles.custombutton);
+
 const CustomButton = ({ type, iconLeft = false, icon, onClick, children, disabled = false, customClass }: Props) => {
   return (
     <button
