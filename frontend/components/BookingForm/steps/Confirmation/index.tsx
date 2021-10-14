@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Arrow from '@/app/resources/static/images/arrow.svg';
+import Download from '@/app/resources/static/images/download.svg';
 import CarparkCard from '@/frontend/components/CarparkCard';
 import Field from '@/frontend/components/Field';
 import { BookingContext } from '@/frontend/components/BookingForm/index';
@@ -10,7 +11,7 @@ import BayBookings from '../Details/BayBookings';
 import styles from './styles.module.css';
 
 const Confirmation = () => {
-  const { hub } = useContext<BookingContext>(BookingContext);
+  const { hub, bookingId } = useContext<BookingContext>(BookingContext);
   const { values } = useFormikContext<BookingFormValues>();
 
   return (
@@ -28,6 +29,16 @@ const Confirmation = () => {
         <Field label="Date" name="date" type="data" value={values.date.toDateString()} disabled />
         <BayBookings bayTimes={values.booking} />
       </div>
+      <CustomButton
+        type={ButtonType.button}
+        iconLeft={false}
+        icon={<Download />}
+        onClick={() => window.open(`/admin/bookings/download/${bookingId}`, '_blank', 'noopener,noreferrer')}
+        customClass={styles.download}
+      >
+        Download PDF
+      </CustomButton>
+
       <CustomButton
         type={ButtonType.button}
         iconLeft={false}

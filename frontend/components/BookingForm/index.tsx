@@ -37,6 +37,7 @@ const BookingContext = React.createContext<BookingContext>({
   phone: '04 1234 5678',
   hub: '',
   loading: false,
+  bookingId: -1,
 });
 
 const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Props) => {
@@ -46,6 +47,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
   const [showHelp, setShowHelp] = useState(false);
   const [documentation, setDocumentation] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [bookingId, setBookingId] = useState(-1);
 
   useEffectOnce(() => {
     const getSettings = async () => {
@@ -91,6 +93,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
       }).then((r) => r.json());
       setLoading(false);
       if (response?.success) {
+        setBookingId(response['booking_id']);
         return true;
       } else {
         if (response?.error) {
@@ -127,7 +130,19 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
 
   return (
     <BookingContext.Provider
-      value={{ next, back, step, globalStartTime, globalEndTime, phone, hub, setLoading, loading, setError }}
+      value={{
+        next,
+        back,
+        step,
+        globalStartTime,
+        globalEndTime,
+        phone,
+        hub,
+        setLoading,
+        loading,
+        setError,
+        bookingId,
+      }}
     >
       <Formik<BookingFormValues>
         initialValues={InitialValues}
