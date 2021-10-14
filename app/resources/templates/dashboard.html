@@ -1,8 +1,12 @@
 {% extends 'admin.html' %}
 
 {% block admin_head %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static '/styles/dashboard.css' %}">
+    <style>
+        .dashboard {
+            padding: 50px;
+            font-size: 23px;
+        }
+    </style>
 {% endblock %}
 
 {% block admin_content %}
