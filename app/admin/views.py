@@ -113,7 +113,7 @@ def BayEdit(request, pk, pk2):
 @common_decorators(['GET'])
 def BookingsView(request):
     if (request.method == 'GET'):
-        bookings = Bookings.objects.values('id', 'date', 'email').all()
+        bookings = Bookings.objects.values('id', 'date', 'email').all().order_by('-id')[:100]
         return render(request, 'bookings.html', {'bookings': bookings})
 
 @common_decorators(['GET'])

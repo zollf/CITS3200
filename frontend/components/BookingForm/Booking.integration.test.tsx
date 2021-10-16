@@ -30,7 +30,7 @@ const renderToStep2 = async (fetch = true) => {
     fetchMock.mockResponseOnce(JSON.stringify(carparks));
     fetchMock.mockResponseOnce(JSON.stringify(bays));
     fetchMock.mockResponseOnce(JSON.stringify({ success: true, bays: baysBooked }));
-    fetchMock.mockResponseOnce(JSON.stringify({ success: true }));
+    fetchMock.mockResponseOnce(JSON.stringify({ success: true, booking_id: 1 }));
   }
 
   const component = render(<BookingForm {...initialProps} />);
@@ -221,6 +221,19 @@ describe('Booking Form Step 2', () => {
     await waitFor(() => expect(getByText(/Something went wrong when fetching bays for carpark/)).toBeInTheDocument());
   });
 
+  it('bay additional info works correctly', async () => {
+    const { getByText, getAllByTestId } = await renderToStep2();
+    UserEvent.click(getAllByTestId('additionalInfo')[0]);
+    UserEvent.click(getByText('Close'));
+  });
+
+  it('click on unavailable time slot should do nothing', async () => {
+    const { container } = await renderToStep2();
+    const allNodes = container.querySelectorAll('[data-unavailable="true"]');
+    UserEvent.click(allNodes[0]);
+    expect(container.querySelectorAll('[data-unavailable="true"]').length).toBe(allNodes.length);
+  });
+
   it('completes step 2 correctly', async () => {
     const { getByText, getAllByTestId } = await renderToStep2();
     expect(getByText(/Select bay for/)).toBeInTheDocument();
@@ -326,5 +339,15 @@ describe('Booking Form Confirmation', () => {
   it('return button works correctly', async () => {
     const { getByText } = await renderToConfirmation();
     UserEvent.click(getByText('Return'));
+  });
+
+  it('pdf buttons works correctly', async () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore next
+    delete window.open;
+    window.open = jest.fn();
+    const { getByText } = await renderToConfirmation();
+    UserEvent.click(getByText('Download PDF'));
+    expect(window.open).toHaveBeenCalledWith('/admin/bookings/download/1', '_blank', 'noopener,noreferrer');
   });
 });

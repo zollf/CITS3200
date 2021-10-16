@@ -32,8 +32,8 @@
           <div class="table-row-actions" data-light="{% if forloop.counter|divisibleby:2 == 0 %}true{% else %}false{% endif %}">
             <div class="table-row">
               <h4 data-thin="true">{{bay.bay.bay_number}}</h4>
-              <h4 data-thin="true">{{bay.start_time}}</h4>
-              <h4 data-thin="true">{{bay.end_time}}</h4>
+              <h4 data-thin="true">{{bay.start_time|date:"fa"}}</h4>
+              <h4 data-thin="true">{{bay.end_time|date:"fa"}}</h4>
             </div>
             <div class="table-actions"></div>
           </div>
