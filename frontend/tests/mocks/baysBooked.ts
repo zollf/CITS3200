@@ -16,8 +16,9 @@ const bayBooked = (id: number, start_time: string, end_time: string): BaysBooked
 
 const baysBooked = [
   bayBooked(1, '13:00:00', '15:30:00'),
-  bayBooked(1, '12:30:00', '12:30:00'),
-  bayBooked(1, '14:30:00', '18:30:00'),
+  bayBooked(1, '16:30:00', '18:30:00'),
+  bayBooked(2, '14:30:00', '18:30:00'),
+  bayBooked(3, '12:30:00', '13:00:00'),
 ];
 
 export { baysBooked, bayBooked };

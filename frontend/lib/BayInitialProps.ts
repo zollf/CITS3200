@@ -1,4 +1,4 @@
-import Times from './Times';
+import Times, { standardTime } from './Times';
 
 const AVAILABLE = 0;
 const SELECTED = 1;
@@ -6,39 +6,59 @@ const UNAVAILABLE = 2;
 
 const selection = { AVAILABLE, SELECTED, UNAVAILABLE };
 
+/**
+ * Gets all times slots based on a start time and end time with 30mins interval
+ * @param globalStartTime global start time of booking system
+ * @param globalEndTime global end time of booking system
+ * @throws Error if global start time and end time are equal and not 00:00, as that represents a day
+ * @returns All time slots available for the day
+ */
+const getTimes = (globalStartTime: string, globalEndTime: string): string[] => {
+  if (globalStartTime === '00:00' && globalEndTime === '00:00') return Times;
+  if (globalStartTime === globalEndTime) throw new Error('Global start time and global end time cannot be equal');
+
+  const times: string[] = [];
+  let foundStart = false;
+  for (let i = 0; i < Times.length; i++) {
+    if (Times[i] === globalStartTime) foundStart = true;
+    if (foundStart) {
+      if (Times[i] === globalEndTime) break;
+      times.push(Times[i]);
+    }
+  }
+
+  return times;
+};
+
+/**
+ * Gets the initial state of all bays and their status (AVAILABLE or UNAVAILABLE)
+ * @param bayResponse all bays from the api
+ * @param bookedBaysResponse all booked bays and there times from the api
+ * @param globalStartTime global start time of booking system
+ * @param globalEndTime global end time of booking system
+ * @returns times available, bays and information about their times
+ */
 const getInitialState = (
   bayResponse: BayResponse[],
   bookedBaysResponse: BaysBookedResponse,
   globalStartTime: string,
   globalEndTime: string,
 ): BaysInitialProps => {
-  const times: string[] = [];
-  let foundStart = false;
-  let translation = 0;
-  for (let i = 0; i < Times.length; i++) {
-    if (Times[i] == globalStartTime) {
-      translation = i;
-      foundStart = true;
-    }
-    if (foundStart) {
-      times.push(Times[i]);
-      // need foundStart to be true if for example 12:00 A.M. is the end time
-      if (Times[i] == globalEndTime) break;
-    }
-  }
-
-  const ppBaysBooked = ProcessBaysBooked(bookedBaysResponse.bays, times);
-  const bays: Bay[] = bayResponse.map((b, i) => ({
+  const times = getTimes(globalStartTime, globalEndTime);
+  const ppBaysBooked = processBaysBooked(bookedBaysResponse.bays, times);
+  const offset = Times.indexOf(globalStartTime) + 1;
+  const bays: Bay[] = bayResponse.map((b, row) => ({
     bayId: b.pk,
     bayNum: parseInt(b.bay_number),
     desc: b.description,
-    times: [...new Array(times.length)].map((_, j) => ({
-      slug: `bay:${i + 1}-time:${times[j]}`,
-      status: ppBaysBooked[b.pk]?.[times[j]] ? UNAVAILABLE : AVAILABLE,
-      bayId: b.pk,
-      bayNum: parseInt(b.bay_number),
-      time: times[j],
-      index: j + translation,
+    times: [...new Array(times.length)].map((_, i) => ({
+      slug: `bay:${row + 1}-time:${times[i]}`, // Our own key value, used to store in map
+      status: ppBaysBooked[b.pk]?.[times[i]] ? UNAVAILABLE : AVAILABLE,
+      bayId: b.pk, // Bay id is the id of bay set in db
+      bayNum: parseInt(b.bay_number), // Bay number is set by unipark staff
+      time: times[i],
+      index: i,
+      endTime: Times[(offset + i) % Times.length],
     })),
   }));
 
@@ -46,17 +66,24 @@ const getInitialState = (
 };
 
 interface PreprocessedTimes {
-  [bay: string]: {
+  [id: number]: {
     [time: string]: boolean;
   };
 }
 
-const ProcessBaysBooked = (bookedBaysResponse: BaysBookedResponse['bays'], times: string[]): PreprocessedTimes => {
+/**
+ * Processes bays booked api response into an object
+ * so we know which time slots have been taken up
+ * @param bookedBaysResponse all booked bays and there times from the api
+ * @param times times that are available to use
+ * @returns process time slots that have been taken up
+ */
+const processBaysBooked = (bookedBaysResponse: BaysBookedResponse['bays'], times: string[]): PreprocessedTimes => {
   const baysBooked: PreprocessedTimes = {};
   bookedBaysResponse.forEach((b) => {
     let foundStart = false;
-    const START_TIME = b.start_time.slice(0, -3);
-    const END_TIME = b.end_time.slice(0, -3);
+    const START_TIME = standardTime(b.start_time);
+    const END_TIME = standardTime(b.end_time);
     for (let i = 0; i < times.length; i++) {
       if (times[i] === START_TIME) foundStart = true;
       if (foundStart) {
@@ -67,11 +94,11 @@ const ProcessBaysBooked = (bookedBaysResponse: BaysBookedResponse['bays'], times
           baysBooked[b.bay.id][times[i]] = true;
         }
       }
-      if (times[i] === END_TIME) break;
+      if (times[i + 1] === END_TIME) break;
     }
   });
 
   return baysBooked;
 };
 
-export { getInitialState, selection };
+export { getInitialState, selection, getTimes, processBaysBooked };

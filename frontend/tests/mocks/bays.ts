@@ -9,6 +9,6 @@ const bay = (id: number): BayResponse => ({
   pk: id,
 });
 
-const bays = [bay(1), bay(2), bay(3)];
+const bays = [bay(1), bay(2), bay(3), bay(4)];
 
 export { bay, bays };

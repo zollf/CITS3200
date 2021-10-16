@@ -61,6 +61,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
   const ActivePage = useMemo(() => Steps[step], [step]);
   const next = () => setStep(Math.min(step + 1, Steps.length - 1));
   const back = () => setStep(Math.max(step - 1, 0));
+  const closeModal = () => setShowHelp(false);
 
   const finalSubmit = async (values: BookingFormValues) => {
     setLoading(true);
@@ -78,7 +79,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
       bays: createListItems(values.booking).map((b) => ({
         bay: b[0]?.bayId,
         start_time: b[0]?.time,
-        end_time: b[1]?.time || b[0]?.time,
+        end_time: b[1]?.endTime || b[0]?.endTime,
       })),
     };
 
@@ -198,14 +199,14 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
       <ReactModal
         isOpen={showHelp}
         shouldCloseOnEsc={true}
-        onRequestClose={() => setShowHelp(false)}
+        onRequestClose={closeModal}
         shouldCloseOnOverlayClick={true}
         className={styles.modal}
         ariaHideApp={false}
       >
         {documentation[step]}
         <div className={styles.closeButton}>
-          <CustomButton onClick={() => setShowHelp(false)} type={ButtonType.button} icon={undefined}>
+          <CustomButton onClick={closeModal} type={ButtonType.button} icon={undefined}>
             Close
           </CustomButton>
         </div>

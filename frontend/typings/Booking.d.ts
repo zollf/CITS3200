@@ -57,6 +57,7 @@ interface Time {
   bayNum: number;
   index: number;
   bayId: number;
+  endTime: string;
 }
 
 interface BaysInitialProps {
