@@ -18,12 +18,6 @@
         padding-top: -140px;
         font-size: 15px;
       }
-
-      .footer {
-        padding-top:160px;
-        text-align: center;
-        font-size: 15px;
-      }
     </style>
   </head>
   <body>
@@ -45,17 +39,17 @@
     <main>
       <div class="recipient">
         {% if booking.name|length > 20 %}
-          <p style="padding-top:50px; font-size:100px; text-align: center;">{{booking.name}}</p>
+          <p style="padding-top:50px; font-size:60px; text-align: center;">{{booking.name}}</p>
         {% else %}
-          <p style="font-size:140px; text-align: center;">{{booking.name}}</p>
+          <p style="font-size:140px; text-align: center; margin-bottom: 0px;">{{booking.name}}</p>
         {% endif %}
         {% if booking.rego %}
-          <p style="font-size:14px; text-align: right; padding-top:-200px;">License Plate(s): {{license_plate.booking.rego}}</p>
+          <p style="font-size:18px; text-align: center; margin-top:-100px;">License Plate(s): {{booking.rego}}</p>
         {% endif %}
       </div>
     </main>
     <footer>
-      <p class="footer">For issues and enquiries, please contact: (+61 8) 6488 1229</p>
+      <p style="margin-top: 80px; text-align: center; font-size: 15px;">For issues and enquiries, please contact: (+61 8) 6488 1229</p>
     </footer>
   </body>
 </html>
