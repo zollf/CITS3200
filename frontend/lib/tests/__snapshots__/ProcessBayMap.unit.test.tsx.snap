@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderCleanedTimes() matches its snapshot 1`] = `
+<body>
+  <div>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            1
+             
+          </td>
+          <td>
+            08:00
+            -
+            09:30
+          </td>
+        </tr>
+        <tr>
+          <td>
+            2
+             
+          </td>
+          <td>
+            22:30
+            -
+            00:00
+          </td>
+        </tr>
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            00:00
+            -
+            00:30
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;

@@ -21,6 +21,7 @@ const BaySelection: StepComponent = () => {
   const [props, setProps] = useState<BaysInitialProps>();
   const [modalDesc, setModalDesc] = useState<string | undefined>(undefined);
 
+  const closeModal = () => setModalDesc(undefined);
   const getBays = useCallback(async () => {
     return await fetch(`/api/carparks/${values.carpark!.pk}/bays`).then((r) => r.json());
   }, [values.carpark]);
@@ -176,7 +177,12 @@ const BaySelection: StepComponent = () => {
                 <div className={styles.left}>
                   <p>{bay.bayNum}</p>
                   {bay.desc && (
-                    <button type="button" className={styles.additionInfo} onClick={() => setModalDesc(bay.desc)}>
+                    <button
+                      type="button"
+                      data-testid="additionalInfo"
+                      className={styles.additionInfo}
+                      onClick={() => setModalDesc(bay.desc)}
+                    >
                       <InfoIcon />
                     </button>
                   )}
@@ -206,14 +212,14 @@ const BaySelection: StepComponent = () => {
       <ReactModal
         isOpen={!!modalDesc}
         shouldCloseOnEsc={true}
-        onRequestClose={() => setModalDesc(undefined)}
+        onRequestClose={closeModal}
         shouldCloseOnOverlayClick={true}
         className={styles.modal}
         ariaHideApp={false}
       >
         {modalDesc}
         <div className={styles.closeButton}>
-          <CustomButton onClick={() => setModalDesc(undefined)} type={ButtonType.button} icon={undefined}>
+          <CustomButton onClick={closeModal} type={ButtonType.button} icon={undefined}>
             Close
           </CustomButton>
         </div>

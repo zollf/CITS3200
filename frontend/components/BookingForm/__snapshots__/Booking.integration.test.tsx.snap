@@ -132,6 +132,25 @@ exports[`Booking Form Confirmation matches its snapshot 1`] = `
           </table>
         </div>
         <button
+          class="custombutton download"
+          type="button"
+        >
+          Download PDF 
+          <svg
+            fill="none"
+            height="24"
+            viewBox="0 -3 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14 6h-4V0H4v6H0l7 7 7-7zM0 15v2h14v-2H0z"
+              fill="#FDFDFD"
+            />
+          </svg>
+           
+        </button>
+        <button
           class="custombutton"
           type="button"
         >
@@ -965,11 +984,6 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
               >
                 23:30
               </p>
-              <p
-                data-small-bold="true"
-              >
-                24:00
-              </p>
             </div>
           </div>
           <div
@@ -987,6 +1001,7 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                 </p>
                 <button
                   class="additionInfo"
+                  data-testid="additionalInfo"
                   type="button"
                 >
                   <svg
@@ -1186,7 +1201,7 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="true"
+                  data-unavailable="false"
                   type="button"
                 />
                 <button
@@ -1228,21 +1243,14 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="true"
+                  data-unavailable="false"
                   type="button"
                 />
                 <button
                   class="bayTime"
                   data-selected="false"
                   data-testid="bay-time"
-                  data-unavailable="true"
-                  type="button"
-                />
-                <button
-                  class="bayTime"
-                  data-selected="false"
-                  data-testid="bay-time"
-                  data-unavailable="true"
+                  data-unavailable="false"
                   type="button"
                 />
                 <button
@@ -1364,6 +1372,7 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                 </p>
                 <button
                   class="additionInfo"
+                  data-testid="additionalInfo"
                   type="button"
                 >
                   <svg
@@ -1571,6 +1580,370 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
                   data-selected="false"
                   data-testid="bay-time"
                   data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="true"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="true"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="true"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="true"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="true"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="true"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="true"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="true"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+              </div>
+            </div>
+            <div
+              class="bay"
+              data-light="false"
+            >
+              <div
+                class="left"
+              >
+                <p>
+                  9233
+                </p>
+                <button
+                  class="additionInfo"
+                  data-testid="additionalInfo"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    height="24"
+                    id="info"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                      fill="#323232"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div
+                class="bayTimes"
+              >
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="false"
+                  type="button"
+                />
+                <button
+                  class="bayTime"
+                  data-selected="false"
+                  data-testid="bay-time"
+                  data-unavailable="true"
                   type="button"
                 />
                 <button
@@ -1731,16 +2104,17 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
             </div>
             <div
               class="bay"
-              data-light="false"
+              data-light="true"
             >
               <div
                 class="left"
               >
                 <p>
-                  9233
+                  66974
                 </p>
                 <button
                   class="additionInfo"
+                  data-testid="additionalInfo"
                   type="button"
                 >
                   <svg
@@ -1761,13 +2135,6 @@ exports[`Booking Form Step 2 matches its snapshot 1`] = `
               <div
                 class="bayTimes"
               >
-                <button
-                  class="bayTime"
-                  data-selected="false"
-                  data-testid="bay-time"
-                  data-unavailable="false"
-                  type="button"
-                />
                 <button
                   class="bayTime"
                   data-selected="false"

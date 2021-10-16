@@ -14,6 +14,7 @@ interface BookingContext {
   phone: string;
   hub: string;
   loading: boolean;
+  bookingId: number;
 }
 
 type Selected = 1;
@@ -56,6 +57,7 @@ interface Time {
   bayNum: number;
   index: number;
   bayId: number;
+  endTime: string;
 }
 
 interface BaysInitialProps {

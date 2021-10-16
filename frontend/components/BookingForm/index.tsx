@@ -37,6 +37,7 @@ const BookingContext = React.createContext<BookingContext>({
   phone: '04 1234 5678',
   hub: '',
   loading: false,
+  bookingId: -1,
 });
 
 const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Props) => {
@@ -46,6 +47,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
   const [showHelp, setShowHelp] = useState(false);
   const [documentation, setDocumentation] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [bookingId, setBookingId] = useState(-1);
 
   useEffectOnce(() => {
     const getSettings = async () => {
@@ -59,6 +61,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
   const ActivePage = useMemo(() => Steps[step], [step]);
   const next = () => setStep(Math.min(step + 1, Steps.length - 1));
   const back = () => setStep(Math.max(step - 1, 0));
+  const closeModal = () => setShowHelp(false);
 
   const finalSubmit = async (values: BookingFormValues) => {
     setLoading(true);
@@ -76,7 +79,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
       bays: createListItems(values.booking).map((b) => ({
         bay: b[0]?.bayId,
         start_time: b[0]?.time,
-        end_time: b[1]?.time || b[0]?.time,
+        end_time: b[1]?.endTime || b[0]?.endTime,
       })),
     };
 
@@ -91,6 +94,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
       }).then((r) => r.json());
       setLoading(false);
       if (response?.success) {
+        setBookingId(response['booking_id']);
         return true;
       } else {
         if (response?.error) {
@@ -127,7 +131,19 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
 
   return (
     <BookingContext.Provider
-      value={{ next, back, step, globalStartTime, globalEndTime, phone, hub, setLoading, loading, setError }}
+      value={{
+        next,
+        back,
+        step,
+        globalStartTime,
+        globalEndTime,
+        phone,
+        hub,
+        setLoading,
+        loading,
+        setError,
+        bookingId,
+      }}
     >
       <Formik<BookingFormValues>
         initialValues={InitialValues}
@@ -183,14 +199,14 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
       <ReactModal
         isOpen={showHelp}
         shouldCloseOnEsc={true}
-        onRequestClose={() => setShowHelp(false)}
+        onRequestClose={closeModal}
         shouldCloseOnOverlayClick={true}
         className={styles.modal}
         ariaHideApp={false}
       >
         {documentation[step]}
         <div className={styles.closeButton}>
-          <CustomButton onClick={() => setShowHelp(false)} type={ButtonType.button} icon={undefined}>
+          <CustomButton onClick={closeModal} type={ButtonType.button} icon={undefined}>
             Close
           </CustomButton>
         </div>

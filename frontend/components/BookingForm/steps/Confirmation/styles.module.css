@@ -12,3 +12,7 @@
 button {
   float: right;
 }
+
+button.download {
+  float: left;
+}

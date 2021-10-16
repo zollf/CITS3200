@@ -1,3 +1,13 @@
+/**
+ * Standardise time *just in case*
+ * We take HH:MM always
+ * E.g., HH:MM:SS or any other
+ * @param time time to standardise
+ */
+export function standardTime(time: string): string {
+  return time.split(':').slice(0, 2).join(':');
+}
+
 export default [
   '00:00',
   '00:30',
@@ -47,5 +57,4 @@ export default [
   '22:30',
   '23:00',
   '23:30',
-  '24:00',
 ];
