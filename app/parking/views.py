@@ -230,7 +230,7 @@ def bookings(request):
         for bay in request.data['bays']:
 
             try:
-              CarBay.objects.get(pk=bay['bay'])
+                CarBay.objects.get(pk=bay['bay'])
             except CarBay.DoesNotExist:
                 return JsonResponse({
                     'error': 'No Carpark bay could be found given the id.'
