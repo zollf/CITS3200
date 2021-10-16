@@ -30,24 +30,25 @@ const Confirmation = () => {
         <Field label="Date" name="date" type="data" value={values.date.toDateString()} disabled />
         <BayBookings bayTimes={values.booking} />
       </div>
-      <CustomButton
-        type={ButtonType.button}
-        iconLeft={false}
-        icon={<Download />}
-        onClick={() => window.open(`/admin/bookings/download/${bookingId}`, '_blank', 'noopener,noreferrer')}
-        customClass={styles.download}
-      >
-        Download PDF
-      </CustomButton>
+      <div className={styles.btns}>
+        <CustomButton
+          type={ButtonType.button}
+          iconLeft={false}
+          icon={<Download />}
+          onClick={() => window.open(`/admin/bookings/download/${bookingId}`, '_blank', 'noopener,noreferrer')}
+        >
+          Download PDF
+        </CustomButton>
 
-      <CustomButton
-        type={ButtonType.button}
-        iconLeft={false}
-        icon={<Arrow />}
-        onClick={() => window.location.assign('/')}
-      >
-        Return
-      </CustomButton>
+        <CustomButton
+          type={ButtonType.button}
+          iconLeft={false}
+          icon={<Arrow />}
+          onClick={() => window.location.assign('/')}
+        >
+          Return
+        </CustomButton>
+      </div>
     </div>
   );
 };

@@ -9,10 +9,9 @@
   margin-bottom: 12px;
 }
 
-button {
-  float: right;
-}
-
-button.download {
-  float: left;
+.btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  column-gap: 10px;
 }
