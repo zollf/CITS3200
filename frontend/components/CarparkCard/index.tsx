@@ -1,4 +1,5 @@
 import React from 'react';
+import cc from 'classcat';
 import MapIcon from '@/app/resources/static/images/map-pin.svg';
 import NewWindowIcon from '@/app/resources/static/images/open-in-new.svg';
 
@@ -9,11 +10,12 @@ interface Props {
   description: string;
   mapURL: string;
   onClick?: () => void;
+  hover?: boolean;
 }
 
-const CarparkCard = ({ name, description, mapURL, onClick }: Props) => {
+const CarparkCard = ({ name, description, mapURL, onClick, hover = true }: Props) => {
   return (
-    <div className={styles.card} onClick={onClick} data-testid="carpark-card">
+    <div className={cc({ [styles.card]: true, [styles.hover]: hover })} onClick={onClick} data-testid="carpark-card">
       <div className={styles.topHalf}>
         <h3>{name}</h3>
       </div>

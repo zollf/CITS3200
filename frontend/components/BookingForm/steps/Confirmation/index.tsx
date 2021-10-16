@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Arrow from '@/app/resources/static/images/arrow.svg';
-import Download from '@/app/resources/static/images/download.svg';
 import CarparkCard from '@/frontend/components/CarparkCard';
+import Download from '@/app/resources/static/images/download.svg';
 import Field from '@/frontend/components/Field';
 import { BookingContext } from '@/frontend/components/BookingForm/index';
 import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
@@ -25,6 +25,7 @@ const Confirmation = () => {
           name={values.carpark!.name}
           description={values.carpark!.description}
           mapURL={values.carpark!.google_maps_link}
+          hover={false}
         />
         <Field label="Date" name="date" type="data" value={values.date.toDateString()} disabled />
         <BayBookings bayTimes={values.booking} />
@@ -43,7 +44,7 @@ const Confirmation = () => {
         type={ButtonType.button}
         iconLeft={false}
         icon={<Arrow />}
-        onClick={() => (window.location.href = '/')}
+        onClick={() => window.location.assign('/')}
       >
         Return
       </CustomButton>

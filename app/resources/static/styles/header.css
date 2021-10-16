@@ -26,6 +26,7 @@
   right: 200px;
   top: 32px;
 }
+
 .header-btns > a {
   display: inline-flex;
   width: 100px;
@@ -39,7 +40,14 @@
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  box-shadow: 4px 4px 4px 0px #0000001A;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 5px;
+  transition: 0.2s all ease;
+}
+
+.header-btns > a:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: scale(1.02, 1.02);
 }
 
 .header-btns > a:visited {
