@@ -231,7 +231,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
           data-testid="carpark-cards"
         >
           <div
-            class="card"
+            class="card hover"
             data-testid="carpark-card"
           >
             <div
@@ -292,7 +292,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
             </div>
           </div>
           <div
-            class="card"
+            class="card hover"
             data-testid="carpark-card"
           >
             <div
@@ -353,7 +353,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
             </div>
           </div>
           <div
-            class="card"
+            class="card hover"
             data-testid="carpark-card"
           >
             <div
@@ -414,7 +414,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
             </div>
           </div>
           <div
-            class="card"
+            class="card hover"
             data-testid="carpark-card"
           >
             <div
@@ -475,7 +475,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
             </div>
           </div>
           <div
-            class="card"
+            class="card hover"
             data-testid="carpark-card"
           >
             <div
