@@ -1,4 +1,3 @@
-{% load static %}
 <!doctype html>
 <html>
   <head>
@@ -16,17 +15,15 @@
       }
 
       .booking_details{
-        padding-top: -150px;
+        padding-top: -140px;
         font-size: 15px;
       }
 
-    footer {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      text-align: center;
-      font-size: 15px;
-    }
+      .footer {
+        padding-top:160px;
+        text-align: center;
+        font-size: 15px;
+      }
     </style>
   </head>
   <body>
@@ -35,6 +32,8 @@
         <img class="uwa_logo" src='{{url}}/static/images/uwa_logo.png'>
           <div class="booking_details">
             <b>{{booking.carpark.name}}</b>
+            </br>
+            <b>{{booking.date}}</b>
             </br>
             {% for bayBooked in bays %}
               <b>Bay {{bayBooked.bay.bay_number}} | {{bayBooked.start_time}} ~ {{bayBooked.end_time}}</b>
@@ -45,15 +44,18 @@
     </header>
     <main>
       <div class="recipient">
-        {%if "{{booking.name}}"|length > 20 %}
-          <p style="padding-top:60px; font-size:200px; text-align: center;">{{booking.name}}</p>
+        {% if booking.name|length > 20 %}
+          <p style="padding-top:50px; font-size:100px; text-align: center;">{{booking.name}}</p>
         {% else %}
-          <p style="padding-top:60px; font-size:100px; text-align: center;">{{booking.name}}</p>
+          <p style="font-size:140px; text-align: center;">{{booking.name}}</p>
+        {% endif %}
+        {% if booking.rego %}
+          <p style="font-size:14px; text-align: right; padding-top:-200px;">License Plate(s): {{license_plate.booking.rego}}</p>
         {% endif %}
       </div>
     </main>
     <footer>
-      <p>For issues and enquiries, please contact: (+61 8) 6488 1229</p>
+      <p class="footer">For issues and enquiries, please contact: (+61 8) 6488 1229</p>
     </footer>
   </body>
 </html>
