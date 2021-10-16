@@ -46,6 +46,7 @@ const getInitialState = (
 ): BaysInitialProps => {
   const times = getTimes(globalStartTime, globalEndTime);
   const ppBaysBooked = processBaysBooked(bookedBaysResponse.bays, times);
+  const offset = Times.indexOf(globalStartTime) + 1;
   const bays: Bay[] = bayResponse.map((b, row) => ({
     bayId: b.pk,
     bayNum: parseInt(b.bay_number),
@@ -57,7 +58,7 @@ const getInitialState = (
       bayNum: parseInt(b.bay_number), // Bay number is set by unipark staff
       time: times[i],
       index: i,
-      endTime: Times[(Times.indexOf(times[i]) + 1) % Times.length],
+      endTime: Times[(offset + i) % Times.length],
     })),
   }));
 
