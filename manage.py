@@ -6,9 +6,14 @@ from pathlib import Path
 
 def main():
     dotenv.read_dotenv(Path(__file__).resolve().parent.joinpath('.env'))
-    if (sys.argv[1] == 'test'):
+    if sys.argv[1] == 'test':
         # Set ENV to test, useful for changing settings
         os.environ['ENV'] = 'test'
+        import coverage
+        cov = coverage.coverage(source=['app'])
+        cov.set_option('report:show_missing', True)
+        cov.erase()
+        cov.start()
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.core.settings')
 
@@ -22,6 +27,12 @@ def main():
         ) from exc
 
     execute_from_command_line(sys.argv)
+
+    if sys.argv[1] == 'test':
+        cov.stop()
+        cov.save()
+        cov.html_report()
+        cov.report()
 
 if __name__ == '__main__':
     main()

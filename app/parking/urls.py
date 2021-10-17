@@ -16,7 +16,7 @@ parking_urls = [
     path('bay/', carbay_list),
     path('bays/<int:pk>', carbay_detail),
 
-    path('bookings', bookings),
+    path('bookings', bookings, name="booking"),
     path('bays-booked', bays_booked),
     path('bookings/<int:pk>', booking),
 ]

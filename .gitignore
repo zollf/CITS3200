@@ -5,6 +5,8 @@
 __pycache__
 db.sqlite3
 venv
+.coverage
+htmlcov
 
 # Node/React
 yarn-error.log

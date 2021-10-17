@@ -8,12 +8,14 @@ faker = Factory.create()
 
 class SettingsFactory(DjangoModelFactory):
     key = faker.word()
+    label = faker.word()
     value = faker.phone_number()
+    type = 'text'
 
     class Meta:
         model = Settings
 
-class SettingsModelTestCase(TestCase):
+class SettingsModelTest(TestCase):
     def setUp(self):
         """Create a new fake key"""
         self.fake_key = faker.word()
@@ -27,3 +29,11 @@ class SettingsModelTestCase(TestCase):
         """Should return settings dictionary"""
         settings = Settings.getDict()
         self.assertEqual(settings[self.fake_key], self.fake_setting.value)
+
+    def test_settings(self):
+        "Settings Model"
+        setting = SettingsFactory()
+        self.assertEqual(setting.key, Settings.objects.get(pk=setting.id).key)
+        setting.delete()
+        with self.assertRaises(Settings.DoesNotExist):
+            Settings.objects.get(pk=setting.id)
