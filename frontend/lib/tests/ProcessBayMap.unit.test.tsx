@@ -26,4 +26,13 @@ describe('renderCleanedTimes()', () => {
     );
     expect(render(component()).baseElement).toMatchSnapshot();
   });
+
+  it('matches its buffer snapshot', () => {
+    const component = () => (
+      <table>
+        <tbody>{renderCleanedTimes(bayTimes, 30)}</tbody>
+      </table>
+    );
+    expect(render(component()).baseElement).toMatchSnapshot();
+  });
 });

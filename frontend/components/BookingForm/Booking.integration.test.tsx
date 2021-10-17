@@ -21,6 +21,7 @@ const initialProps = {
   phone: '04 1234 5678',
   hub: 'uniart',
   userId: '1',
+  bufferInfo: 'this is buffer info',
 };
 
 const renderToStep2 = async (fetch = true) => {
@@ -227,6 +228,30 @@ describe('Booking Form Step 2', () => {
     UserEvent.click(getByText('Close'));
   });
 
+  it('selecting buffer works correctly', async () => {
+    const { getByTestId, container } = await renderToStep2();
+    UserEvent.click(getByTestId('buffer-30'));
+    await waitFor(() => expect(container.querySelectorAll('[data-isbuffer="true"]').length).toBeGreaterThan(0));
+    UserEvent.click(getByTestId('buffer-0'));
+    await waitFor(() => expect(container.querySelectorAll('[data-isbuffer="true"]').length).toBe(0));
+  });
+
+  it('clicking info button shows modal', async () => {
+    const { getByText, getByTestId } = await renderToStep2();
+    UserEvent.click(getByTestId('buffer-info'));
+    UserEvent.click(getByText('Close'));
+  });
+
+  it('selecting a buffer-able slot and turning buffer on will deselect', async () => {
+    // in this case the buffer-able slot is the edge
+    const { getByTestId, container, getAllByTestId } = await renderToStep2();
+    UserEvent.click(getAllByTestId('bay-time')[0]);
+    await waitFor(() => expect(getAllByTestId('bay-time')[0].getAttribute('data-selected')).toBe('true'));
+    UserEvent.click(getByTestId('buffer-30'));
+    await waitFor(() => expect(container.querySelectorAll('[data-isbuffer="true"]').length).toBeGreaterThan(0));
+    expect(getAllByTestId('bay-time')[0].getAttribute('data-selected')).toBe('false');
+  });
+
   it('click on unavailable time slot should do nothing', async () => {
     const { container } = await renderToStep2();
     const allNodes = container.querySelectorAll('[data-unavailable="true"]');
@@ -349,5 +374,21 @@ describe('Booking Form Confirmation', () => {
     const { getByText } = await renderToConfirmation();
     UserEvent.click(getByText('Download PDF'));
     expect(window.open).toHaveBeenCalledWith('/admin/bookings/download/1', '_blank', 'noopener,noreferrer');
+  });
+
+  it('having buffer can submit correctly', async () => {
+    const { getByTestId, container, getByText } = await renderToStep2();
+    UserEvent.click(getByTestId('buffer-30'));
+    await waitFor(() => expect(container.querySelectorAll('[data-isbuffer="true"]').length).toBeGreaterThan(0));
+
+    UserEvent.click(getByText('Continue'));
+    await waitFor(() => expect(getByText('Booking Details')).toBeInTheDocument());
+
+    UserEvent.type(getByTestId('firstName'), faker.name.firstName());
+    UserEvent.type(getByTestId('lastName'), faker.name.lastName());
+    UserEvent.type(getByTestId('email'), faker.internet.email());
+    UserEvent.type(getByTestId('phone'), faker.phone.phoneNumber('+61########'));
+    UserEvent.click(getByText('Submit'));
+    await waitFor(() => expect(getByText(/Thank you/)).toBeInTheDocument());
   });
 });

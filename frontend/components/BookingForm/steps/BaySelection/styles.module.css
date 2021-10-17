@@ -12,6 +12,15 @@
   margin-left: 12px;
 }
 
+.bayButtonsLeft > div {
+  margin-right: 12px;
+}
+
+.bayButtonsLeft, .bayButtonsRight {
+  display: flex;
+  align-items: flex-end;
+}
+
 .table {
   display: grid;
   grid-auto-columns: auto;
@@ -72,6 +81,7 @@
 }
 
 .bayTime[data-unavailable="true"] {
+  cursor: not-allowed;
   background: var(--uwa-secondary-red) !important;
 }
 
@@ -85,6 +95,15 @@
 
 .bayTime[data-selected="false"]:hover {
   background: var(--uwa-secondary-green);
+}
+
+.bayTime[data-isbuffer="true"] {
+  cursor: not-allowed;
+  background: var(--light-red);
+}
+
+.bayTime[data-isbuffer="true"]:hover {
+  background: var(--light-red);
 }
 
 .blue {
@@ -108,7 +127,7 @@
   font-weight: bold;
 }
 
-.greenSquare, .redSquare, .yellowSquare {
+.greenSquare, .redSquare, .yellowSquare, .pinkSquare {
   width: 38px;
   height: 38px;
   margin-right: 12px;
@@ -117,6 +136,7 @@
 .greenSquare { background: var(--uwa-secondary-green)}
 .redSquare { background: var(--uwa-secondary-red)}
 .yellowSquare { background: var(--uwa-secondary-gold)}
+.pinkSquare { background: var(--light-red)}
 
 .additionInfo {
   position: absolute;

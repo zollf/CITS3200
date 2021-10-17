@@ -28,7 +28,7 @@ const Confirmation = () => {
           hover={false}
         />
         <Field label="Date" name="date" type="data" value={values.date.toDateString()} disabled />
-        <BayBookings bayTimes={values.booking} />
+        <BayBookings bayTimes={values.booking} buffer={values.buffer} />
       </div>
       <div className={styles.btns}>
         <CustomButton

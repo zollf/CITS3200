@@ -40,20 +40,20 @@ export default function createListItems(bayTimes: Map<string, Time>) {
   return cleanedTimes;
 }
 
-export function renderCleanedTimes(bayTimes: Map<string, Time>) {
+export function renderCleanedTimes(bayTimes: Map<string, Time>, buffer?: number) {
   const listItems = createListItems(bayTimes).map((bookedTime) => {
     return bookedTime.length == 1 ? (
       <tr key={bookedTime[0].slug}>
         <td>{bookedTime[0].bayNum}</td>
         <td>
-          {bookedTime[0].time}-{bookedTime[0].endTime}
+          {bookedTime[0].time}-{bookedTime[0].endTime} {buffer ? `± ${buffer}` : null}
         </td>
       </tr>
     ) : (
       <tr key={bookedTime[0].slug}>
         <td>{bookedTime[0].bayNum} </td>
         <td>
-          {bookedTime[0].time}-{bookedTime[1].endTime}
+          {bookedTime[0].time}-{bookedTime[1].endTime} {buffer ? `± ${buffer}` : null}
         </td>
       </tr>
     );

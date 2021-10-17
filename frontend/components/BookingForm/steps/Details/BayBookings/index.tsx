@@ -5,10 +5,11 @@ import styles from './styles.module.css';
 
 interface Props {
   bayTimes: Map<string, Time>;
+  buffer?: number;
 }
 
-const BayBookings = ({ bayTimes }: Props) => {
-  const listItems = useMemo(() => renderCleanedTimes(bayTimes), [bayTimes]);
+const BayBookings = ({ bayTimes, buffer }: Props) => {
+  const listItems = useMemo(() => renderCleanedTimes(bayTimes, buffer), [bayTimes]);
 
   return (
     <table className={styles.bayTimes}>
