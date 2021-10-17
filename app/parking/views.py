@@ -264,7 +264,7 @@ def bookings(request):
             baysBookedSerializer.save()
 
         # Send email
-        booking =  bookingsSerializer.data
+        booking = bookingsSerializer.data
         if log_and_send_mail(
             subject="Your UniPark Booking",
             to_email=[request.data['booking']['email']],

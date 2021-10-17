@@ -40,7 +40,7 @@ def email_resend_booking(request, pk):
     if request.method == 'GET':
         try:
             booking = Bookings.objects.values('id', 'carpark', 'date', 'name', 'email',
-                                            'rego', 'company', 'phone', 'user').get(pk=pk)
+                                              'rego', 'company', 'phone', 'user').get(pk=pk)
         except Bookings.DoesNotExist:
             return JsonResponse({'error': 'Cannot find booking'}, status=status.HTTP_400_BAD_REQUEST)
 
