@@ -55,5 +55,5 @@ def email_resend_booking(request, pk):
             return redirect(f"/admin/bookings/view/{pk}")
         else:
             return JsonResponse({
-                'success': False, 'error': "internal server error"
+                'error': "internal server error"
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
