@@ -70,9 +70,10 @@ def bays_booked(request):
             return JsonResponse({
                 'error': 'Please supply what carpark and date you want.'
             }, status=status.HTTP_400_BAD_REQUEST)
-        
+
         if 'bay' in request.data:
-            bays = BaysBooked.objects.filter(booking__date=request.data['date'], bay__carpark=request.data['carpark'], bay__id=request.data['bay'])
+            bays = BaysBooked.objects.filter(
+                booking__date=request.data['date'], bay__carpark=request.data['carpark'], bay__id=request.data['bay'])
         else:
             bays = BaysBooked.objects.filter(booking__date=request.data['date'], bay__carpark=request.data['carpark'])
         baysBookedSerializer = BaysBookedSerializer(bays, context={'request': request}, many=True)
