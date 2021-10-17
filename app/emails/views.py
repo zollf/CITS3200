@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 
 from rest_framework.decorators import api_view
 from rest_framework import status
+from ..parking.models import Bookings
 
 from .send import log_and_send_mail
 
@@ -30,4 +31,25 @@ def email_test(request):
 
         if 'redirect' in request.data:
             return redirect(request.data['redirect'], {'error': 'Failed to send email'})
-        return JsonResponse({'success': False}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'success': False}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+def email_resend_booking(request, pk):
+    if request.method == 'GET':
+        try:
+            booking = Bookings.objects.get(pk=pk)
+        except Bookings.DoesNotExist:
+            return JsonResponse({'error': 'Cannot find booking'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if log_and_send_mail(
+            'Your UniPark Booking',
+            [booking.email],
+            'EmailResendBooking',
+            'emails/booking.html',
+            data={
+                "name": booking.name,
+                "email": booking.email,
+            }
+        ):
+            return redirect(f"/admin/bookings/view/{pk}")
+        else:
+            return JsonResponse({'success': False, 'error': "internal server error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

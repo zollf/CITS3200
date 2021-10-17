@@ -24,6 +24,7 @@
           {% endif %}
           {% if title == "bookings" %}
             <a href="/admin/bookings/download/{{data.id}}" target="_blank" rel="noopener noreferrer" class="admin-btn blue p-bold auto">Download PDF</a>
+            <a href="/api/emails/resend-booking/{{data.id}}" class="admin-btn blue p-bold auto">Resend Email</a>
           {% endif %}
           {% if data.name %}
             <button 
