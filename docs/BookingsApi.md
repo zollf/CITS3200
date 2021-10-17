@@ -76,7 +76,7 @@ Example Response
 ]
 ```
 
-## Bays Booked `/api/v1/open/bays-booked/` POST
+## Bays Booked `/api/v1/open/bays-booked/` GET
 Example Request
 ```json
 {

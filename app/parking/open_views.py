@@ -57,9 +57,9 @@ def carbays_list(request, pk):
         serializer = CarBaySerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
 
-@api_view(['POST'])
+@api_view(['GET'])
 def bays_booked(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         """
         {
           "date": "2000-01-01",
