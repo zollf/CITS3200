@@ -11,6 +11,14 @@ class Emails(models.Model):
         'EmailTest': {
             'name': 'Test Email',
             'description': 'Testing email sends from system',
+        },
+        'EmailBooking': {
+            'name': 'Booking Email',
+            'description': 'Booking email has been sent from the system',
+        },
+        'EmailResendBooking': {
+            'name': 'Resend Booking Email',
+            'description': 'Resending booking email'
         }
     }
 

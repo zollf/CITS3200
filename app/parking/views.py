@@ -12,6 +12,7 @@ from rest_framework.parsers import JSONParser
 from .models import CarPark, CarBay
 from app.authentication.models import User
 from .serializers import *
+from ..emails.send import log_and_send_mail
 
 @login_required(login_url="/login")
 @csrf_protect
@@ -262,8 +263,23 @@ def bookings(request):
 
             baysBookedSerializer.save()
 
-        return JsonResponse({'success': True, 'booking_id': bookingsSerializer.data['pk']},
-                            status=status.HTTP_201_CREATED)
+        # Send email
+        if log_and_send_mail(
+            subject="Your UniPark Booking",
+            to_email=[request.data['booking']['email']],
+            category="EmailBooking",
+            template="emails/booking.html",
+            data={
+                **request.data["booking"],
+                "bays": request.data["bays"]
+            },
+        ):
+            return JsonResponse({'success': True, 'booking_id': bookingsSerializer.data['pk']},
+                                status=status.HTTP_201_CREATED)
+        else:
+            return JsonResponse({
+                'error': 'Something went wrong when sending email.'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @login_required(login_url="/login")
 @csrf_protect

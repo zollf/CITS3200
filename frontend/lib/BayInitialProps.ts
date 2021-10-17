@@ -46,7 +46,7 @@ const getInitialState = (
 ): BaysInitialProps => {
   const times = getTimes(globalStartTime, globalEndTime);
   const ppBaysBooked = processBaysBooked(bookedBaysResponse.bays, times);
-  const offset = Times.indexOf(globalStartTime) + 1;
+  const offset = Times.indexOf(globalStartTime);
   const bays: Bay[] = bayResponse.map((b, row) => ({
     bayId: b.pk,
     bayNum: parseInt(b.bay_number),
@@ -58,18 +58,15 @@ const getInitialState = (
       bayNum: parseInt(b.bay_number), // Bay number is set by unipark staff
       time: times[i],
       index: i,
-      endTime: Times[(offset + i) % Times.length],
+      endTime: Times[(offset + i + 1) % Times.length],
+      previousTime: Times?.[offset + i - 1],
+      row: row + 1,
+      nextTimesEndTime: Times[(offset + i + 2) % Times.length], // used on submission for buffer
     })),
   }));
 
-  return { times, bays };
+  return { times, bays, unavailable: ppBaysBooked };
 };
-
-interface PreprocessedTimes {
-  [id: number]: {
-    [time: string]: boolean;
-  };
-}
 
 /**
  * Processes bays booked api response into an object

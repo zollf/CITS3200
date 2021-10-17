@@ -8,6 +8,7 @@ const initialProps = {
   phone: document.getElementById('phone')?.dataset.phone || '04 1234 5678',
   userId: document.getElementById('user')?.dataset.user || null,
   hub: document.getElementById('hub')?.dataset.hub || '',
+  bufferInfo: document.getElementById('bufferInfo')?.dataset.bufferInfo || '',
 };
 
 ReactDOM.render(<BookingForm {...initialProps} />, document.getElementById('react-app'));

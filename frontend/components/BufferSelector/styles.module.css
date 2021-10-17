@@ -1,0 +1,48 @@
+.buffers {
+  height: 34px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: var(--uwa-blue);
+  border-radius: 7px;
+  width: 80px;
+  padding: 4px;
+}
+
+.top {
+  display: flex;
+}
+
+.top > p {
+  width: 100%;
+  text-align: center;
+}
+
+.top > button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.top > button > svg {
+  height: 20px;
+  width: 20px;
+}
+
+.buffers > button {
+  height: 100%;
+  width: 100%;
+  padding: 2px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 3px;
+  transition: 0.2s all ease;
+}
+
+.buffers > button[data-active="true"] {
+  background: var(--white);
+  color: black;
+}

@@ -12,12 +12,15 @@ import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
 import { format } from 'date-fns';
 import { getInitialState, selection } from '@/frontend/lib/BayInitialProps';
 import { useFormikContext } from 'formik';
+import BufferSelector from '@/frontend/components/BufferSelector';
+import { standardTime } from '@/frontend/lib/Times';
 
 import styles from './styles.module.css';
 
 const BaySelection: StepComponent = () => {
   const { values, setFieldValue } = useFormikContext<BookingFormValues>();
-  const { globalStartTime, globalEndTime, setLoading, setError } = useContext<BookingContext>(BookingContext);
+  const { globalStartTime, globalEndTime, setLoading, setError, bufferInfo } =
+    useContext<BookingContext>(BookingContext);
   const [props, setProps] = useState<BaysInitialProps>();
   const [modalDesc, setModalDesc] = useState<string | undefined>(undefined);
 
@@ -25,6 +28,43 @@ const BaySelection: StepComponent = () => {
   const getBays = useCallback(async () => {
     return await fetch(`/api/carparks/${values.carpark!.pk}/bays`).then((r) => r.json());
   }, [values.carpark]);
+
+  const handleBufferChange = useCallback(
+    (buffer: number) => {
+      setFieldValue('buffer', buffer);
+      const booking = values.booking;
+      [...booking.keys()].forEach((key: string) => {
+        if (isBuffer(booking.get(key)!, buffer)) booking.delete(key);
+      });
+      setFieldValue('booking', booking);
+    },
+    [setFieldValue, values.booking, props?.unavailable],
+  );
+
+  const isBuffer = useCallback(
+    (time: Time, buffer?: number) => {
+      const b = buffer || values.buffer;
+      if (b === 30) {
+        // on edges
+        if (time.time === standardTime(globalStartTime) || time.endTime === standardTime(globalEndTime)) {
+          return true;
+        }
+
+        // check prev
+        if (time.previousTime && props?.unavailable?.[time.bayId]?.[time.previousTime]) {
+          return true;
+        }
+
+        // check next
+        // we can use end time to check the next time slot
+        if (props?.unavailable?.[time.bayId]?.[time.endTime]) {
+          return true;
+        }
+      }
+      return false;
+    },
+    [values.buffer, setFieldValue, props?.unavailable],
+  );
 
   const getBaysBooked = useCallback(
     async (date: string) => {
@@ -65,7 +105,7 @@ const BaySelection: StepComponent = () => {
   const [mouseDown, setMouseDown] = useState<number | null>(null);
 
   const handleClick = (time: Time) => {
-    if (time.status !== selection.UNAVAILABLE) {
+    if (time.status !== selection.UNAVAILABLE && !isBuffer(time)) {
       const booking = values.booking;
       booking.has(time.slug) ? booking.delete(time.slug) : booking.set(time.slug, time);
       setFieldValue('booking', booking);
@@ -74,12 +114,12 @@ const BaySelection: StepComponent = () => {
 
   const onMouseDown = (time: Time) => {
     // so if we mouse down on something AVAILABLE, we want to be able to drag/hover to make things UNAVAILABLE and vis versa
-    setMouseDown(values.booking.has(time.slug) ? selection.UNAVAILABLE : selection.AVAILABLE);
+    setMouseDown(values.booking.has(time.slug) ? selection.SELECTED : selection.AVAILABLE);
     handleClick(time);
   };
 
   const handleHover = (time: Time) => {
-    if (mouseDown === selection.UNAVAILABLE) {
+    if (mouseDown === selection.SELECTED) {
       const booking = values.booking;
       booking.delete(time.slug);
       setFieldValue('booking', booking);
@@ -142,11 +182,23 @@ const BaySelection: StepComponent = () => {
             <div className={styles.yellowSquare} />
             <p>Available</p>
           </div>
+
+          {values.buffer !== 0 && (
+            <div className={styles.legend}>
+              <div className={styles.pinkSquare} />
+              <p>Buffer Only</p>
+            </div>
+          )}
         </div>
 
         <div className={styles.bayButtons}>
           <div className={styles.bayButtonsLeft}>
             <DatePicker selected={values.date} onChange={handleDateChange} />
+            <BufferSelector
+              active={values.buffer}
+              onClick={handleBufferChange}
+              infoClick={() => setModalDesc(bufferInfo)}
+            />
           </div>
           <div className={styles.bayButtonsRight}>
             <CustomButton onClick={handleReset} type={ButtonType.button} icon={<Reset />}>
@@ -196,6 +248,7 @@ const BaySelection: StepComponent = () => {
                       data-unavailable={t.status === selection.UNAVAILABLE}
                       data-selected={values.booking.has(t.slug)}
                       data-testid="bay-time"
+                      data-isbuffer={isBuffer(t)}
                       onMouseDown={() => onMouseDown(t)}
                       onMouseUp={() => setMouseDown(null)}
                       onMouseOver={() => handleHover(t)}

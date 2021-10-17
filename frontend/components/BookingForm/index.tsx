@@ -23,6 +23,7 @@ interface Props {
   phone: string;
   userId: string | null;
   hub: string;
+  bufferInfo: string;
 }
 
 // istanbul ignore next
@@ -38,9 +39,10 @@ const BookingContext = React.createContext<BookingContext>({
   hub: '',
   loading: false,
   bookingId: -1,
+  bufferInfo: '',
 });
 
-const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Props) => {
+const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub, bufferInfo }: Props) => {
   const [step, setStep] = useState(0);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [error, setError] = useState('');
@@ -76,11 +78,21 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
         phone: values.phone,
         user: userId,
       },
-      bays: createListItems(values.booking).map((b) => ({
-        bay: b[0]?.bayId,
-        start_time: b[0]?.time,
-        end_time: b[1]?.endTime || b[0]?.endTime,
-      })),
+      bays: createListItems(values.booking).map((b) => {
+        if (values.buffer === 30) {
+          return {
+            bay: b[0].bayId,
+            start_time: b[0].previousTime,
+            end_time: b[1]?.nextTimesEndTime || b[0].nextTimesEndTime,
+          };
+        }
+
+        return {
+          bay: b[0].bayId,
+          start_time: b[0].time,
+          end_time: b[1]?.endTime || b[0].endTime,
+        };
+      }),
     };
 
     try {
@@ -146,6 +158,7 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
         loading,
         setError,
         bookingId,
+        bufferInfo,
       }}
     >
       <Formik<BookingFormValues>

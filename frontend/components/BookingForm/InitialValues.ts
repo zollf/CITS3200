@@ -4,13 +4,13 @@ const InitialValues: BookingFormValues = {
   carpark: undefined,
   date: addDays(new Date(), 1),
   booking: new Map(),
-  hub: 'uniart',
   firstName: '',
   lastName: '',
   email: '',
   phone: '',
   rego: '',
   company: '',
+  buffer: 0,
 };
 
 export default InitialValues;

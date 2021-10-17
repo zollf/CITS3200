@@ -15,6 +15,7 @@ interface BookingContext {
   hub: string;
   loading: boolean;
   bookingId: number;
+  bufferInfo: string;
 }
 
 type Selected = 1;
@@ -58,11 +59,21 @@ interface Time {
   index: number;
   bayId: number;
   endTime: string;
+  previousTime: string | null | undefined; // possible null or undefined as 00:00 doesn't have previous time
+  row: number; // row that this time slot appears in the bay selection
+  nextTimesEndTime: string;
+}
+
+interface PreprocessedTimes {
+  [id: number]: {
+    [time: string]: boolean;
+  };
 }
 
 interface BaysInitialProps {
   bays: Bay[];
   times: string[];
+  unavailable: PreprocessedTimes;
 }
 
 interface BayAction {
@@ -88,4 +99,5 @@ interface BookingFormValues {
   phone: string;
   rego?: string;
   company?: string;
+  buffer: number;
 }
