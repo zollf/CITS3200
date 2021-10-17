@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Arrow from '@/app/resources/static/images/arrow.svg';
-import Download from '@/app/resources/static/images/download.svg';
 import CarparkCard from '@/frontend/components/CarparkCard';
+import Download from '@/app/resources/static/images/download.svg';
 import Field from '@/frontend/components/Field';
 import { BookingContext } from '@/frontend/components/BookingForm/index';
 import { ButtonType, CustomButton } from '@/frontend/components/CustomButton';
@@ -25,28 +25,30 @@ const Confirmation = () => {
           name={values.carpark!.name}
           description={values.carpark!.description}
           mapURL={values.carpark!.google_maps_link}
+          hover={false}
         />
         <Field label="Date" name="date" type="data" value={values.date.toDateString()} disabled />
         <BayBookings bayTimes={values.booking} />
       </div>
-      <CustomButton
-        type={ButtonType.button}
-        iconLeft={false}
-        icon={<Download />}
-        onClick={() => window.open(`/admin/bookings/download/${bookingId}`, '_blank', 'noopener,noreferrer')}
-        customClass={styles.download}
-      >
-        Download PDF
-      </CustomButton>
+      <div className={styles.btns}>
+        <CustomButton
+          type={ButtonType.button}
+          iconLeft={false}
+          icon={<Download />}
+          onClick={() => window.open(`/admin/bookings/download/${bookingId}`, '_blank', 'noopener,noreferrer')}
+        >
+          Download PDF
+        </CustomButton>
 
-      <CustomButton
-        type={ButtonType.button}
-        iconLeft={false}
-        icon={<Arrow />}
-        onClick={() => (window.location.href = '/')}
-      >
-        Return
-      </CustomButton>
+        <CustomButton
+          type={ButtonType.button}
+          iconLeft={false}
+          icon={<Arrow />}
+          onClick={() => window.location.assign('/')}
+        >
+          Return
+        </CustomButton>
+      </div>
     </div>
   );
 };

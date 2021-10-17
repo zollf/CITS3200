@@ -115,7 +115,6 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
   };
 
   const handleSubmit = async (value: BookingFormValues, formikHelpers: FormikHelpers<BookingFormValues>) => {
-    formikHelpers.setSubmitting(false);
     if (step === Steps.length - 1) {
       if (await finalSubmit(value)) {
         setError('');
@@ -125,6 +124,10 @@ const BookingForm = ({ globalStartTime, globalEndTime, phone, userId, hub }: Pro
       setError('');
       next();
     }
+
+    formikHelpers.setTouched({});
+    formikHelpers.setErrors({});
+    formikHelpers.setSubmitting(false);
   };
 
   if (documentation.length == 0) return null;

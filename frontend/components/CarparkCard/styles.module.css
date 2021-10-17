@@ -8,10 +8,13 @@
   display: grid;
   grid-template-rows: 106px 1fr;
   transition: 0.2s all ease;
+}
+
+.hover {
   cursor: pointer;
 }
 
-.card:hover {
+.hover:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   transform: scale(1.02, 1.02);
 }

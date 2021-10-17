@@ -131,44 +131,48 @@ exports[`Booking Form Confirmation matches its snapshot 1`] = `
             </tbody>
           </table>
         </div>
-        <button
-          class="custombutton download"
-          type="button"
+        <div
+          class="btns"
         >
-          Download PDF 
-          <svg
-            fill="none"
-            height="24"
-            viewBox="0 -3 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+          <button
+            class="custombutton"
+            type="button"
           >
-            <path
-              d="M14 6h-4V0H4v6H0l7 7 7-7zM0 15v2h14v-2H0z"
-              fill="#FDFDFD"
-            />
-          </svg>
-           
-        </button>
-        <button
-          class="custombutton"
-          type="button"
-        >
-          Return 
-          <svg
-            height="24"
-            id="arrow"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+            Download PDF 
+            <svg
+              fill="none"
+              height="24"
+              viewBox="0 -3 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14 6h-4V0H4v6H0l7 7 7-7zM0 15v2h14v-2H0z"
+                fill="#FDFDFD"
+              />
+            </svg>
+             
+          </button>
+          <button
+            class="custombutton"
+            type="button"
           >
-            <path
-              d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z"
-              fill="#231F20"
-            />
-          </svg>
-           
-        </button>
+            Return 
+            <svg
+              height="24"
+              id="arrow"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z"
+                fill="#231F20"
+              />
+            </svg>
+             
+          </button>
+        </div>
       </div>
     </div>
   </form>
@@ -231,7 +235,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
           data-testid="carpark-cards"
         >
           <div
-            class="card"
+            class="card hover"
             data-testid="carpark-card"
           >
             <div
@@ -292,7 +296,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
             </div>
           </div>
           <div
-            class="card"
+            class="card hover"
             data-testid="carpark-card"
           >
             <div
@@ -353,7 +357,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
             </div>
           </div>
           <div
-            class="card"
+            class="card hover"
             data-testid="carpark-card"
           >
             <div
@@ -414,7 +418,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
             </div>
           </div>
           <div
-            class="card"
+            class="card hover"
             data-testid="carpark-card"
           >
             <div
@@ -475,7 +479,7 @@ exports[`Booking Form Step 1 matches its snapshot 1`] = `
             </div>
           </div>
           <div
-            class="card"
+            class="card hover"
             data-testid="carpark-card"
           >
             <div
