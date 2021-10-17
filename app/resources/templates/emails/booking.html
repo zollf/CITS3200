@@ -1,1 +1,29 @@
-This is a booking email from unipark to {{email}}
+<b>Booking Confirmation</b> <br/>
+<br/>
+<b>Booking For</b><br/>
+Date: {{booking.date}}<br/>
+Name: {{booking.name}}<br/>
+Email: {{booking.email}}<br/>
+{% if booking.company %}Company: {{booking.company}}<br/> {% endif %}
+{% if booking.rego %}Rego(s): {{booking.rego}}<br/> {% endif %}
+{% if booking.phone %}Phone: {{booking.phone}}<br/> {% endif %}
+<br/>
+<b>Booking Made by</b><br/>
+Name: {{user.username}}<br/>
+Email: {{user.email}}<br/>
+Hub: {{user.hub}}<br/>
+<br/>
+<b>Carpark</b><br/>
+Carpark: {{carpark.name}}<br/>
+Description: {{carpark.description}}<br/>
+Google maps Link: <a href={{carpark.google_maps_link}} rel="noopener noreferrer">Carpark</a><br/>
+<br/>
+<b>Bays</b><br/>
+{% for bay in bays %}
+  ---<br/>
+  Bay Number: {{bay.bay.bay_number}}<br/>
+  Time: {{bay.start_time|date:"f a"}} - {{bay.end_time|date:"f a"}}<br/>
+  {% if bay.bay.description %}Description: {{bay.bay.description}}<br/>{% endif %}
+{% endfor %}
+<br/>
+Thanks for booking with UniPark<br/>

@@ -264,14 +264,17 @@ def bookings(request):
             baysBookedSerializer.save()
 
         # Send email
+        booking =  bookingsSerializer.data
         if log_and_send_mail(
             subject="Your UniPark Booking",
             to_email=[request.data['booking']['email']],
             category="EmailBooking",
             template="emails/booking.html",
             data={
-                **request.data["booking"],
-                "bays": request.data["bays"]
+                "booking": booking,
+                "carpark": booking['carpark'],
+                "bays": BaysBooked.objects.filter(booking__id=booking['pk']),
+                "user": booking['user'],
             },
         ):
             return JsonResponse({'success': True, 'booking_id': bookingsSerializer.data['pk']},
