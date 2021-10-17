@@ -3,6 +3,7 @@
 }
 
 .bayButtons {
+  margin-top: 52px;
   display: flex;
   margin-bottom: 8px;
   justify-content: space-between;
