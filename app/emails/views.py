@@ -33,6 +33,8 @@ def email_test(request):
             return redirect(request.data['redirect'], {'error': 'Failed to send email'})
         return JsonResponse({'success': False}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+@csrf_protect
+@api_view(['GET'])
 def email_resend_booking(request, pk):
     if request.method == 'GET':
         try:
