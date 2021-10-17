@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from django.http import HttpResponseNotFound
 
 from .utils import common_decorators, renderPDF
 
@@ -55,7 +56,10 @@ def CarparkAdd(request):
 @common_decorators(['GET'])
 def CarparkEdit(request, pk):
     if (request.method == 'GET'):
-        carpark = CarPark.objects.values('id', 'name', 'description', 'google_maps_link').get(pk=pk)
+        try:
+            carpark = CarPark.objects.values('id', 'name', 'description', 'google_maps_link').get(pk=pk)
+        except CarPark.DoesNotExist:
+            return HttpResponseNotFound('Cannot find carpark with id')
         carbays = CarBay.objects.values('id', 'bay_number', 'description').filter(carpark=pk)
         add_url = f"/admin/carparks/{carpark['id']}/bay/add"
         carbay_redirect = f"/admin/carparks/view/{carpark['id']}"

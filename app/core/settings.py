@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_components',
+    'django_nose',
     'rest_framework',
     'app.index',
     'app.parking',
@@ -104,14 +105,26 @@ EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS") == "True"
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 SERVER_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 
+# Lang
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATIC_URL = '/static/'
+# Testing
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+NOSE_ARGS = [
+    '--with-spec',
+    '--spec-color',
+    '--nocapture',
+    '--with-coverage',
+    '--cover-erase',
+    '--cover-package=app'
+]
 
+# Static
+STATIC_URL = '/static/'
 if os.getenv("ENV") == 'prod':
     # We only use this is prod as it will be using gunicorn
     STATIC_ROOT = os.path.join(BASE_DIR, "resources/static/")

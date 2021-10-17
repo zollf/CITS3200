@@ -71,6 +71,8 @@ def carpark_detail(request, pk):
         carpark.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
+@login_required(login_url="/login")
+@csrf_protect
 @api_view(['GET', 'POST'])
 def carbay_list(request):
     if request.method == 'GET':
@@ -97,6 +99,8 @@ def carbay_list(request):
             return redirect(request.data['redirect'])
         return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
 
+@login_required(login_url="/login")
+@csrf_protect
 @api_view(['GET', 'PUT', 'DELETE'])
 def carbay_detail(request, pk):
     try:
@@ -120,6 +124,8 @@ def carbay_detail(request, pk):
         carbay.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
+@login_required(login_url="/login")
+@csrf_protect
 @api_view(['GET'])
 def carbays_list(request, pk):
     if request.method == 'GET':
@@ -127,6 +133,8 @@ def carbays_list(request, pk):
         serializer = CarBaySerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
 
+@login_required(login_url="/login")
+@csrf_protect
 @api_view(['POST'])
 def bays_booked(request):
     if request.method == 'POST':
@@ -156,6 +164,7 @@ def bays_booked(request):
         return JsonResponse({'success': True, 'bays': baysCleaned}, status=status.HTTP_200_OK)
 
 @login_required(login_url="/login")
+@csrf_protect
 @api_view(['GET', 'POST'])
 def bookings(request):
     if request.method == 'GET':
@@ -173,8 +182,8 @@ def bookings(request):
             "email": "test@test.com",
             "rego": "1234",
             "company": "uni",
-            "phone": 1234
-            "user": "1"
+            "phone": 1234,
+            "user": 1
           },
           "bays": [
             {
@@ -190,9 +199,14 @@ def bookings(request):
           ]
         }
         """
-        if 'booking' not in request.data or 'bays' not in request.data:
+        if 'booking' not in request.data:
             return JsonResponse({
-                'error': 'Please supply a booking and the bay(s) booked.'
+                'error': 'Please supply booking details.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        if 'bays' not in request.data:
+            return JsonResponse({
+                'error': 'Please supply bays to be booked.'
             }, status=status.HTTP_400_BAD_REQUEST)
 
         booking = request.data['booking']
@@ -228,7 +242,6 @@ def bookings(request):
 
         # Save Bays
         for bay in request.data['bays']:
-
             try:
                 CarBay.objects.get(pk=bay['bay'])
             except CarBay.DoesNotExist:
@@ -253,6 +266,7 @@ def bookings(request):
                             status=status.HTTP_201_CREATED)
 
 @login_required(login_url="/login")
+@csrf_protect
 @api_view(['GET', 'DELETE'])
 def booking(request, pk):
     if request.method == 'GET':
