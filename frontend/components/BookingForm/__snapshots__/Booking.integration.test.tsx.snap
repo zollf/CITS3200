@@ -2995,7 +2995,7 @@ exports[`Booking Form Step 3 matches its snapshot 1`] = `
                 class="p-bold"
                 for="rego"
               >
-                Rego (Optional)
+                Rego(s) (Optional)
               </label>
               <input
                 data-testid="rego"

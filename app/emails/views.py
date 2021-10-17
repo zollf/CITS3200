@@ -5,7 +5,8 @@ from django.shortcuts import redirect
 
 from rest_framework.decorators import api_view
 from rest_framework import status
-from ..parking.models import Bookings
+from ..parking.models import Bookings, BaysBooked, CarPark
+from ..authentication.models import User
 
 from .send import log_and_send_mail
 
@@ -38,18 +39,25 @@ def email_test(request):
 def email_resend_booking(request, pk):
     if request.method == 'GET':
         try:
-            booking = Bookings.objects.get(pk=pk)
+            booking = Bookings.objects.values('id', 'carpark', 'date', 'name', 'email',
+                                              'rego', 'company', 'phone', 'user').get(pk=pk)
         except Bookings.DoesNotExist:
             return JsonResponse({'error': 'Cannot find booking'}, status=status.HTTP_400_BAD_REQUEST)
 
+        bays = BaysBooked.objects.filter(booking__id=pk)
+        user = User.objects.values('id', 'username', 'hub', 'email').get(pk=booking['user'])
+        carpark = CarPark.objects.values('id', 'name', 'description', 'google_maps_link').get(pk=booking['carpark'])
+
         if log_and_send_mail(
             'Your UniPark Booking',
-            [booking.email],
+            [booking['email']],
             'EmailResendBooking',
             'emails/booking.html',
             data={
-                "name": booking.name,
-                "email": booking.email,
+                "booking": booking,
+                "carpark": carpark,
+                "user": user,
+                "bays": bays,
             }
         ):
             return redirect(f"/admin/bookings/view/{pk}")
