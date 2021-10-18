@@ -13,10 +13,9 @@ Currently we are running with Heroku + ClearDB + Google SMTP as all of them are 
 I would recommend storing image on AWS ECR and using EC2 to deploy image, also using AWS RDS for database.
 
 ## Docker + MySql
-ENV SETUP
+### ENV SETUP
 ```bash
 DOCKER_BUILDKIT=1
-COMPOSE_DOCKER_CLI_BUILD=1
 
 # Type of environment you are using (dev, prod, test)
 ENV="prod"
@@ -43,23 +42,23 @@ EMAIL_USE_TLS="True"
 DEFAULT_FROM_EMAIL="changeme"
 ```
 
-BUILD
+### BUILD
+You'll require a connection to the db as it runs a migration on database so it is up to date
 ```
 docker build -f docker/django.prod.Dockerfile -t unipark .
 ```
 
-RUN
+### RUN
 ```
 docker run --publish 8000:8000 unipark
 ```
 
-Open localhost:8000
+Open/Route localhost:8000
 
 ## Docker + Sqlite3
-ENV SETUP
+### ENV SETUP
 ```bash
 DOCKER_BUILDKIT=1
-COMPOSE_DOCKER_CLI_BUILD=1
 
 # Type of environment you are using (dev, prod, test)
 ENV="test"
@@ -78,14 +77,14 @@ EMAIL_USE_TLS="True"
 DEFAULT_FROM_EMAIL="changeme"
 ```
 
-BUILD
+### BUILD
 ```
-docker build -f docker/django.prod.sqlite.Dockerfile -t unipark . 
+docker build -f docker/django.prod.Dockerfile -t unipark . 
 ```
 
-RUN
+### RUN
 ```
 docker run --publish 8000:8000 unipark
 ```
 
-Open localhost:8000
+Open/Route localhost:8000
