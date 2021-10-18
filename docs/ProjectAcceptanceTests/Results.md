@@ -21,11 +21,11 @@ Passed. GitHub actions have been used for CI/CD with all code undergoing it.
 
 ## Creating Bookings
 
-| Test Number | Result             |
-| ----------- | ------------------ |
-| 4.1         | Pass               |
-| 4.2         | Pass (minus email) |
-| 4.3         | Pass (minus email) |
+| Test Number | Result |
+| ----------- | ------ |
+| 4.1         | Pass   |
+| 4.2         | Pass   |
+| 4.3         | Pass   |
 
 ## Admin Functions
 
