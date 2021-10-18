@@ -4,7 +4,7 @@ UniPark booking system for CITS3200 project.
 https://unipark.herokuapp.com/
 
 ## Deployment
-[Deployment]https://github.com/zollf/CITS3200/blob/main/docs/Deployment.md
+https://github.com/zollf/CITS3200/blob/main/docs/Deployment.md
 
 ## Pre-Setup
 | Package | Site | Guide |
